@@ -654,30 +654,20 @@
 	function postUnpublish(postid)
 	{ 
 
-				// alert(id);
-
+			
 
 				$.ajax({
-					// url: BASE_URL + '/members/ignored'+id, 
-					// url: 'http://127.0.0.1:8000' + '/postunpublish/'+postid,
-					url: BASE_URL + '/postunpublish/'+postid,       
-					// dataType: 'json',
+					
+					url: BASE_URL + '/postunpublish/'+postid,			
 					type: 'GET'    
 				})
 				.done(function(result) {      
 
-					// console.log(result);
-
-					// alert(result);
-
-					// $("#msg_notification").html('<p>Ya no recibiras mensajes de este Usuario</p>');
-					// window.location=BASE_URL + '/';
-
-					// window.location = 'http://127.0.0.1:8000' + '/';
+				
 
 					window.location = BASE_URL + '/';
 
-      // chartData(result);
+  
 
   });
 
@@ -687,30 +677,21 @@
 			function comentUnpublish(postid)
 			{ 
 
-				// alert(id);
+		
 
 
 				$.ajax({
-					// url: BASE_URL + '/members/ignored'+id, 
-					// url: 'http://127.0.0.1:8000' + '/comentunpublish/'+postid,
-					url: BASE_URL + '/comentunpublish/'+postid,         
-					// dataType: 'json',
+					
+					url: BASE_URL + '/comentunpublish/'+postid, 				
 					type: 'GET'    
 				})
 				.done(function(result) {      
 
-					// console.log(result);
-
-					// alert(result);
-
-					// $("#msg_notification").html('<p>Ya no recibiras mensajes de este Usuario</p>');
-					// window.location=BASE_URL + '/';
-
-					// window.location = 'http://127.0.0.1:8000' + '/';
+					
 
 					window.location = BASE_URL + '/';
 
-      // chartData(result);
+   
 
   });
 
@@ -736,109 +717,19 @@
 
 		@if($post->content_id == 3 && $comments->isEmpty())
 
-		<script type="application/ld+json">
-    {
-"@context": "https://schema.org",
-  "@type": "DiscussionForumPosting",
-  "headline": "{{ $post->post_name }}",
-"author": {
-"@type": "Person",
-"name": "{{$post->username}}",
-"url": "https://foroworkers.com/members/{{$post->username}}/{{$post->userid}}"
-},
-"datePublished": "{{ $post->created_at }}",
-"sharedContent": "{!! $post->post_content !!}",
-"url": "https://foroworkers.com/comunidad/{{$post->url_name}}/{{$post->maincategory_id}}/{{$post->postid}}"
-}
-    </script>
 
 		@endif
 
 
 	@if($post->content_id == 3 && $comments->isNotEmpty() && $sumpostcommentall == 1)
 
-		<script type="application/ld+json">
-    {
-"@context": "https://schema.org",
-  "@type": "DiscussionForumPosting",
-  "headline": "{{ $post->post_name }}",
-"author": {
-"@type": "Person",
-"name": "{{$post->username}}",
-"url": "https://foroworkers.com/members/{{$post->username}}/{{$post->userid}}"
-},
-"datePublished": "{{ $post->created_at }}",
-"sharedContent": "{!! $post->post_content !!}",
-"url": "https://foroworkers.com/comunidad/{{$post->url_name}}/{{$post->maincategory_id}}/{{$post->postid}}"
-},
-"interactionStatistic": {
-    "@type": "InteractionCounter",
-    "interactionType": "https://schema.org/ReplyAction",
-    "userInteractionCount": "{{$sumpostcommentall}}"
-  },
-  "comment": [
-      @foreach($comments as $comment)
-      {
-      	 
-        "@type": "Comment",
-        "text": "{!! $comment->comment !!}",
-        "dateCreated": "{{$comment->created_at}}",
-        "author": {
-          "@type": "Person",
-          "name": "{{$comment->username}}"
-        }       
-      }
-       @endforeach       
-      ]
-    </script>   
+
 
 		@endif
 
 		@if($post->content_id == 3 && $comments->isNotEmpty() && $sumpostcommentall > 1)
 
-		<script type="application/ld+json">
-    {
-"@context": "https://schema.org",
-  "@type": "DiscussionForumPosting",
-  "headline": "{{ $post->post_name }}",
-"author": {
-"@type": "Person",
-"name": "{{$post->username}}",
-"url": "https://foroworkers.com/members/{{$post->username}}/{{$post->userid}}"
-},
-"datePublished": "{{ $post->created_at }}",
-"sharedContent": "{!! $post->post_content !!}",
-"url": "https://foroworkers.com/comunidad/{{$post->url_name}}/{{$post->maincategory_id}}/{{$post->postid}}"
-},
-"interactionStatistic": {
-    "@type": "InteractionCounter",
-    "interactionType": "https://schema.org/ReplyAction",
-    "userInteractionCount": "{{$sumpostcommentall}}"
-  },
-  "comment": [
-      @foreach($comments as $comment)
-      {
-      	 
-        "@type": "Comment",
-        "text": "{!! $comment->comment !!}",
-        "dateCreated": "{{$comment->created_at}}",
-        "author": {
-          "@type": "Person",
-          "name": "{{$comment->username}}"
-        }       
-      },
-       @endforeach
-       {
-        "@type": "Comment",
-        "text": "<p>Bienvenido al Foro</p>",
-        "dateCreated": "{{$comment->created_at}}",
-        "author": {
-          "@type": "Organization",
-          "name": "Foroworkers"
-        }
-      }        
-      ]
-    </script>  
+
 
 
 		@endif
@@ -846,60 +737,13 @@
 		{{-- este no sirve falta answercount y alguna answer --}}
 		@if($post->content_id == 4 && $comments->isEmpty())
 
-		<script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "QAPage",
-  "mainEntity": {
-    "@type": "Question",
-    "name": "{{ $post->post_name }}",
-    "text": "{!! $post->post_content !!}",   
-    "dateCreated": "{{ $post->created_at }}",
-    "author": {
-      "@type": "Person",
-      "name": "{{$post->username}}"
-    }
-    
-  }
-}
-
-      </script>  
-
+	
 
 		@endif
 
 		@if($post->content_id == 4 && $comments->isNotEmpty() && $sumpostcommentall == 1)
 
-		<script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "QAPage",
-  "mainEntity": {
-    "@type": "Question",
-    "name": "{{ $post->post_name }}",
-    "text": "{!! $post->post_content !!}",
-    "answerCount": {{$sumpostcommentall}},
-    "dateCreated": "{{ $post->created_at }}",
-    "author": {
-      "@type": "Person",
-      "name": "{{$post->username}}"
-    },
-    "suggestedAnswer": [
-      @foreach($comments as $comment)
-      {
-      	 
-        "@type": "Answer",
-        "text": "{!! $comment->comment !!}",
-        "dateCreated": "{{$comment->created_at}}",
-        "author": {
-          "@type": "Person",
-          "name": "{{$comment->username}}"
-        }       
-      }
-       @endforeach       
-      ]
-  }
-}
 
-      </script>  
 
 
 		@endif
@@ -907,46 +751,7 @@
 
 				@if($post->content_id == 4 && $comments->isNotEmpty() && $sumpostcommentall > 1)
 
-		<script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "QAPage",
-  "mainEntity": {
-    "@type": "Question",
-    "name": "{{ $post->post_name }}",
-    "text": "{!! $post->post_content !!}",
-    "answerCount": {{$sumpostcommentall}},
-    "dateCreated": "{{ $post->created_at }}",
-    "author": {
-      "@type": "Person",
-      "name": "{{$post->username}}"
-    },
-    "suggestedAnswer": [
-      @foreach($comments as $comment)
-      {
-      	 
-        "@type": "Answer",
-        "text": "{!! $comment->comment !!}",
-        "dateCreated": "{{$comment->created_at}}",
-        "author": {
-          "@type": "Person",
-          "name": "{{$comment->username}}"
-        }       
-      },
-       @endforeach
-       {
-        "@type": "Answer",
-        "text": "<p>Bienvenido al Foro</p>",
-        "dateCreated": "{{$comment->created_at}}",
-        "author": {
-          "@type": "Organization",
-          "name": "Foroworkers"
-        }
-      }       
-      ]
-  }
-}
-
-      </script>  
+  
 
 
 		@endif
@@ -955,23 +760,7 @@
 
         @if($post->content_id == 5)
 
-        <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "NewsArticle",
-      "headline": "{{ $post->post_name }}",
-      "image": [
-        "{{URL('storage/uploads')}}/{{$post->post_img}}"        
-       ],
-      "datePublished": "{{ $post->created_at }}",
-      "dateModified": "{{ $post->created_at }}",
-      "author": [{
-          "@type": "Person",
-          "name": "Foroworkers",
-          "url": "https://foroworkers.com/members/{{$post->username}}/{{$post->userid}}"
-        }]
-    }
-    </script>
+
 
         @endif
 

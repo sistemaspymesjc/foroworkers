@@ -776,52 +776,7 @@
 
 @if($tcalculres >= 1)
 
-<script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Review",
-      {{-- "author": "calificacion", --}}
-      "author":
-      [
-      {
-          "@type":"Organization",
-          "name": "ForoWorkers"
-      }
-      ],
-      "itemReviewed": {
-      "@type": "Product",
-      "name": "{{ $post->post_name }}",
-      "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": {{ $tcalculres }},
-      "bestRating": 5,
-      "ratingCount": {{ $tcaliserv }}
-  }         
-},
-"reviewRating": {
-"@type": "Rating",
-"ratingValue": "{{ $tcalculres }}",
-"bestRating": "5"
-},
-"offers": {
 
-"@type": "Offer",
-
-{{--  "url": "https://example.com/anvil", --}}
-
-"priceCurrency": "USD",
-
-"price": "{{ $post->price }}",
-
-{{--   "priceValidUntil": "2020-11-20", --}}
-
-"itemCondition": "https://schema.org/UsedCondition",
-
-"availability": "https://schema.org/InStock"
-
-}
-}
-</script>
 
 
 @endif
@@ -829,44 +784,7 @@
 
 @if($post->type_id == 2)
 
-<script type="application/ld+json">
-    {
-      "@context": "http://schema.org/",
-      "@type": "JobPosting",
-      "datePosted": "{{ date('d-m-Y',strtotime($post->created_at)) }}",
-      "description": "{!! $post->post_content !!}",
-      "hiringOrganization" : {
-      "@type": "Organization",
-      "name": "Importante Empresa del País"
-  },
-  "jobLocation": {
-  "@type": "Place",
-  "address": {
-  "@type": "PostalAddress",
-  "streetAddress": "Caracas, Distrito Capital",
-  "addressLocality": "Caracas, Distrito Capital",
-  "addressRegion": "Caracas, Distrito Capital",
-  "addressCountry": "Venezuela"
-}
-},
-"baseSalary": {
-"@type": "MonetaryAmount",
-"currency": "USD",
-"value": {
-"@type": "QuantitativeValue",
-"value": 5.00,
-"unitText": "HOUR"
-}
-},
-"title": "{{$post->post_name}}",
-"validThrough": "{{ date('d-m-Y',strtotime($post->created_at)) }}",
-"employmentType": ["CONTRACTOR","OTHER"],
-"identifier": {
-"@type": "PropertyValue",
-"name": "Importante Empresa del País",
-"value": "{{$post->userid}}"
-}
-}
+
 </script>
 
 @endif
