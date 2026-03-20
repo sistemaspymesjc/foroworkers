@@ -26,12 +26,7 @@
    <li class="nav-item dropdown no-arrow mx-1">
     <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <i class="fas fa-bell fa-fw"></i>
-      <!-- Counter - Alerts -->
-      {{--     <span class="badge badge-danger badge-counter">3+</span> --}}
-      {{--     <span class="badge badge-danger badge-counter"></span> --}}
-      {{-- <i class="fas fa-file-alt text-white"></i> --}}
-    {{--   @if(!empty($replysnavbar))
-     @if($sumreplys > 0) --}}
+     
      <span class="badge badge-danger badge-counter" id="sumreplys">
 
       {{--  {{$sumreplys}} --}}
@@ -47,15 +42,7 @@
     <h6 class="dropdown-header">
       Alerts Center
     </h6>
-    {{--  @if(!empty($replysnavbar)) --}}
-
-
-
-    {{--     @foreach($replysnavbar as $replynavbar) --}}
-    {{--  <h4>{{ $message->message }}</h4> --}}
-    {{--    @endforeach --}}
-    {{--    @if(!empty($replysnavbar)) --}}
-    {{--    @foreach($replysnavbar as $replynavbar) --}}
+   
     <a class="dropdown-item d-flex align-items-center" href="#">
       <div class="mr-3">
         <div class="icon-circle bg-primary">
@@ -64,11 +51,7 @@
         </div>
       </div>
       <div>
-        {{-- <div class="small text-gray-500">December 12, 2019</div> --}}
-        {{--   <div class="small text-gray-500">{!! $replynavbar->reply !!}</div> --}}
-
-
-        {{--   <span class="font-weight-bold">A new monthly report is ready to download!</span> --}}
+       
       </div>
     </a>
 {{--     @endforeach
@@ -83,36 +66,13 @@
 <li class="nav-item dropdown no-arrow mx-1">
   <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <i class="fas fa-envelope fa-fw"></i>
-    <!-- Counter - Messages -->
-    {{--  <span class="badge badge-danger badge-counter">7</span> --}}
-    {{--   @if(!empty($messagesnavbar)) --}}
-    {{--   @foreach($messagesnavbar as $messagenavbar) --}}
-    {{--  <span class="badge badge-danger badge-counter"> --}}
-      {{--    @if($summessages > 0) --}}
+   
       <span class="badge badge-danger badge-counter" id="summessages">
 
         {{--  {{$summessages}} --}}
       </span>
 
 
-      {{--  @else --}}
-
-      {{-- @endif --}}
-
-    {{--  </span> --}}
-
-
-
-
-    {{--    @if(!empty($messagesnavbar)) --}}
-    {{--   @foreach($messagesnavbar as $messagenavbar) --}}
-
-    {{-- {{count((array)$messagesnavbar[0]->message )}} --}}
-    {{-- @endforeach --}}
-    {{--  @endif --}}
-  {{--   </span> --}}
-  {{--  @endforeach --}}
-  {{-- @endif  --}}
 </a>
 <!-- Dropdown - Messages -->
 <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
@@ -135,11 +95,7 @@
           <div class="status-indicator bg-success"></div>
         </div>
         <div class="font-weight-bold">
-          {{-- <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div> --}}
-          {{-- <div class="text-truncate">{{ $messagenavbar->message }}</div> --}}
-          {{--  <div class="text-truncate">{{ print_r($messagenavbar->message) }}</div> --}}
-          {{--   <div class="text-truncate">{!! $messagenavbar->message !!}</div> --}}
-          {{-- <div class="small text-gray-500">Emily Fowler · 58m</div> --}}
+         
         </div>
       </a>
 
@@ -268,37 +224,7 @@
   })
   .done(function(result) {
 
-    // console.log(result);
-      // console.log(result.messagesnavbar);
 
-    // $("#messagesnavbar").append('<a class="dropdown-item d-flex align-items-center" href="#">'+
-    //   '<div class="mr-3">'+
-    //     '<div class="icon-circle bg-primary">'+
-    //      '</div>'+
-    //   '</div>'
-    //     );
-
-    //  $.each(result, function(index, val) {
-
-    //    console.log(val[0].message);
-
-
-    // $("#messagesnavbar").append(`<a class="dropdown-item d-flex align-items-center" href="#">
-    //   <div class="dropdown-list-image mr-3">
-    //   <img class="rounded-circle" src="" alt="">
-    //   <div class="status-indicator bg-success"></div>
-    //   </div>
-    //   <div class="font-weight-bold">
-    //   <div class="text-truncate"> ${val}</div>
-    //   </div>
-    //   </a>`
-    //   );
-
-    // });
-
-
-    // $("#replys").append();
-    // $("#replysnavbar").append();
 
     if(result.summessages > 0){
       $("#summessages").html(result.summessages);
@@ -312,8 +238,7 @@
     $("#sumreplys").remove();
   }
 
-    // $("#summessages").html(result.summessages);
-    // $("#sumreplys").html(result.sumreplys);
+   
 
 
 

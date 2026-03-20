@@ -3,79 +3,7 @@
 
 {{-- <title>{{ 'ForoWorkers' }}</title>  --}}
 
-<title>Foro de SEO, WebMasters en Español</title>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "image": [        
-        "https://foroworkers.com/public/images/foroworkers.png"
-       ],
-      "name": "Foroworkers",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Caracas",
-        "addressLocality": "Distrito Federal",
-        "addressRegion": "VE",
-        "postalCode": "1010",
-        "addressCountry": "VE"
-      },
-      "review": {
-        "@type": "Review",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": 5,
-          "bestRating": 5
-        },
-        "author": {
-          "@type": "Person",
-          "name": "Jonathan Castro"
-        }
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 10.48801,
-        "longitude": -66.87919
-      },
-      "url": "https://foroworkers.com/",
-      "telephone": "+5804241666224",     
-      "priceRange": "$$$",
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Monday",
-            "Tuesday"
-          ],
-          "opens": "11:30",
-          "closes": "22:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Wednesday",
-            "Thursday",
-            "Friday"
-          ],
-          "opens": "11:30",
-          "closes": "23:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": "Saturday",
-          "opens": "16:00",
-          "closes": "23:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": "Sunday",
-          "opens": "16:00",
-          "closes": "22:00"
-        }
-      ]      
-    }
-    </script> 
+<title>Foro de SEO, WebMasters en Español</title> 
 
 <link rel="canonical" href="https://foroworkers.com/" />
 
@@ -222,7 +150,7 @@ crossorigin=""/> --}}
 	</div>
 {{-- </div> --}}
 
-	{{-- <div class="container-fluid image"> --}}
+
 @endif
 
 <br>
@@ -280,8 +208,6 @@ crossorigin=""/> --}}
 
 	<div id="msg_info"></div>
 
-	@if(!empty($category))
-
 	<div class="subforum">
 		<div class="subforum-title">
 			{{-- <h1>Sección de negocios</h1> --}}
@@ -323,10 +249,8 @@ crossorigin=""/> --}}
 			<span class="{{$category[0]->type_color}} text-white custom-info">{{$category[0]->type_name}}</span>  
 			<a href="/temas/{{$category[0]->url_name}}/{{$category[0]->id}}/{{$category[0]->postid}}">{{ $category[0]->post_name }}</a>	
 			@endif
-		{{-- 	@if($category[0]->type_color == null) --}}
-		@if($category[0]->content_color)
-			{{-- <span class="bg-danger text-white custom-info">Comunidad</span> --}}
-			<span class="{{$category[0]->content_color}} text-white custom-info">{{$category[0]->content_name}}</span>  
+			@if($category[0]->type_color == null)
+			<span class="bg-danger text-white custom-info">Comunidad</span>  
 			<a href="/comunidad/{{$category[0]->url_name}}/{{$category[0]->id}}/{{$category[0]->postid}}">{{ $category[0]->post_name }}</a>	
 			@endif
 		</div>
@@ -338,9 +262,8 @@ crossorigin=""/> --}}
 			<a href="/temas/{{$category[1]->url_name}}/{{$category[1]->id}}/{{$category[1]->postid}}">{{ $category[1]->post_name }}</a>
 			@endif
 
-			@if($category[1]->content_color)
-			{{-- <span class="bg-danger text-white custom-info">Comunidad</span> --}}
-			<span class="{{$category[1]->content_color}} text-white custom-info">{{$category[1]->content_name}}</span>    
+			@if($category[1]->type_color == null)
+			<span class="bg-danger text-white custom-info">Comunidad</span>    
 			<a href="/comunidad/{{$category[1]->url_name}}/{{$category[1]->id}}/{{$category[1]->postid}}">{{ $category[1]->post_name }}</a>
 			@endif	
 		</div>
@@ -353,9 +276,8 @@ crossorigin=""/> --}}
 			<a href="/temas/{{$category[2]->url_name}}/{{$category[2]->id}}/{{$category[2]->postid}}">{{ $category[2]->post_name }}</a>
 			@endif
 
-			@if($category[2]->content_color)
-			{{-- <span class="bg-danger text-white custom-info">Comunidad</span> --}}
-				<span class="{{$category[2]->content_color}} text-white custom-info">{{$category[2]->content_name}}</span>      
+			@if($category[2]->type_color == null)
+			<span class="bg-danger text-white custom-info">Comunidad</span>    
 			<a href="/comunidad/{{$category[2]->url_name}}/{{$category[2]->id}}/{{$category[2]->postid}}">{{ $category[2]->post_name }}</a>
 			@endif	
 		</div>
@@ -400,8 +322,6 @@ crossorigin=""/> --}}
 		@endforeach --}}
 
 	</div>
-
-	@endif
 	<!--More-->
 
 	{{-- <div class="subforum">
@@ -456,16 +376,11 @@ crossorigin=""/> --}}
 	</div> --}}
 	<!--More-->
 
-	{{-- guia --}}
-	
 
-
-	<div class="subforum" style="margin-bottom: 250px;">
+	<div class="subforum">
 		<div class="subforum-title">
 			{{-- <h1>Sección de negocios</h1> --}}
 			<h2 class="">Propiedades digitales</h2>
-
-			@if(!empty($categoryslast))
 
 
 
@@ -476,22 +391,52 @@ crossorigin=""/> --}}
 				{{-- <br>on <small class="text-light">{{ $categoryslast->updated_at }}</small> --}}
 				<br><p class=""><b>on</b>  {{ date('d-m-Y',strtotime($categoryslast->updated_at)) }}</p>
 
-				@endif
-
 			{{-- </div> --}}
 		</div>
 
-	@foreach($categorys as $category)
-		
+		@foreach($categorys as $category)
+		{{-- @foreach(array_merge($categorys ,$categoryslast) as $category) --}}
 
-		<div class="ubforum-row">
-			
-			<div class="ubforum-description subforum-column" style="float:left">
-				
-				<h4><i class="{{ $category->maincategory_icon }}"></i><a href="/forum/{{ $category->maincategory_url  }}" class="">{{ $category->maincategory_name }}</a></h4>
-				
+		{{-- 	<h1>{{$category[0]	}}</h1> --}}
+
+		{{-- <?php print_r($category[0]['category_name'] )?> --}}
+
+
+
+
+		<div class="subforum-row">
+			{{-- @foreach($categorys as $category) --}}
+			<div class="subforum-icon subforum-column center">
+				{{-- <i class="fa fa-car center"></i> --}}
+				{{-- <i class="fa-house center"></i> --}}
+				<i class="{{ $category->maincategory_icon }}"></i>
 			</div>
-		
+			<div class="subforum-description subforum-column">
+				{{-- <h4><a href="#">Description Title</a></h4> --}}
+				<h4><a href="/forum/{{ $category->maincategory_url  }}" class="">{{ $category->maincategory_name }}</a></h4>
+				{{-- 	<h4><a href="/forum/{{ $category['maincategory_url']  }}" class="">{{ $category['maincategory_name'] }}</a></h4> --}}
+				{{-- <p>Description Content: let's try to be cool, otherwise,w at 'sthe point in libing together with people youdont' live.</p> --}}
+			</div>
+				{{-- @endforeach
+					--}}
+					{{-- <div class="subforum-stats subforum-column center">
+						<span>24 Posts | 12 Topics</span>
+					</div> --}}
+					{{-- 	@endforeach --}}
+
+					{{-- @foreach($categoryslast as $category) --}}
+
+					{{-- <div class="subforum-info subforum-column"> --}}
+						{{-- 	<b><a href="">Last post</a></b> by <a href="">JustAUser</a> --}}
+						{{-- 	<b><a href="/tema/{{ $categoryslast->url_name }}">Last post {{ $categoryslast->post_name }}</a></b> by <a href="/members/{{ $categoryslast->username }}/{{ $categoryslast->id }}">User {{ $categoryslast->username }}</a> --}}
+
+						{{-- 	<b><a href="/tema/{{ $category->url_name }}">Last post {{ $category->post_name }}</a></b> by <a href="/members/{{ $category->username }}/{{ $category->id }}">User {{ $category->username }}</a> --}}
+
+						{{-- <b><a href="/tema/{{ $category['url_name'] }}">Last post {{ $category['post_name'] }}</a></b> by <a href="/members/{{ $category['username'] }}/{{ $category['id'] }}">User {{ $category['username'] }}</a> --}}
+
+			{{-- 	<br>on <small>12 Dec 2020</small>
+			</div> --}}
+			{{-- 	@endforeach --}}
 
 		</div>
 
@@ -507,12 +452,10 @@ crossorigin=""/> --}}
 
 	
 
-	<div class="subforum" style="margin-bottom: 450px;">
+	<div class="subforum">
 		<div class="subforum-title">
 			{{-- <h1>Sección de negocios</h1> --}}
 			<h2 class="">Servicios</h2>
-
-				@if(!empty($categoryslastser))
 			{{-- <div class="subforum-info subforum-column"> --}}
 				{{-- 	<b><a href="">Last post</a></b> by <a href="">JustAUser</a> --}}
 				<b><b>Last post</b><a class="" href="/temas/{{ $categoryslastser->url_name }}/{{$categoryslastser->maincategory_id}}/{{$categoryslastser->postid}}"> {{ $categoryslastser->post_name }}</a></b><b> By User</b> <a class="" href="/members/{{ $categoryslastser->username }}/{{ $categoryslastser->id }}"> {{ $categoryslastser->username }}</a>			
@@ -520,25 +463,33 @@ crossorigin=""/> --}}
 				{{-- <br>on <small class="text-light">{{ $categoryslast->updated_at }}</small> --}}
 				<br><p class=""><b>on</b> {{ date('d-m-Y',strtotime($categoryslastser->updated_at)) }}</p>
 
-				@endif
-
 			{{-- </div> --}}
 		</div>
 
 		@foreach($categorys1 as $category)
 
-		<div class="ubforum-row">
-			
-			<div class="ubforum-description subforum-column" style="float:left">
-				
-				
-				<h4><i class="{{ $category->maincategory_icon }}"></i><a href="/forum/{{ $category->maincategory_url  }}" class="">{{ $category->maincategory_name }}</a></h4>
-				
+		<div class="subforum-row">
+			<div class="subforum-icon subforum-column center">
+				{{-- <i class="fa fa-car center"></i> --}}
+				<i class="{{ $category->maincategory_icon }}"></i>
 			</div>
-		
+			<div class="subforum-description subforum-column">
+				{{-- <h4><a href="#">Description Title</a></h4> --}}
+				<h4><a href="/forum/{{ $category->maincategory_url  }}" class="">{{ $category->maincategory_name }}</a></h4>
+				{{-- <p>Description Content: let's try to be cool, otherwise,w at 'sthe point in libing together with people youdont' live.</p> --}}
+			</div>
+			{{-- 	@endforeach --}}
 
-		</div>
-		
+			{{-- <div class="subforum-stats subforum-column center">
+				<span>24 Posts | 12 Topics</span>
+			</div> --}}
+			{{-- 	<div class="subforum-info subforum-column"> --}}
+				{{-- 	<b><a href="">Last post</a></b> by <a href="">JustAUser</a> --}}
+				{{-- <b><a href="/tema/{{ $categoryslast->url_name }}">Last post {{ $categoryslast->post_name }}</a></b> by <a href="/members/{{ $categoryslast->username }}/{{ $categoryslast->id }}">User {{ $categoryslast->username }}</a> --}}
+				
+				{{-- <br>on <small>12 Dec 2020</small>
+				</div> --}}
+			</div>
 
 			@endforeach
 
@@ -550,21 +501,15 @@ crossorigin=""/> --}}
 		</div>
 		<!--More-->
 
-		<div class="subforum" style="margin-bottom: 250px;">
+		<div class="subforum">
 			<div class="subforum-title">
 				{{-- <h1>Sección de negocios</h1> --}}
 				<h2 class="">Comunidad</h2>
 
-				@if(!empty($categoryslastcom))
-
 
 				{{-- <div class="subforum-info subforum-column"> --}}
 					{{-- 	<b><a href="">Last post</a></b> by <a href="">JustAUser</a> --}}
-					{{-- <b><a class="" href="/comunidad/{{ $categoryslastcom->url_name }}/{{$categoryslastcom->maincategory_id}}/{{$categoryslastcom->postid}}">Last post {{ $categoryslastcom->post_name }}</a></b> <a class="" href="/members/{{ $categoryslastcom->username }}/{{ $categoryslastcom->id }}">by User {{ $categoryslastcom->username }}</a> --}}
-
-					<b><a class="" href="/{{ $categoryslastcom->subcategory_url }}/{{ $categoryslastcom->maincategory_url }}/tema/{{ $categoryslastcom->url_name }}.{{$categoryslastcom->maincategory_id}}{{$categoryslastcom->postid}}">Last post {{ $categoryslastcom->post_name }}</a></b> <a class="" href="/members/{{ $categoryslastcom->username }}/{{ $categoryslastcom->id }}">by User {{ $categoryslastcom->username }}</a>
-
-					@endif				
+					<b><a class="" href="/comunidad/{{ $categoryslastcom->url_name }}/{{$categoryslastcom->maincategory_id}}/{{$categoryslastcom->postid}}">Last post {{ $categoryslastcom->post_name }}</a></b> <a class="" href="/members/{{ $categoryslastcom->username }}/{{ $categoryslastcom->id }}">by User {{ $categoryslastcom->username }}</a>			
 
 					{{-- <br>on <small class="text-light">{{ $categoryslast->updated_at }}</small> --}}
 					{{-- <br><p class="text-light">on {{ date('d-m-Y',strtotime($categoryslastcom->updated_at)) }}</p> --}}
@@ -574,19 +519,28 @@ crossorigin=""/> --}}
 
 			@foreach($categorys2 as $category)
 
-			<div class="ubforum-row">
-			
-			<div class="ubforum-description subforum-column" style="float:left">
-				
-				
-				
-				<h4><i class="{{ $category->maincategory_icon }}"></i><a href="/comunidad/{{ $category->maincategory_url  }}" class="">{{ $category->maincategory_name }}</a></h4>
-				
-			</div>
-		
+			<div class="subforum-row">
+				<div class="subforum-icon subforum-column center">
+					{{-- <i class="fa fa-car center"></i> --}}
+					<i class="{{ $category->maincategory_icon }}"></i>
+				</div>
+				<div class="subforum-description subforum-column">
+					{{-- <h4><a href="#">Description Title</a></h4> --}}
+					<h4><a href="/comunidad/{{ $category->maincategory_url  }}" class="">{{ $category->maincategory_name }}</a></h4>
+					{{-- <p>Description Content: let's try to be cool, otherwise,w at 'sthe point in libing together with people youdont' live.</p> --}}
+				</div>
+				{{-- 	@endforeach --}}
 
-		</div>
-		
+			{{-- <div class="subforum-stats subforum-column center">
+				<span>24 Posts | 12 Topics</span>
+			</div> --}}
+			{{-- 	<div class="subforum-info subforum-column"> --}}
+				{{-- 	<b><a href="">Last post</a></b> by <a href="">JustAUser</a> --}}
+				{{-- <b><a href="/tema/{{ $categoryslast->url_name }}">Last post {{ $categoryslast->post_name }}</a></b> by <a href="/members/{{ $categoryslast->username }}/{{ $categoryslast->id }}">User {{ $categoryslast->username }}</a> --}}
+				
+				{{-- <br>on <small>12 Dec 2020</small>
+				</div> --}}
+			</div>
 
 			@endforeach
 
@@ -612,8 +566,6 @@ crossorigin=""/> --}}
 	@include('inc/footer')
 
 
-
-
 <script type="text/javascript">
 
 
@@ -621,32 +573,30 @@ $("#logForm").submit(function(event) {
   event.preventDefault();
 
   let post = $("#findPost").val();
+  
+
  
 
   $.post(BASE_URL + '/api/find/post',
   {       
-    post: post   
-  }, function(result) { 
-   
+    post: post    
+  }, function(result) {  
+
+
+ 
 
     $(".subforum").hide();
 
     $(".posts-table").empty();
 
-    // location.reload();
-
-    // $.each(result, function(index, val) {
+  
     $.each(result['findpost'], function(index, val) {
 
 let datc = new Date(val.created_at);
 
-// console.log((datc.getDate());
 
 let datu = new Date(val.updated_at);
 
-    	// console.log((dat.getTime());
-
-    	// $(".posts-table").empty();
 
    $(".temporal").append(
    	`<div class="posts-table">			
@@ -679,8 +629,7 @@ let datu = new Date(val.updated_at);
 
         let datu = new Date(val.updated_at);
 
-    	// $(".posts-table").empty();
-
+ 
    $(".temporal").append(
    	`<div class="posts-table">			
 				<div class="table-row">					
@@ -709,7 +658,7 @@ let datu = new Date(val.updated_at);
 
     if (result['findpost'] == '') {
 
-      // $("#msg_info").html('No se encontraton resultados');
+  
 
       $("#msg_info").html('<p class="alert alert-danger text-dark">No se encontraton resultados en negocios</p>');
 
@@ -717,13 +666,16 @@ let datu = new Date(val.updated_at);
 
      if (result['findpostfree'] == '') {
 
-     // $("#msg_info").html('No se encontraton resultados');
+   
 
       $("#msg_info").html('<p class="alert alert-info text-dark">No se encontraton resultados en comunidad</p>');
 
     }
 
- 
+
+
+       
+
   })
   .fail(function(data, textStatus, xhr) {
     

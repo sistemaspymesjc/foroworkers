@@ -619,7 +619,7 @@
     </head>
     <body class="">
       <div class="min-h-screen bg-gray-100">
-        {{--   @include('layouts.navigation') --}}
+      
 
         <!-- Page Heading -->
         @if (isset($header))
@@ -632,9 +632,7 @@
 
         <!-- Page Content -->
         <main>
-         {{-- @include('layouts.navigation') --}}
-       {{--   {{ $slot }}
-       --}}
+         
        
        <!-- content -->
        @yield('content')

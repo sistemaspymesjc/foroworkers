@@ -873,35 +873,6 @@
 
 
 
-{{-- review": {
-"@type": "Review",
-"author": "Daniela",
-"datePublished": "2016-11-01",
-"description": "Fantastic product! It really helped me. I would recommend to all my friends and family.",
-"name": "Awesome!",
-"reviewRating": {
-"@type": "Rating",
-"bestRating": "5",
-"ratingValue": "5",
-"worstRating": "1"
-}
-}
-
-"review" : {
-"@type" : "Review",
-"author" : {
-"@type" : "Person",
-"name" : "Daniela"
-},
-"datePublished" : "2017-06-08",
-"reviewRating" : {
-"@type" : "Rating",
-"ratingValue" : "5",
-"bestRating" : "5",
-"worstRating" : "0"
-},
-"reviewBody" : "Fantastic product! It really helped me. I would recommend to all my friends and family. "
-} --}}
 
 
 
