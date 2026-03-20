@@ -244,13 +244,15 @@ Route::get('/forum/ofertas/{subcategory}', [SubCategoryController::class, 'free'
 // seccion 3 de comunidad no negocios
 Route::get('/comunidad/{subcategory}', [SubCategoryFreeController::class, 'index'])->name('subcategoryfree');
 
-// Route::get('/comunidad/{tema}/{id}/{postid}', [PostFreeController::class, 'show'])->name('post.showcom');
+Route::get('/comunidad/{tema}/{id}/{postid}', [PostFreeController::class, 'show'])->name('post.showcom');
+
+// Route::get('/temas/{tema}/{id}/{postid}', [PostController::class, 'show'])->name('post.show');
 
 
 // colocar el id desde que empieza y cuando son 2 parametros poner muchos numeros
 // Route::get('/comunidad/tema/{tema}.{id}{postid}', [PostFreeController::class, 'show'])->name('post.showcom')->where(['id' => '[42-90000000]+', 'postid' => '[1-900000]+']);
 
-Route::get('/{scurl}/{mcurl}/tema/{tema}.{id}{postid}', [PostFreeController::class, 'show'])->name('post.showcom')->where(['id' => '[1-10000000000000]+', 'postid' => '[1-100000000000]+']);
+// Route::get('/{scurl}/{mcurl}/tema/{tema}.{id}{postid}', [PostFreeController::class, 'show'])->name('post.showcom')->where(['id' => '[1-10000000000000]+', 'postid' => '[1-100000000000]+']);
 
 
 // Route::get('/forum/{subcategory}/{postid}', [SubCategoryController::class, 'index'])->name('subcategory');

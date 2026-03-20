@@ -490,9 +490,9 @@ crossorigin=""/> --}}
 
 				{{-- <div class="subforum-info subforum-column"> --}}
 					{{-- 	<b><a href="">Last post</a></b> by <a href="">JustAUser</a> --}}
-					{{-- <b><a class="" href="/comunidad/{{ $categoryslastcom->url_name }}/{{$categoryslastcom->maincategory_id}}/{{$categoryslastcom->postid}}">Last post {{ $categoryslastcom->post_name }}</a></b> <a class="" href="/members/{{ $categoryslastcom->username }}/{{ $categoryslastcom->id }}">by User {{ $categoryslastcom->username }}</a> --}}
+					 <b><a class="" href="/comunidad/{{ $categoryslastcom->url_name }}/{{$categoryslastcom->maincategory_id}}/{{$categoryslastcom->postid}}">Last post {{ $categoryslastcom->post_name }}</a></b> <a class="" href="/members/{{ $categoryslastcom->username }}/{{ $categoryslastcom->id }}">by User {{ $categoryslastcom->username }}</a> 
 
-					<b><a class="" href="/{{ $categoryslastcom->subcategory_url }}/{{ $categoryslastcom->maincategory_url }}/tema/{{ $categoryslastcom->url_name }}.{{$categoryslastcom->maincategory_id}}{{$categoryslastcom->postid}}">Last post {{ $categoryslastcom->post_name }}</a></b> <a class="" href="/members/{{ $categoryslastcom->username }}/{{ $categoryslastcom->id }}">by User {{ $categoryslastcom->username }}</a>
+				
 
 					@endif				
 
