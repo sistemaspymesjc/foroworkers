@@ -5,7 +5,7 @@ if($_SERVER['SERVER_NAME'] == "opengiscrm.com" ) {
     $dbHost     = "localhost";
     $dbUsername = "jonathan";
     $dbPassword = "123";
-    $dbName     = "pymesshopjc";
+    $dbName     = "foroworkers";
                                           
 }
   else { 
@@ -13,7 +13,7 @@ if($_SERVER['SERVER_NAME'] == "opengiscrm.com" ) {
     $dbHost     = "localhost";
     $dbUsername = "jonathan";
     $dbPassword = "123";
-    $dbName     = "pymesshopjc";
+    $dbName     = "foroworkers";
 } 
    
 

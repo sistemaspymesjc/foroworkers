@@ -173,8 +173,10 @@
 
 								<a onclick="getCategory({{ $post->maincategory_id }})" >
 
-							
-								<img src="{{URL('public/images')}}/banners/alquiler_banner.png" alt="Alquiler Banner de {{ $post->maincategory_name }}">
+								
+								<img src="{{URL('images')}}/banners/alquiler_banner.png" alt="Alquiler Banner de {{ $post->maincategory_name }}">
+
+								{{-- <img src="{{URL('public/images')}}/banners/alquiler_banner.png" alt="Alquiler Banner de {{ $post->maincategory_name }}"> --}}
 
 								
 

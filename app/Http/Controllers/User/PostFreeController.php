@@ -342,7 +342,8 @@ class PostFreeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($scurl,$mcurl,$tema,$subcategoryid,$postid)
+    // public function show($scurl,$mcurl,$tema,$subcategoryid,$postid)
+     public function show($tema,$subcategoryid,$postid)   
     {
 
       // print_r($scurl.$mcurl.$tema.$subcategoryid.$postid);
@@ -367,8 +368,8 @@ class PostFreeController extends Controller
      ->join('subcategorys as sc', 'sc.id', '=', 'mc.subcategory_id')           
      // ->join('subcategorys as sc', 'sc.category_id', '=', 'categorys.id')
      // ->join('maincategorys', 'mc.subcategory_id', '=', 'sc.id')
-     ->where('sc.subcategory_url', $scurl)
-     ->where('mc.maincategory_url', $mcurl)
+     // ->where('sc.subcategory_url', $scurl)
+     // ->where('mc.maincategory_url', $mcurl)
      ->where('posts_free.id', $postid)
      ->where('posts_free.maincategory_id', $subcategoryid)
      ->where('posts_free.url_name', $tema)
