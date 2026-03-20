@@ -605,49 +605,39 @@ $("#logForm").submit(function(event) {
   event.preventDefault();
 
   let post = $("#findPost").val();
-  // let password = $("#password").val();
-
-  // let csrfHash = $('#tokenN').val();
-
-  // let formData = $('#logForm').serialize();
+ 
 
  
 
   $.post(BASE_URL + '/api/find/post',
   {       
-    post: post
-    // password: password
-    // csrf_test_name:csrfHash   
+    post: post   
   }, function(result) {  
 
 
-    // console.log(result['findpost']);
-
-    // console.log(result['findpostfree']);
+  
 
     $(".subforum").hide();
 
     $(".posts-table").empty();
 
-    // location.reload();
 
-    // $.each(result, function(index, val) {
     $.each(result['findpost'], function(index, val) {
 
 let datc = new Date(val.created_at);
 
-// console.log((datc.getDate());
+
 
 let datu = new Date(val.updated_at);
 
-    	// console.log((dat.getTime());
+    
 
-    	// $(".posts-table").empty();
+
 
    $(".temporal").append(
    	`<div class="posts-table">			
 				<div class="table-row">					
-					<div class="status"><a href="/members/${val.username}/${val.userid}"><img src="https://foroworkers.com/public/storage/uploads/${val.img}" class="img-thumbnail" alt="Cinque Terre"></a></div>
+					<div class="status"><a href="/members/${val.username}/${val.userid}"><img src="${BASE_URL}/public/storage/uploads/${val.img}" class="img-thumbnail" alt="Cinque Terre"></a></div>
 					<div class="subjects">
 						<span class="${val.type_color} text-white custom-info">${val.type_name}</span>
 						<a href="/temas/${val.url_name}/${val.id}/${val.postid}">${val.post_name}</a>
@@ -675,12 +665,12 @@ let datu = new Date(val.updated_at);
 
         let datu = new Date(val.updated_at);
 
-    	// $(".posts-table").empty();
+ 
 
    $(".temporal").append(
    	`<div class="posts-table">			
 				<div class="table-row">					
-					<div class="status"><a href="/members/${val.username}/${val.userid}"><img src="https://foroworkers.com/public/storage/uploads/${val.img}" class="img-thumbnail" alt="Cinque Terre"></a></div>
+					<div class="status"><a href="/members/${val.username}/${val.userid}"><img src="${BASE_URL}/public/storage/uploads/${val.img}" class="img-thumbnail" alt="Cinque Terre"></a></div>
 					<div class="subjects">
 						<span class="bg-danger text-white custom-info">Comunidad</span>
 						<a href="/comunidad/${val.url_name}/${val.id}/${val.postid}">${val.post_name}</a>
@@ -705,7 +695,7 @@ let datu = new Date(val.updated_at);
 
     if (result['findpost'] == '') {
 
-      // $("#msg_info").html('No se encontraton resultados');
+ 
 
       $("#msg_info").html('<p class="alert alert-danger text-dark">No se encontraton resultados en negocios</p>');
 
@@ -713,37 +703,14 @@ let datu = new Date(val.updated_at);
 
      if (result['findpostfree'] == '') {
 
-     // $("#msg_info").html('No se encontraton resultados');
+    
 
       $("#msg_info").html('<p class="alert alert-info text-dark">No se encontraton resultados en comunidad</p>');
 
     }
 
 
-
-    // $(".posts-table").empty();
-
-   
-
-    // $("#msg_errors").html(data);
-
-    // if (data.access == 1) {
-
-    //   window.location = '/dashboard';
-
-    // }
-
-    //  if (data.access == 2) {
-
-    //   window.location = '/panel';
-
-    // }
-
-    // if (data.access == 3) {
-
-    //   $("#msg_errors").html('<p>Credentials do not match</p>');
-
-    // }      
+  
 
   })
   .fail(function(data, textStatus, xhr) {

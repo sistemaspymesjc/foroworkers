@@ -47,7 +47,7 @@ $ php artisan key:generate
 ``` 
 
 ```bash
-First Step Create New Database Example: pymesshopjc
+First Step Create New Database Example: foroworkers
 APP_ENDPOINT=https://sistemaspymesjc.blogspot.com/p/trabaja-con-nosotros.html
 APP_ENDPOINT_LOCAL=
 APP_AUTHOR=jonathancastro
