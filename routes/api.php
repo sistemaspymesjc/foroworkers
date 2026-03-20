@@ -31,7 +31,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Route::get('/members/dignored/{id}', [MemberController::class, 'dignored']);
 
-Route::get('/users/map', [HomeController::class, 'mapall']);
+// Route::get('/users/map', [HomeController::class, 'mapall']);
 
 // Route::get('/find/post', [HomeController::class, 'findPost']);
 

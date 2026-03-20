@@ -54,7 +54,7 @@ $ git pull origin dev
 - Navigate to the root of the Laravel project
 
 ```bash
-$ cd v_laravel
+$ cd foroworkers
 ``` 
 - Setup vendor libraries 
 

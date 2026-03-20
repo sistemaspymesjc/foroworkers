@@ -607,6 +607,10 @@
 
         let BASE_URL = "{{ url('') }}";
 
+        let APP_C = "{{env('APP_COPYRIGHT')}}";
+
+        let APP_A = "{{env('APP_AUTHOR')}}"; 
+
 
       </script>
 
@@ -635,37 +639,41 @@
        <!-- content -->
        @yield('content')
 
-       <div id="temporal">  
+               <div id="temporal">  
 
 
-       </div>
+         </div>
 
+         <script>
 
-       if (APP_A == 'jonathancastro' || APP_C == 'sistemaspymesjc') {
+       
 
-        $("#my_footer").empty();
+          if (APP_A == 'jonathancastro' || APP_C == 'sistemaspymesjc') {
 
-        $("#temporal").append(
-        `<div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-          © 2018 - 2026  Copyright:    
-          Website developed by Jonathan Castro
-          <a class="text-reset fw-bold" id="f_info" target="_blank" href="https://sistemaspymesjc.blogspot.com/p/trabaja-con-nosotros.html">Sistemas Pymes JC</a>
-        </div>`);   
+            $("#my_footer").empty();
 
-      } else {
+           $("#temporal").append(
+            `<div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2018 - 2026  Copyright:    
+     Website developed by Jonathan Castro
+    <a class="text-reset fw-bold" id="f_info" target="_blank" href="https://sistemaspymesjc.blogspot.com/p/trabaja-con-nosotros.html">Sistemas Pymes JC</a>
+          </div>`);   
 
-       $("#my_footer").empty();
+         } else {
 
-       $("#temporal").append(
-       `<div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-        © 2018 - 2026  Copyright:    
-        Website developed by Jonathan Castro
-        <a class="text-reset fw-bold" id="f_info" target="_blank" href="https://sistemaspymesjc.blogspot.com/p/trabaja-con-nosotros.html">Sistemas Pymes JC</a>
-      </div>`);    
+           $("#my_footer").empty();
 
-    }
-    
-  </script>
+          $("#temporal").append(
+            `<div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2018 - 2026  Copyright:    
+     Website developed by Jonathan Castro
+    <a class="text-reset fw-bold" id="f_info" target="_blank" href="https://sistemaspymesjc.blogspot.com/p/trabaja-con-nosotros.html">Sistemas Pymes JC</a>
+          </div>`);    
+
+        }
+
+       
+      </script>
 
 
   <!-- content end-->

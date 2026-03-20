@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Post extends MainModel
 {
 	use HasFactory;
 
@@ -36,25 +36,12 @@ class Post extends Model
 		// 'project_name'
 	];
 
-	// ejemplo para usar valires por defecto en modelo en vez de usar en migraciones
-	// protected $attributes = [
- //        'status' => self::STATUS_UNCONFIRMED,
- //        'role_id' => self::ROLE_PUBLISHER,
- //    ];
+	public function __construct()
+    {      
+        
+        $this->getAccess();            
 
-	// public function quotes(){
+    }
+
 	
-	// 	return $this->hasMany(Quote::class);
-	// }
-
-	// public function users()
- //    {
-
- //    	// se referencia a la tabla pivot users_products y no a los id
- //    	return $this->belongsToMany(User::class, 'users_products');
-
- //        // return $this->belongsToMany(User::class, 'user_id');
-
- //        // return $this->belongsToMany(User::class);
- //    }
 }

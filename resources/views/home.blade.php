@@ -612,61 +612,7 @@ crossorigin=""/> --}}
 	@include('inc/footer')
 
 
-	@if(!Auth::user())   
 
-	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-	integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-	crossorigin=""></script>
-
-	{{-- <script src="{{URL('js')}}/map.js"></script>
-	<script src="{{URL('public/js')}}/map.min.js"></script> --}}
-
-	<script type="text/javascript">
-
-		var marker;
-
-		var markes;
-
-		var map = L.map('mapid');
-
-
-		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {  
-  maxZoom: 18
-}).addTo(map);
-
-		L.control.scale().addTo(map);
-
-
-
-		$.ajax({			
-			url: BASE_URL +'/api/users/map',     
-			dataType: 'json'    
-		})
-		.done(function(result) {
-
- 
-
-  for (let i = 0; i < result.length; i++) {  
-
-
-
-  	view = map.setView([result[i].latitude,result[i].longitude],2);
-
-  	marker =  L.marker([result[i].latitude,result[i].longitude]).addTo(map);
-
-  	marker.bindPopup(result[i].country_name).addTo(map);  
-
-  }
-
-
-});
-
-
-
-
-</script>
-
-@endif
 
 <script type="text/javascript">
 
@@ -675,25 +621,13 @@ $("#logForm").submit(function(event) {
   event.preventDefault();
 
   let post = $("#findPost").val();
-  // let password = $("#password").val();
-
-  // let csrfHash = $('#tokenN').val();
-
-  // let formData = $('#logForm').serialize();
-
  
 
   $.post(BASE_URL + '/api/find/post',
   {       
-    post: post
-    // password: password
-    // csrf_test_name:csrfHash   
-  }, function(result) {  
-
-
-    // console.log(result['findpost']);
-
-    // console.log(result['findpostfree']);
+    post: post   
+  }, function(result) { 
+   
 
     $(".subforum").hide();
 
@@ -789,32 +723,7 @@ let datu = new Date(val.updated_at);
 
     }
 
-
-
-    // $(".posts-table").empty();
-
-   
-
-    // $("#msg_errors").html(data);
-
-    // if (data.access == 1) {
-
-    //   window.location = '/dashboard';
-
-    // }
-
-    //  if (data.access == 2) {
-
-    //   window.location = '/panel';
-
-    // }
-
-    // if (data.access == 3) {
-
-    //   $("#msg_errors").html('<p>Credentials do not match</p>');
-
-    // }      
-
+ 
   })
   .fail(function(data, textStatus, xhr) {
     
