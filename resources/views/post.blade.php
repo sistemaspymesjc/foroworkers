@@ -216,11 +216,14 @@
 
                  <div class="covert-author">
 
-                    {{-- 	<div class="username"><a href="/members/{{ $post->username }}/{{ $post->userid }}">{{$post->username}}</a></div> --}}
-                    {{-- <div>Role</div> --}}
-                    {{--   <img src="https://cdn.pixabay.com/photo/2015/11/06/13/27/ninja-1027877_960_720.jpg" alt=""> --}}
-                    {{-- <img src="{{URL('images')}}/{{$post->img}}" alt="" class="img-fluid"> --}}
-                    <img src="{{URL('storage/uploads')}}/{{$post->img}}" alt="" class="custom-img">
+                    @if(env('APP_ENV') == 'local')
+                    <img src="{{URL(env('PATH_LOCAL'))}}/{{$post->img}}" alt="" class="custom-img">
+                    
+                    @else
+
+                     <img src="{{URL(env('PATH_PRODUCTION'))}}/{{$post->img}}" alt="" class="custom-img">
+
+                    @endif
 
                     <div class="username"><a href="/members/{{ $post->username }}/{{ $post->userid }}">{{$post->username}}</a></div>
 

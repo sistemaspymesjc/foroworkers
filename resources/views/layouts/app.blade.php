@@ -4,19 +4,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta name="csrf-token" content="{{ csrf_token() }}">  
 
-  {{--   <title>{{ config('app.name', 'Laravel') }}</title> --}}
+  @yield('meta')
 
-{{--   <meta name="author" content="Jonathan Castro">
-<meta name="copyright" content="foroworkers.com" />  --}}
+  @if(env('APP_ENV') == 'local')
 
-@yield('meta')
+  <meta property="og:image" content="{{URL(env('PATH_LOCAL'))}}/foroworkers.png" /> 
 
-<meta property="og:image" content="{{URL('public/images')}}/foroworkers.png" /> 
+  <link rel="icon" type="image/x-icon" href="{{URL(env('PATH_LOCAL'))}}/foroworkers_logo.png" />
 
-<meta name="author" content="Jonathan Castro">
-<meta name="copyright" content="foroworkers.com" /> 
+  @else
+
+  <meta property="og:image" content="{{URL(env('PATH_PRODUCTION'))}}/foroworkers.png" /> 
+
+  <link rel="icon" type="image/x-icon" href="{{URL(env('PATH_PRODUCTION'))}}/foroworkers_logo.png" />
+
+  @endif
+
+  <meta name="author" content="Jonathan Castro">
+  <meta name="copyright" content="foroworkers.com" /> 
 
 
  {{--  <link rel="canonical" href="https://foroworkers.com/" />
@@ -26,7 +33,7 @@
 
  {{--  <meta name="description" content="Cursos de Programación Gratis Online con diplomado y certificado en el año 2022-2023, Ofertas, Promociones en cursosprogramaciongratis.online"> --}}
 
- <link rel="icon" type="image/x-icon" href="{{URL('images')}}/foroworkers_logo.png" />
+ {{-- <link rel="icon" type="image/x-icon" href="{{URL('images')}}/foroworkers_logo.png" /> --}}
 
  {{--  <link rel="icon" type="image/x-icon" href="https://foroworkers.com/public/images/foroworkers.png" /> --}}
 
@@ -619,7 +626,7 @@
     </head>
     <body class="">
       <div class="min-h-screen bg-gray-100">
-      
+
 
         <!-- Page Heading -->
         @if (isset($header))
@@ -632,50 +639,50 @@
 
         <!-- Page Content -->
         <main>
-         
-       
-       <!-- content -->
-       @yield('content')
 
-               <div id="temporal">  
+
+         <!-- content -->
+         @yield('content')
+
+         <div id="temporal">  
 
 
          </div>
 
          <script>
 
-       
+
 
           if (APP_A == 'jonathancastro' || APP_C == 'sistemaspymesjc') {
 
             $("#my_footer").empty();
+
+            $("#temporal").append(
+              `<div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2018 - 2026  Copyright:    
+     Website developed by Jonathan Castro
+    <a class="text-reset fw-bold" id="f_info" target="_blank" href="https://sistemaspymesjc.blogspot.com/p/trabaja-con-nosotros.html">Sistemas Pymes JC</a>
+            </div>`);   
+
+          } else {
+
+           $("#my_footer").empty();
 
            $("#temporal").append(
             `<div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
     © 2018 - 2026  Copyright:    
      Website developed by Jonathan Castro
     <a class="text-reset fw-bold" id="f_info" target="_blank" href="https://sistemaspymesjc.blogspot.com/p/trabaja-con-nosotros.html">Sistemas Pymes JC</a>
-          </div>`);   
-
-         } else {
-
-           $("#my_footer").empty();
-
-          $("#temporal").append(
-            `<div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-    © 2018 - 2026  Copyright:    
-     Website developed by Jonathan Castro
-    <a class="text-reset fw-bold" id="f_info" target="_blank" href="https://sistemaspymesjc.blogspot.com/p/trabaja-con-nosotros.html">Sistemas Pymes JC</a>
           </div>`);    
 
-        }
-
-       
-      </script>
+         }
 
 
-  <!-- content end-->
-</main>
-</div>
-</body>
-</html>
+       </script>
+
+
+       <!-- content end-->
+     </main>
+   </div>
+ </body>
+ </html>
