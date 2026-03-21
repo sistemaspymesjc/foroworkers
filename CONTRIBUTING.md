@@ -48,6 +48,8 @@ $ php artisan key:generate
 
 ```bash
 First Step Create New Database Example: foroworkers
+
+PAYPAL_EMAIL=yourpaypalemail
 APP_ENDPOINT=https://sistemaspymesjc.blogspot.com/p/trabaja-con-nosotros.html
 APP_ENDPOINT_LOCAL=
 APP_AUTHOR=jonathancastro
@@ -56,9 +58,22 @@ APP_COPYRIGHT=sistemaspymesjc
 APP_DONATE=https://www.paypal.com/paypalme/programadorjonathan
 APP_PHONE=5804241666224
 
+database connection
+
 DB_DATABASE=foroworkers
 DB_USERNAME=jonathan
 DB_PASSWORD=123
+
+for sending emails
+
+MAIL_MAILER=
+MAIL_HOST=
+MAIL_PORT=
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_ENCRYPTION=
+MAIL_FROM_ADDRESS=
+MAIL_FROM_NAME=
 ```
 
 ```bash

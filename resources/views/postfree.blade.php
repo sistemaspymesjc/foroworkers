@@ -173,12 +173,20 @@
 
 								<a onclick="getCategory({{ $post->maincategory_id }})" >
 
+								@if(env('APP_ENV') == 'local')
 								
-								<img src="{{URL('images')}}/banners/alquiler_banner.png" alt="Alquiler Banner de {{ $post->maincategory_name }}">
+
+								<img src="{{URL(env('PATH_LOCAL'))}}/banners/alquiler_banner.png" alt="Alquiler Banner de {{ $post->maincategory_name }}">
+
+								{{-- <img src="{{URL('images')}}/banners/alquiler_banner.png" alt="Alquiler Banner de {{ $post->maincategory_name }}"> --}}
+
+								@else
+
+								<img src="{{URL(env('PATH_PRODUCTION'))}}/banners/alquiler_banner.png" alt="Alquiler Banner de {{ $post->maincategory_name }}">
 
 								{{-- <img src="{{URL('public/images')}}/banners/alquiler_banner.png" alt="Alquiler Banner de {{ $post->maincategory_name }}"> --}}
 
-								
+								@endif
 
 								</a>
 

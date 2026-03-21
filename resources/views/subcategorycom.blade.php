@@ -110,30 +110,26 @@
 
 				<form class="form-horizontal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="POST">
 					<input type='hidden' name='business' value='sb-dmymh19134302@business.example.com'>
-					{{-- <input type='hidden' name='item_name' value='<?php echo 'Curso '.$course->name; ?>'> --}}
-
-					{{-- <input type='hidden' name='item_name' value='{{ 'Membresia'.$membership->membership }}'> --}}
+					
 					<div class="col-4">
 						<input type='text' class="form-control" name='item_name' placeholder="agrega tu URL (https://)">
 					</div>
 
 
 
-					{{-- {{ 'Membresia: '.$membership->membership }} --}}
+				
 					<input type='hidden' name='item_number' value="1">
-					{{-- <input type='hidden' name='amount' value='{{$membership->price}}'> --}}
+				
 					<input type='hidden' name='amount' value='10'>
 					<input type='hidden' name='currency_code' value='USD'>
-					{{-- 	<input type='hidden' name='notify_url' value=''> --}}
-
-					{{-- <input type='hidden' name='return' value='http://127.0.0.1:8000/success?membership_id={{$membership->membership_id}}'> --}}
+					
 					<input type='hidden' name='return' value='http://127.0.0.1:8000/complete?maincategory_id={{$maincategorys}}'>   
 					<input type='hidden' name='cancel_return' value='{{ route('abort') }}'>
 
 					<input type="hidden" name="no_shipping" value="1">
 					
 					<input type="hidden" name="cmd" value="_xclick">
-					{{-- <input type="hidden" name="order" value="{{$membership->membership_id}}"> --}}
+					
 					<input type="hidden" name="order" value="1">
 					<br>
 					<div class="form-group">
