@@ -43,7 +43,7 @@ The following steps are meant to be used on a development server.
 - Clone Project
 
 ```bash
-$ git clone https://github.com/jonathancastroccs/foroworkers.git
+$ git clone https://github.com/foroworkers/foroworkers.git
 ``` 
 
 - Pull Project Dev Branch
@@ -140,7 +140,7 @@ _sistemaspymesjc@gmail.com_
 
 * [Paypal](https://www.paypal.com/paypalme/programadorjonathan) - Thank you very much for your contribution.
 
-* [Patreon](https://www.patreon.com/c/LaravelCoders) - Thank you very much for your contribution.
+* [Patreon](https://www.patreon.com/c/foroworkers) - Thank you very much for your contribution.
 
 
 

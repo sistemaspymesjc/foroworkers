@@ -15,7 +15,7 @@ Please note we have a code of conduct, please follow it in all your interactions
 - Clone Project
 
 ```bash
-$ git clone https://github.com/jonathancastroccs/foroworkers.git
+$ git clone https://github.com/foroworkers/foroworkers.git
 ``` 
 
 - Pull Project Dev Branch

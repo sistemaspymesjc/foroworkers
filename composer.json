@@ -1,6 +1,6 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "jonathancastroccs/foroworkers",
+    "name": "foroworkers/foroworkers",
     "type": "project",
     "description": "Open source Laravel Forum.",
     "keywords": ["forum", "forum-site"],
