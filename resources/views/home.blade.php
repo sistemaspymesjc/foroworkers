@@ -23,7 +23,7 @@
 <meta name="author" content="Jonathan Castro">
 <meta name="copyright" content="foroworkers.com" /> 
 
-<meta name='robots' content='noindex,follow' />
+{{-- <meta name='robots' content='noindex,follow' /> --}}
 
 @endsection 
 {{-- @section('title','Home') --}}

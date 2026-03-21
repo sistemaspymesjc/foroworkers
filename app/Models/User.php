@@ -41,6 +41,7 @@ class User extends Authenticatable
         'reason_id',
         'url_profile',
         'url_patreon',
+        'phone_whatsapp',
         'ip_adress'
     ];
 

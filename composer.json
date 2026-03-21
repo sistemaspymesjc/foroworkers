@@ -12,10 +12,10 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/jonathancastroccs/foroworkers/issues",
+        "issues": "https://github.com/foroworkers/foroworkers/issues",
         "forum": "https://discord.gg/ntpz4aRHHy",
-        "wiki": "https://github.com/jonathancastroccs/foroworkers/wiki",
-        "source": "https://github.com/jonathancastroccs/foroworkers"
+        "wiki": "https://github.com/foroworkers/foroworkers/wiki",
+        "source": "https://github.com/foroworkers/foroworkers"
     },
     "require": {
         "php": "^8.2",
