@@ -7,7 +7,7 @@
 
     
 
-<link rel="canonical" href="https://foroworkers.com/" />
+<link rel="canonical" href="{{env('APP_URL')}}" />
 
 <meta name="description" content="Foro de SEO en Español, Webmasters, Negocios, Emprendedores, Compra y Venta de Servicios Online, Ofertas, Promociones en foroworkers.com">
 
@@ -16,9 +16,9 @@
 <meta property="og:title" content="Foro de SEO, WebMasters en Español" />
 <meta property="og:description" content="Foro de SEO en Español, Webmasters, Negocios, Emprendedores, Compra y Venta de Servicios Online, Ofertas, Promociones en foroworkers.com" />
 
-<meta property="og:url" content="https://foroworkers.com/" />
+<meta property="og:url" content="{{env('APP_URL')}}" />
 
-<meta property="og:image" content="https://foroworkers.com/public/images/foroworkers.png" /> 
+<meta property="og:image" content="{{env('APP_URL')}}public/images/foroworkers.png" /> 
 
 <meta name="author" content="Jonathan Castro">
 <meta name="copyright" content="foroworkers.com" /> 

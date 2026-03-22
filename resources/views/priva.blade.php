@@ -4,7 +4,7 @@
 
 <title>{{ 'Politica de privacidad | Foroworkers.com' }}</title> 
 
-<link rel="canonical" href="https://foroworkers.com/politica-de-privacidad" />
+<link rel="canonical" href="{{env('APP_URL')}}politica-de-privacidad" />
 
 <meta name="description" content="Politica de Privacidad en foroworkers.com">
 

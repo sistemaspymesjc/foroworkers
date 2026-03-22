@@ -4,7 +4,7 @@
 
 <title>{{ 'Complete' }}</title> 
 
-<link rel="canonical" href="https://foroworkers.com/complete" />
+<link rel="canonical" href="{{env('APP_URL')}}complete" />
 
 <meta name="description" content="Compras de recursos en foroworkers.com">
 

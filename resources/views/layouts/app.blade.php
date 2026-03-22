@@ -9,6 +9,7 @@
   @yield('meta')
 
   @if(env('APP_ENV') == 'local')
+ 
 
   <meta property="og:image" content="{{URL(env('PATH_LOCAL'))}}/foroworkers.png" /> 
 
@@ -25,24 +26,6 @@
   <meta name="author" content="Jonathan Castro">
   <meta name="copyright" content="foroworkers.com" /> 
 
-
- {{--  <link rel="canonical" href="https://foroworkers.com/" />
-
- <meta name="description" content="Foro de Webmasters, Negocios, Emprendedores, Compra y Venta de Servicios Online, Ofertas, Promociones en foroworkers.com"> --}}
-
-
- {{--  <meta name="description" content="Cursos de Programación Gratis Online con diplomado y certificado en el año 2022-2023, Ofertas, Promociones en cursosprogramaciongratis.online"> --}}
-
- {{-- <link rel="icon" type="image/x-icon" href="{{URL('images')}}/foroworkers_logo.png" /> --}}
-
- {{--  <link rel="icon" type="image/x-icon" href="https://foroworkers.com/public/images/foroworkers.png" /> --}}
-
- <!-- Fonts -->
-{{--     <link rel="preconnect" href="https://fonts.bunny.net">
-<link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" /> --}}
-
-<!-- Scripts -->
-{{--  @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 

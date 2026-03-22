@@ -8,7 +8,7 @@
 
 <title>{{ $mmaincategorys->maincategory_name.' - '.'Premium' }}</title>
 
-<link rel="canonical" href="https://foroworkers.com/forum/{{$mmaincategorys->maincategory_url}}" />
+<link rel="canonical" href="{{env('APP_URL')}}forum/{{$mmaincategorys->maincategory_url}}" />
 
 <meta name="description" content="Compra o Venta, encuentra servicios Premium de {{$mmaincategorys->maincategory_name}} en foroworkers.com">
 
@@ -16,13 +16,13 @@
 <meta property="og:title" content="{{ 'Premium'.' - '.$mmaincategorys->maincategory_name }}" />
 <meta property="og:description" content="Compra o Venta, encuentra servicios Premium de {{$mmaincategorys->maincategory_name}} en foroworkers.com" />
 
-<meta property="og:url" content="https://foroworkers.com/forum/{{$mmaincategorys->maincategory_url}}" /> 
+<meta property="og:url" content="{{env('APP_URL')}}forum/{{$mmaincategorys->maincategory_url}}" /> 
 
 @endif
 
 
 
-{{-- <link rel="canonical" href="https://foroworkers.com/forum/{{$categorys[0]['maincategory_url']}}" />
+{{-- <link rel="canonical" href="{{env('APP_URL')}}forum/{{$categorys[0]['maincategory_url']}}" />
 
 <meta name="description" content="Compra o Venta, encuentra servicios Premium de {{$categorys[0]['maincategory_name']}} en foroworkers.com">
 
@@ -30,7 +30,7 @@
 <meta property="og:title" content="{{ 'Premium'.' - '.$categorys[0]['maincategory_name'] }}" />
 <meta property="og:description" content="Compra o Venta, encuentra servicios Premium de {{$categorys[0]['maincategory_name']}} en foroworkers.com" />
 
-<meta property="og:url" content="https://foroworkers.com/forum/{{$categorys[0]['maincategory_url']}}" />  --}}
+<meta property="og:url" content="{{env('APP_URL')}}forum/{{$categorys[0]['maincategory_url']}}" />  --}}
 
 @endsection 
 {{-- @section('title','SubCategory') --}}

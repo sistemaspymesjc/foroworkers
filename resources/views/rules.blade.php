@@ -3,7 +3,7 @@
 
 <title>{{ 'Reglas' }}</title> 
 
-<link rel="canonical" href="https://foroworkers.com/reglas" />
+<link rel="canonical" href="{{env('APP_URL')}}reglas" />
 
 <meta name="description" content="Reglas de foroworkers.com, moderacion de los admin y moderadores">
 
