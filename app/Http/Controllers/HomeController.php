@@ -30,6 +30,8 @@ class HomeController extends Controller
     public function index()
     {
 
+     // echo __('messages.welcome');
+
      //  $categorylastnegocios = Post::select('posts.post_name','posts.url_name','mc.maincategory_name','u.id', 'u.username','posts.updated_at')    
      //  ->join('maincategorys as mc', 'mc.id', '=', 'posts.maincategory_id')
      // // ->join('users_posts as up', 'up.maincategory_id', '=', 'posts.maincategory_id')

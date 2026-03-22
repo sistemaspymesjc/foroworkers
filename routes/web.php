@@ -59,7 +59,11 @@ Route::get('/abort', [SubCategoryFreeController::class, 'abort'])->name('abort')
 
 Route::get('/reglas', [HomeController::class, 'rules'])->name('rules');
 
-Route::get('/contacto', [HomeController::class, 'contact'])->name('contact');
+
+
+Route::get('/' . __('routes.contact'), [HomeController::class, 'contact'])->name('contact');
+
+// Route::get('/contacto', [HomeController::class, 'contact'])->name('contact');
 
 Route::get('/sobre-nosotros', [HomeController::class, 'about'])->name('about');
 
@@ -242,7 +246,17 @@ Route::get('/forum/{subcategory}', [SubCategoryController::class, 'index'])->nam
 Route::get('/forum/ofertas/{subcategory}', [SubCategoryController::class, 'free'])->name('subcategoryfree');
 
 // seccion 3 de comunidad no negocios
+// Route::get('/'. __('routes.community').'/'.'{subcategory}', [SubCategoryFreeController::class, 'index']);
+
 Route::get('/comunidad/{subcategory}', [SubCategoryFreeController::class, 'index'])->name('subcategoryfree');
+
+
+
+// Route::get('/'. __('routes.community').'/{tema}/{id}/{postid}', [PostFreeController::class, 'show'])->name('post.showcom');
+
+
+
+
 
 Route::get('/comunidad/{tema}/{id}/{postid}', [PostFreeController::class, 'show'])->name('post.showcom');
 

@@ -210,14 +210,16 @@ crossorigin=""/> --}}
 
 	<div id="msg_info"></div>
 
-	@if(!empty($category))
+	@if(empty($category))
 
 	<div class="subforum">
 		<div class="subforum-title">
 			{{-- <h1>Sección de negocios</h1> --}}
-			<h2 class="">Últimos temas Negocios, Servicios, Comunidad</h2>
+			{{-- <h2 class="">Últimos temas Negocios, Servicios, Comunidad</h2> --}}
 
-			
+			<h2 class="">Últimos temas Negocios, @lang('main.services'),  @lang('main.community')</h2>
+
+			 {{-- @lang('admin::app.users.sessions.title') --}}
 		</div>
 
 		{{-- {{$tablelast1 = array_merge((array)$categorylastnegocios,(array)$categorylastservicios)}} --}}
@@ -393,7 +395,7 @@ crossorigin=""/> --}}
 	<div class="subforum" style="margin-bottom: 250px;">
 		<div class="subforum-title">
 			{{-- <h1>Sección de negocios</h1> --}}
-			<h2 class="">Propiedades digitales</h2>
+			<h2 class="">@lang('main.digital_properties')</h2>
 
 			@if(!empty($categoryslast))
 
@@ -440,7 +442,7 @@ crossorigin=""/> --}}
 	<div class="subforum" style="margin-bottom: 450px;">
 		<div class="subforum-title">
 			{{-- <h1>Sección de negocios</h1> --}}
-			<h2 class="">Servicios</h2>
+			<h2 class="">@lang('main.services')</h2>
 
 				@if(!empty($categoryslastser))
 			{{-- <div class="subforum-info subforum-column"> --}}
@@ -483,14 +485,14 @@ crossorigin=""/> --}}
 		<div class="subforum" style="margin-bottom: 250px;">
 			<div class="subforum-title">
 				{{-- <h1>Sección de negocios</h1> --}}
-				<h2 class="">Comunidad</h2>
+				<h2 class="">@lang('main.community')</h2>
 
 				@if(!empty($categoryslastcom))
 
+					 <b><a class="" href="/@lang('url.community')/{{ $categoryslastcom->url_name }}/{{$categoryslastcom->maincategory_id}}/{{$categoryslastcom->postid}}">Last post {{ $categoryslastcom->post_name }}</a></b> <a class="" href="/members/{{ $categoryslastcom->username }}/{{ $categoryslastcom->id }}">by User {{ $categoryslastcom->username }}</a> 
 
-				{{-- <div class="subforum-info subforum-column"> --}}
-					{{-- 	<b><a href="">Last post</a></b> by <a href="">JustAUser</a> --}}
-					 <b><a class="" href="/comunidad/{{ $categoryslastcom->url_name }}/{{$categoryslastcom->maincategory_id}}/{{$categoryslastcom->postid}}">Last post {{ $categoryslastcom->post_name }}</a></b> <a class="" href="/members/{{ $categoryslastcom->username }}/{{ $categoryslastcom->id }}">by User {{ $categoryslastcom->username }}</a> 
+
+					 {{-- <b><a class="" href="/comunidad/{{ $categoryslastcom->url_name }}/{{$categoryslastcom->maincategory_id}}/{{$categoryslastcom->postid}}">Last post {{ $categoryslastcom->post_name }}</a></b> <a class="" href="/members/{{ $categoryslastcom->username }}/{{ $categoryslastcom->id }}">by User {{ $categoryslastcom->username }}</a>  --}}
 
 				
 
