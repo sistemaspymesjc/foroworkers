@@ -4,7 +4,7 @@
 
 <title>{{ 'Abort' }}</title> 
 
-<link rel="canonical" href="https://foroworkers.com/abort" />
+<link rel="canonical" href="{{env('APP_URL')}}abort" />
 
 <meta name="description" content="Compra de recursos cancelada">
 

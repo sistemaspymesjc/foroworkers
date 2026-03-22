@@ -4,7 +4,7 @@
 
 <title>{{ 'Sobre nosotros | Foroworkers.com' }}</title> 
 
-<link rel="canonical" href="https://foroworkers.com/sobre-nosotros" />
+<link rel="canonical" href="{{env('APP_URL')}}sobre-nosotros" />
 
 <meta name="description" content="Sobre Nosotros en foroworkers.com, conoce nuestra misión">
 

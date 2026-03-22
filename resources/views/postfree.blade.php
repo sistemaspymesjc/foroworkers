@@ -9,9 +9,9 @@
 <title>{{ $post->post_name }} {{$post->maincategory_id}}/{{$post->postid}}</title>
 
 
-{{-- <link rel="canonical" href="https://foroworkers.com/{{$post->subcategory_url}}/{{$post->maincategory_url}}/tema/{{$post->url_name}}.{{ $urluserid }}{{ $urlpostid }}" /> --}}
+{{-- <link rel="canonical" href="{{env('APP_URL')}}{{$post->subcategory_url}}/{{$post->maincategory_url}}/tema/{{$post->url_name}}.{{ $urluserid }}{{ $urlpostid }}" /> --}}
 
-<link rel="canonical" href="https://foroworkers.com/{{$post->subcategory_url}}/{{$post->maincategory_url}}/tema/{{$post->url_name}}.{{ $urluserid }}{{ $urlpostid }}" />
+<link rel="canonical" href="{{env('APP_URL')}}{{$post->subcategory_url}}/{{$post->maincategory_url}}/tema/{{$post->url_name}}.{{ $urluserid }}{{ $urlpostid }}" />
 
 
 
@@ -30,7 +30,7 @@
 
 <meta property="og:description" content="Conversando en {{$post->post_name}} {{$post->maincategory_id}}/{{$post->postid}} , tasa de café con foroworkers.com" />
 
-<meta property="og:url" content="https://foroworkers.com/{{$post->subcategory_url}}/{{$post->maincategory_url}}/tema/{{$post->url_name}}.{{ $urluserid }}{{ $urlpostid }}" /> 
+<meta property="og:url" content="{{env('APP_URL')}}{{$post->subcategory_url}}/{{$post->maincategory_url}}/tema/{{$post->url_name}}.{{ $urluserid }}{{ $urlpostid }}" /> 
 
 @endsection 
 {{-- @section('title','SubCategory') --}}

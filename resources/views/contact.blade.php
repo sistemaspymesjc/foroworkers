@@ -4,7 +4,7 @@
 
 <title>{{ 'Contacto | Foroworkers.com' }}</title> 
 
-<link rel="canonical" href="https://foroworkers.com/contacto" />
+<link rel="canonical" href="{{env('APP_URL')}}contacto" />
 
 <meta name="description" content="Contacto en foroworkers.com, encuentra un experto en posicionamiento SEO">
 

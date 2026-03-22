@@ -4,7 +4,7 @@
 
 <title>{{ 'Guest Post | Foroworkers.com' }}</title> 
 
-<link rel="canonical" href="https://foroworkers.com/guest-post" />
+<link rel="canonical" href="{{env('APP_URL')}}guest-post" />
 
 <meta name="description" content="Guest Post SEO, Marketing Digital, Publicación de invitado en foroworkers.com">
 
@@ -41,7 +41,7 @@
 
 				<ul>
 					<li>Primero registrate en el foro donde tendras un username como el siguiente <b>user99jp</b></li>
-					<li>Crea tu publicación en alguna de las secciones de la comunidad por <a href="https://foroworkers.com/comunidad/pasos-a-la-hora-de-crear-sitios-web/43/18">ejemplo</a> elige articulo o tutorial</li>
+					<li>Crea tu publicación en alguna de las secciones de la comunidad por <a href="{{env('APP_URL')}}comunidad/pasos-a-la-hora-de-crear-sitios-web/43/18">ejemplo</a> elige articulo o tutorial</li>
 					<li>Añade 3 backlinks a tu publicación, 1 para un post interno de este foro y 2 para sitios externos, estos seran del tipo <b>nofollow</b> al publicar</li>
 					<li>Añade 1 backlink a nuestro foro del tipo <b>dofollow</b> y envie un correo a contacto@foroworkers.com agregando como titulo <b>guest post</b> he inicia el mensaje escribiendo <b>"Soy Worker"</b> para verificar que estas leyendo las condiciones</li>
 					<li>En el mensaje agrega el link de tu dofollow a nuestro foro, y el link del articulo que has publicado (y menciona cual sera tu backlink dofollow para que sea cambiado por el admin en el post), ademas añade el nuevo username por ejemplo <b>senpai19899</b> este sera tu nuevo username permanente y envia una imagen de perfil en el caso que quieras tener una imagen en tu perfil</li>

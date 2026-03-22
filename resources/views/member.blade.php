@@ -4,7 +4,7 @@
 
 <title>{{ 'Miembro'.' - '.$member->username}}</title> 
 
-<link rel="canonical" href="https://foroworkers.com/members/{{$member->username}}/{{$member->id}}" />
+<link rel="canonical" href="{{env('APP_URL')}}members/{{$member->username}}/{{$member->id}}" />
 
 <meta name="description" content="Miembro del Foro: {{$member->username.$member->id}} Usuario Activo de foroworkers.com">
 
@@ -12,7 +12,7 @@
 <meta property="og:title" content="{{ 'Miembro'.' - '.$member->username}}" />
 <meta property="og:description" content="Miembro del Foro: {{$member->username.$member->id}} Usuario Activo de foroworkers.com" />
 
-<meta property="og:url" content="https://foroworkers.com/members/{{$member->username}}/{{$member->id}}" /> 
+<meta property="og:url" content="{{env('APP_URL')}}members/{{$member->username}}/{{$member->id}}" /> 
 
 @endsection 
 @section('content')
