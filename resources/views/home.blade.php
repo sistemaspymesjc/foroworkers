@@ -253,13 +253,13 @@ crossorigin=""/> --}}
 			{{-- <span class="{{$category[0]->type_color}} text-white custom-info">{{$category[0]->type_name}}</span> --}}
 			@if($category[0]->type_color)
 			<span class="{{$category[0]->type_color}} text-white custom-info">{{$category[0]->type_name}}</span>  
-			<a href="/temas/{{$category[0]->url_name}}/{{$category[0]->id}}/{{$category[0]->postid}}">{{ $category[0]->post_name }}</a>	
+			<a href="/@lang('url.topics')/{{$category[0]->url_name}}/{{$category[0]->id}}/{{$category[0]->postid}}">{{ $category[0]->post_name }}</a>	
 			@endif
 		{{-- 	@if($category[0]->type_color == null) --}}
 		@if($category[0]->content_color)
 			{{-- <span class="bg-danger text-white custom-info">Comunidad</span> --}}
 			<span class="{{$category[0]->content_color}} text-white custom-info">{{$category[0]->content_name}}</span>  
-			<a href="/comunidad/{{$category[0]->url_name}}/{{$category[0]->id}}/{{$category[0]->postid}}">{{ $category[0]->post_name }}</a>	
+			<a href="/@lang('url.community')/{{$category[0]->url_name}}/{{$category[0]->id}}/{{$category[0]->postid}}">{{ $category[0]->post_name }}</a>	
 			@endif
 		</div>
 
@@ -399,11 +399,11 @@ crossorigin=""/> --}}
 
 			@if(!empty($categoryslast))
 
+	
 
+		<b></b><b>Last post</b> <a class="" href="/@lang('url.topics')/{{ $categoryslast->url_name }}/{{$categoryslast->maincategory_id}}/{{$categoryslast->postid}}"> {{ $categoryslast->post_name }}</a></b><b> by User</b>  <a class="" href="/members/{{ $categoryslast->username }}/{{ $categoryslast->id }}"> {{ $categoryslast->username }}</a>	
 
-			{{-- <div class="subforum-info subforum-column"> --}}
-				{{-- 	<b><a href="">Last post</a></b> by <a href="">JustAUser</a> --}}
-				<b></b><b>Last post</b> <a class="" href="/temas/{{ $categoryslast->url_name }}/{{$categoryslast->maincategory_id}}/{{$categoryslast->postid}}"> {{ $categoryslast->post_name }}</a></b><b> by User</b>  <a class="" href="/members/{{ $categoryslast->username }}/{{ $categoryslast->id }}"> {{ $categoryslast->username }}</a>			
+				{{-- <b></b><b>Last post</b> <a class="" href="/temas/{{ $categoryslast->url_name }}/{{$categoryslast->maincategory_id}}/{{$categoryslast->postid}}"> {{ $categoryslast->post_name }}</a></b><b> by User</b>  <a class="" href="/members/{{ $categoryslast->username }}/{{ $categoryslast->id }}"> {{ $categoryslast->username }}</a>			 --}}
 
 				{{-- <br>on <small class="text-light">{{ $categoryslast->updated_at }}</small> --}}
 				<br><p class=""><b>on</b>  {{ date('d-m-Y',strtotime($categoryslast->updated_at)) }}</p>
@@ -445,9 +445,12 @@ crossorigin=""/> --}}
 			<h2 class="">@lang('main.services')</h2>
 
 				@if(!empty($categoryslastser))
-			{{-- <div class="subforum-info subforum-column"> --}}
-				{{-- 	<b><a href="">Last post</a></b> by <a href="">JustAUser</a> --}}
-				<b><b>Last post</b><a class="" href="/temas/{{ $categoryslastser->url_name }}/{{$categoryslastser->maincategory_id}}/{{$categoryslastser->postid}}"> {{ $categoryslastser->post_name }}</a></b><b> By User</b> <a class="" href="/members/{{ $categoryslastser->username }}/{{ $categoryslastser->id }}"> {{ $categoryslastser->username }}</a>			
+				
+
+					<b><b>Last post</b><a class="" href="/@lang('url.topics')/{{ $categoryslastser->url_name }}/{{$categoryslastser->maincategory_id}}/{{$categoryslastser->postid}}"> {{ $categoryslastser->post_name }}</a></b><b> By User</b> <a class="" href="/members/{{ $categoryslastser->username }}/{{ $categoryslastser->id }}"> {{ $categoryslastser->username }}</a>			
+
+			
+				{{-- <b><b>Last post</b><a class="" href="/temas/{{ $categoryslastser->url_name }}/{{$categoryslastser->maincategory_id}}/{{$categoryslastser->postid}}"> {{ $categoryslastser->post_name }}</a></b><b> By User</b> <a class="" href="/members/{{ $categoryslastser->username }}/{{ $categoryslastser->id }}"> {{ $categoryslastser->username }}</a>			 --}}
 
 				{{-- <br>on <small class="text-light">{{ $categoryslast->updated_at }}</small> --}}
 				<br><p class=""><b>on</b> {{ date('d-m-Y',strtotime($categoryslastser->updated_at)) }}</p>
@@ -511,8 +514,11 @@ crossorigin=""/> --}}
 			<div class="ubforum-description subforum-column" style="float:left">
 				
 				
+				<h4><i class="{{ $category->maincategory_icon }}"></i><a href="/@lang('url.community')/{{ $category->maincategory_url  }}" class="">{{ $category->maincategory_name }}</a></h4>
+
+				{{-- <h4><i class="{{ $category->maincategory_icon }}"></i><a href="/comunidad/{{ $category->maincategory_url  }}" class="">{{ $category->maincategory_name }}</a></h4> --}}
+
 				
-				<h4><i class="{{ $category->maincategory_icon }}"></i><a href="/comunidad/{{ $category->maincategory_url  }}" class="">{{ $category->maincategory_name }}</a></h4>
 				
 			</div>
 		

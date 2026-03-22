@@ -246,19 +246,21 @@ Route::get('/forum/{subcategory}', [SubCategoryController::class, 'index'])->nam
 Route::get('/forum/ofertas/{subcategory}', [SubCategoryController::class, 'free'])->name('subcategoryfree');
 
 // seccion 3 de comunidad no negocios
-// Route::get('/'. __('routes.community').'/'.'{subcategory}', [SubCategoryFreeController::class, 'index']);
+Route::get('/'. __('routes.community') . '/{subcategory}', [SubCategoryFreeController::class, 'index'])->name('subcategoryfree');
 
-Route::get('/comunidad/{subcategory}', [SubCategoryFreeController::class, 'index'])->name('subcategoryfree');
+// Route::get('/comunidad/{subcategory}', [SubCategoryFreeController::class, 'index'])->name('subcategoryfree');
 
 
 
 // Route::get('/'. __('routes.community').'/{tema}/{id}/{postid}', [PostFreeController::class, 'show'])->name('post.showcom');
 
+// Route::get('/'. __('routes.community') . 
+
+	Route::get('/'. __('routes.community') . '/{tema}/{id}/{postid}', [PostFreeController::class, 'show'])->name('post.showcom');
 
 
 
-
-Route::get('/comunidad/{tema}/{id}/{postid}', [PostFreeController::class, 'show'])->name('post.showcom');
+// Route::get('/comunidad/{tema}/{id}/{postid}', [PostFreeController::class, 'show'])->name('post.showcom');
 
 // Route::get('/temas/{tema}/{id}/{postid}', [PostController::class, 'show'])->name('post.show');
 
@@ -280,7 +282,11 @@ Route::get('/comunidad/{tema}/{id}/{postid}', [PostFreeController::class, 'show'
 // el orden de los parametros debe ser igual en el controlador, ejemplo 1,2,3
 
 // id es el parametro de la maincategory
-Route::get('/temas/{tema}/{id}/{postid}', [PostController::class, 'show'])->name('post.show');
+	// Route::get('/'. __('routes.topics') . 
+
+		Route::get('/'. __('routes.topics') . '/{tema}/{id}/{postid}', [PostController::class, 'show'])->name('post.show');
+
+// Route::get('/temas/{tema}/{id}/{postid}', [PostController::class, 'show'])->name('post.show');
 
 
 

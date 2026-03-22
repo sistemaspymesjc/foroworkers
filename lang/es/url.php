@@ -4,5 +4,6 @@ declare(strict_types=1);
 
 return [
     'community'   => 'comunidad',
-    'services' => 'servicios',    
+    'services' => 'servicios',
+    'topics' => 'temas',      
 ];
