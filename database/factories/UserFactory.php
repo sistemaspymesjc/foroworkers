@@ -23,13 +23,7 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        // return [
-        //     'name' => fake()->name(),
-        //     'email' => fake()->unique()->safeEmail(),
-        //     'email_verified_at' => now(),
-        //     'password' => static::$password ??= Hash::make('password'),
-        //     'remember_token' => Str::random(10),
-        // ];
+       
 
       $password = password_hash('Test1234',PASSWORD_BCRYPT);
 
@@ -38,9 +32,9 @@ class UserFactory extends Factory
       return [
        'img' => 'user.png',
        'banner' => 'userbanner.png',  
-       'username' => $this->faker->unique()->randomElement(['adminforoworkers','moderadorforoworkers','userforoworkers']),
+       'username' => $this->faker->unique()->randomElement(['guestforoworkers','moderadorforoworkers','userforoworkers']),
             // 'email' => fake()->unique()->safeEmail(),
-       'email' => $this->faker->unique()->randomElement(['admin@gmail.com','free@gmail.com','vip@gmail.com']),
+       'email' => $this->faker->unique()->randomElement(['guest@gmail.com','free@gmail.com','vip@gmail.com']),
        'email_verified_at' => now(),
             // 'email_verified_at' => date('y-m-d'),
             // 'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',

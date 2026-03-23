@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
        // \App\Models\Product::truncate();
-       \App\Models\User::truncate();
+       // \App\Models\User::truncate();
      // \App\Models\Category::truncate();
      // \App\Models\SubCategory::truncate();
      // \App\Models\MainCategory::truncate();

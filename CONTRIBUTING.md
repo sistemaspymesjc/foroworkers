@@ -98,5 +98,5 @@ $ php artisan serve
 _Admin: admin@gmail.com
 _Pass: Test1234
 
-_User: free@gmail.com
+_User: user@gmail.com
 _Pass: Test1234
