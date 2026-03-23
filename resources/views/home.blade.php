@@ -703,17 +703,17 @@ let datu = new Date(val.updated_at);
 
     if (result['findpost'] == '') {
 
- 
+ 	 $("#msg_info").html('<p class="alert alert-danger text-dark">'+MSG_B+'</p>');
 
-      $("#msg_info").html('<p class="alert alert-danger text-dark">No se encontraton resultados en negocios</p>');
+      {{-- $("#msg_info").html('<p class="alert alert-danger text-dark">No se encontraton resultados en negocios</p>'); --}}
 
     }
 
      if (result['findpostfree'] == '') {
 
-    
+      $("#msg_info").html('<p class="alert alert-info text-dark">'+MSG_C+'</p>');
 
-      $("#msg_info").html('<p class="alert alert-info text-dark">No se encontraton resultados en comunidad</p>');
+      {{-- $("#msg_info").html('<p class="alert alert-info text-dark">No se encontraton resultados en comunidad</p>'); --}}
 
     }
 
