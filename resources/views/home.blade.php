@@ -1,20 +1,21 @@
 @extends('layouts/app')
 @section('meta')
 
-{{-- <title>{{ 'ForoWorkers' }}</title>  --}}
 
-<title>Foro de SEO, WebMasters en Español</title>
+<title>{{ $forums->forum_tittle }}</title>
+{{-- <title>Foro de SEO, WebMasters en Español</title> --}}
 
     
 
 <link rel="canonical" href="{{env('APP_URL')}}" />
 
-<meta name="description" content="Foro de SEO en Español, Webmasters, Negocios, Emprendedores, Compra y Venta de Servicios Online, Ofertas, Promociones en foroworkers.com">
+<meta name="description" content="{{ $forums->forum_description }}">
 
-{{-- <meta property="og:type" content="article" /> --}}
-{{-- <meta property="og:title" content="{{ 'ForoWorkers' }}" /> --}}
-<meta property="og:title" content="Foro de SEO, WebMasters en Español" />
-<meta property="og:description" content="Foro de SEO en Español, Webmasters, Negocios, Emprendedores, Compra y Venta de Servicios Online, Ofertas, Promociones en foroworkers.com" />
+{{-- <meta name="description" content="Foro de SEO en Español, Webmasters, Negocios, Emprendedores, Compra y Venta de Servicios Online, Ofertas, Promociones en foroworkers.com"> --}}
+
+
+<meta property="og:title" content="{{ $forums->forum_tittle }}" />
+<meta property="og:description" content="{{ $forums->forum_description }}" />
 
 <meta property="og:url" content="{{env('APP_URL')}}" />
 

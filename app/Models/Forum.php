@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Forum extends Model
+{
+	
+	protected $table = 'forums';
+
+
+	protected $fillable = [		
+		'forum_name',
+		'forum_tittle',
+		'forum_description',
+		'user_id'		
+	];
+
+	
+}

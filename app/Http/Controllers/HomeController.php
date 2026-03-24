@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 // usar clase
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\Forum;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Post;
@@ -30,23 +31,23 @@ class HomeController extends Controller
     public function index()
     {
 
+       $forum = Forum::select('forum_name,forum_tittle,forum_description')   
+        ->where('id', 1) 
+        ->first();
+
+        if (empty($forum)) {
+
+        return redirect('/register');
+
+        }
+
+       
+
+
+
      // echo __('messages.welcome');
 
-     //  $categorylastnegocios = Post::select('posts.post_name','posts.url_name','mc.maincategory_name','u.id', 'u.username','posts.updated_at')    
-     //  ->join('maincategorys as mc', 'mc.id', '=', 'posts.maincategory_id')
-     // // ->join('users_posts as up', 'up.maincategory_id', '=', 'posts.maincategory_id')
-     //  ->join('users_posts as up', 'up.post_id', '=', 'posts.id')
-     //  ->join('users as u', 'u.id', '=', 'up.user_id')
-     // // ->join('subcategorys as sc', 'sc.category_id', '=', 'categorys.id')
-     // // ->join('maincategorys', 'mc.subcategory_id', '=', 'sc.id')
-     // // ->where('mc.subcategory_id', 1)
-     // // ->orderBy('mc.id', 'desc')
-     // // ->orderBy('mc.id', 'asc')
-     // // ->orderBy('posts.created_at', 'desc')
-     //  ->orderBy('posts.updated_at', 'desc')   
-     // // ->first();
-     //  ->limit(10)
-     //  ->get();
+   
 
       $categorylastnegocios = Post::select('posts.post_name','posts.url_name','posts.id as postid','mc.maincategory_name','mc.subcategory_id','u.id as userid', 'u.username','u.img','mc.id','mc.maincategory_url','t.type_name','posts.created_at','posts.updated_at','t.type_color')    
       ->join('maincategorys as mc', 'mc.id', '=', 'posts.maincategory_id')
@@ -451,6 +452,7 @@ class HomeController extends Controller
 
 
         return view('home', [
+            'forums' =>  $forum,
           'categorylastnegocios' =>  $categorylastnegocios,
           'categorylastservicios' =>   $categorylastservicios,              
         // 'categorys' => $array,
@@ -474,6 +476,7 @@ class HomeController extends Controller
       } else {
 
        return view('home', [
+         'forums' =>  $forum,
         'categorylastnegocios' =>  $categorylastnegocios,
         'categorylastservicios' =>   $categorylastservicios,     
         // 'categorys' => $array,

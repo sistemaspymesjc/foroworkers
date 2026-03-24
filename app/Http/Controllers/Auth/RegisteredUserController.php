@@ -17,11 +17,13 @@ use Illuminate\Support\Str;
 use Mail;
 use App\Mail\WelcomeEmail;
 
+
 use Illuminate\Support\Facades\DB;
 
 use Session;
 
 use App\Models\Country;
+use App\Models\Forum;
 
 
 
@@ -37,7 +39,7 @@ class RegisteredUserController extends Controller
       $numbertwo = rand(1,100);
 
       $totalsum = $numberone + $numbertwo;
-    
+
       Session::put('totalsum', $totalsum);
 
 
@@ -56,7 +58,7 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
 
-    
+
 
       $request->validate([
         // 'username' => ['required', 'string', 'min:10', 'max:30', 'unique:'.User::class],
@@ -67,7 +69,7 @@ class RegisteredUserController extends Controller
         'terms' => ['required'],
       ]);
 
-  
+
 
       $user_email = $request->email;
 
@@ -88,7 +90,7 @@ class RegisteredUserController extends Controller
       ->whereBetween('ip_max', ['0', $ip_user])            
       ->first();
 
-    
+
 
 
       $total1 = Session::get('totalsum');
@@ -97,10 +99,59 @@ class RegisteredUserController extends Controller
 
       if ($total1 == $request->totalsum) {
 
-     
+        $adminuser = User::select('username')   
+        ->where('role_id', 1) 
+        ->first();
+
+        if (empty($adminuser)) {
+
+         $user = User::create([
+          'img' => 'admin.png',
+          'banner' => 'userbanner.png',        
+          'username' => 'AdminForoworkers',       
+          'email' => $emaillower,
+          'email_verified_at' => now(),         
+          'password' => Hash::make($request->password),
+          'token' =>  $random_token,
+          'role_id' => 1,
+          'country_id' => 7, 
+          'statu_id' => 1,
+          'is_buyer' => 1,
+          'theme_color' => 'white',
+          'theme_color' => 'gray',
+          'rank_id' => 1,
+          'membership_start' => null,
+          'membership_end' => null,
+          'remember_token' => Str::random(10),
+          'terms' => 1,
+          'is_verified' => 1,       
+          'is_banned' => 0,
+          'reason_id' => 1,
+          'url_profile' => 'https://www.upwork.com/freelancers/~016c272f36ca6d79ee',
+          'url_patreon' => 'https://www.patreon.com/c/foroworkers',
+          'ip_adress' => $_SERVER['REMOTE_ADDR'],
+        ]);
+
+         $reply = new Forum;
+         $reply->forum_name = 'Foroworkers';
+         $reply->forum_tittle = 'Foro de SEO, WebMasters en Español';
+         $reply->forum_description = 'Foro de SEO en Español, Webmasters, Negocios, Emprendedores, Compra y Venta de Servicios Online, Ofertas, Promociones en foroworkers.com';
+         $reply->user_id =  $user->id;             
+         $reply->save();        
+
+         event(new Registered($user));
+
+         Auth::login($user);
+
+
+         return redirect(RouteServiceProvider::HOME);
+
+       }
+
+
        if (empty($ip_country)) {
 
-      
+
         $user = User::create([
           'img' => 'user.png',
           'banner' => 'userbanner.png',
@@ -176,7 +227,7 @@ class RegisteredUserController extends Controller
 
       Auth::login($user);
 
- 
+
 
 
       $mailData = [
@@ -185,7 +236,7 @@ class RegisteredUserController extends Controller
         'token' =>  $random_token
       ];
 
-  
+
 
       Mail::to($request->email)->send(new WelcomeEmail($mailData));
 
@@ -194,7 +245,7 @@ class RegisteredUserController extends Controller
 
     }else{
 
-     
+
      return back()->with('msg_exception', 'Realice la suma para verificar que no es un Robot!!');
    }
 
@@ -215,7 +266,7 @@ class RegisteredUserController extends Controller
     ->where('token', $token)    
     ->first();
 
-      
+
     $readmessages = DB::table('users')
     ->where('email', $useremail->email)
     ->update([
@@ -231,7 +282,7 @@ class RegisteredUserController extends Controller
 
   }else{
     throw new \Exception('Page not Found');
-      
+
   }
 
 
