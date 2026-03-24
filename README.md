@@ -1,7 +1,7 @@
 <h1 align="center">
     <br>
-    <a href="https://easyappointments.org">
-        <img src="https://raw.githubusercontent.com/alextselegidis/easyappointments/develop/logo.png" alt="Easy!Appointments" width="150">
+    <a href="https://sistemaspymesjc.blogspot.com/p/trabaja-con-nosotros.html">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj80lJ2YL2GVpJi0J9bSBGXtwbjx-JXLjA63ZLH5lRzxjuwxYHhXzsKpTU8rjLiAQPq07prlMOiW7c8XKh3Klv91Hf_CM9e8wpuHg7EiqZYNW6utWYKogRHdFTtUnsd4_CAKpMauAPWYMY5kzb18RZgrKzEUs4jgd7g4gJ807oqt5mGhaM2aSxw07wYV3w/s320/foroworkers_logo.png" alt="Foroworkers" width="150">
     </a>
     <br>
     Foroworkers
