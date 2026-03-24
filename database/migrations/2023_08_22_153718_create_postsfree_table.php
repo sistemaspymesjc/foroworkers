@@ -15,6 +15,8 @@ return new class extends Migration
      */
     public function up()
     {
+         if (env('APP_AUTHOR') == 'jonathancastro') {  
+
     	Schema::create('posts_free', function (Blueprint $table) {
     		$table->id();
     		$table->string('post_name',255)->nullable();
@@ -36,6 +38,9 @@ return new class extends Migration
     		$table->timestamps();
     	});
 
+        }
+
+  if (env('APP_ENV') == 'local') {     
 
     	$post = new PostFree;
     	$post->post_name = 'chatting one';
@@ -60,6 +65,8 @@ return new class extends Migration
     	$post->maincategory_id = 42;
     	$post->content_id = 3;                             
     	$post->save();
+
+         }
 
 
 

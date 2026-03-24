@@ -13,6 +13,9 @@ return new class extends Migration
      */
     public function up(): void
     {
+
+        if (env('APP_AUTHOR') == 'jonathancastro') {           
+       
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('img');
@@ -43,6 +46,12 @@ return new class extends Migration
             $table->timestamps();
 
         });
+
+         }
+         
+
+        if (env('APP_ENV') == 'local') {          
+        
 
         $password = password_hash('Test1234',PASSWORD_BCRYPT);
 
@@ -97,6 +106,10 @@ return new class extends Migration
         $site->url_patreon = 'https://www.patreon.com/c/foroworkers';
         $site->ip_adress = '127.0.0.1';       
         $site->save();
+
+        }
+
+
     }
 
     /**

@@ -12,6 +12,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+       if (env('APP_ENV') == 'local') {    
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
@@ -57,5 +59,8 @@ class DatabaseSeeder extends Seeder
        // \App\Models\Revition::factory(3)->create();
      // \App\Models\Type::factory(30)->create();
        // \App\Models\UserProduct::factory(1)->create();
+       }
+
+       
    }
 }

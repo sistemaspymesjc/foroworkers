@@ -15,6 +15,8 @@ return new class extends Migration
      */
     public function up()
     {
+         if (env('APP_AUTHOR') == 'jonathancastro') {    
+
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('post_name',255)->nullable();
@@ -33,6 +35,10 @@ return new class extends Migration
             // $table->unsignedInteger('comment_id');         
             $table->timestamps();
         });
+
+         }
+
+          if (env('APP_ENV') == 'local') {   
 
         // propiedades digitales tiene 11 categorias
         $post = new Post;
@@ -1195,6 +1201,8 @@ return new class extends Migration
         $post->payment_id = 1;
         $post->revition_id = 1;                      
         $post->save();
+
+         }
 
 
 

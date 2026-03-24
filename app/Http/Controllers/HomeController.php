@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 // usar clase
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\Forum;
+
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Post;
@@ -16,7 +16,7 @@ use App\Models\Country;
 use App\Models\PostFree;
 use App\Models\StatisticsSearch;
 
-
+use App\Models\Forum;
 
 
 use Illuminate\Support\Facades\DB;
@@ -31,10 +31,16 @@ class HomeController extends Controller
     public function index()
     {
 
-       $forum = Forum::select('forum_name,forum_tittle,forum_description')   
-        ->where('id', 1) 
-        ->first();
+      $forum = DB::table('forums')
+      ->where('id', 1)
+      ->first();
 
+      // problem with models query
+       // $forum = Forum::select('forums.forum_name,forum_tittle,forum_description')   
+       //  ->where('id', 1) 
+       //  ->first();
+
+        
         if (empty($forum)) {
 
         return redirect('/register');
