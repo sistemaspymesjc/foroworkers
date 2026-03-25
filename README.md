@@ -29,6 +29,7 @@
   <a href="#setup">Setup</a> •
   <a href="#installation">Installation</a> •
   <a href="#access"> Access</a> •
+   <a href="#support"> Support</a> •
   <a href="#donations"> Donations</a> •
 </p>
 
@@ -37,16 +38,16 @@
 ## About
 A powerful Open Source Business Forum that can be installed on your server.Open source Laravel Forum
 
-## Starting 🚀
+## Starting
 
 _These instructions will allow you to get a copy of the project running on your local machine for development and testing purposes._
 
-## Demo Web-App :movie_camera: 
+## Demo  
 
 * [Install Project ](https://www.youtube.com/watch?v=U1zIbFJqXHU)
 
 
-## Setup 📋
+## Setup
 
 - PHP 8.3 >=
 - PostgreSQL (Or MySQL)
@@ -168,13 +169,13 @@ _Pass: Test1234
 * **Jonathan Castro** - *Web Developer* - [jonathancastrodeveloper](https://github.com/jonathancastroccs)
 
 
-## Contact :mailbox:
+## Contact
 
 _sistemaspymesjc@gmail.com_
 
 * If you would like a business forum with many extra features, please contact us with your requirements and budget. Thank you.
 
-## Donations 🎁
+## Donations
 
 * [Paypal](https://www.paypal.com/paypalme/programadorjonathan) - Thank you very much for your contribution.
 
