@@ -31,14 +31,17 @@ class HomeController extends Controller
     public function index()
     {
 
-      $forum = DB::table('forums')
-      ->where('id', 1)
-      ->first();
+      // $forum = DB::table('forums')
+      // ->where('id', 1)
+      // ->first();
+      
 
-      // problem with models query
-       $forum = Forum::select('forums.forum_name,forums.forum_tittle,forums.forum_description')   
-        ->where('id', 1) 
+        $forum = Forum::select('forums.forum_name','forums.forum_tittle','forums.forum_description')
+        ->where('id', 1)
         ->first();
+
+        // print_r($forum);
+        // exit;
 
         
         if (empty($forum)) {

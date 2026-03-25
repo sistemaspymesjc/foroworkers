@@ -64,8 +64,8 @@ APP_PHONE=5804241666224
 database connection
 
 DB_DATABASE=foroworkers
-DB_USERNAME=jonathan
-DB_PASSWORD=123
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
 
 for sending emails
 

@@ -113,8 +113,8 @@ APP_PHONE=5804241666224
 database connection
 
 DB_DATABASE=foroworkers
-DB_USERNAME=jonathan
-DB_PASSWORD=123
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
 
 for sending emails
 
@@ -161,7 +161,6 @@ _Pass: Test1234
 
 ## Courses :movie_camera: 
 
-* [Youtube](https://www.youtube.com/@sistemaspymesjc)
 * [Udemy](https://www.udemy.com/user/jonathan-castro-33/)    
 
 ## Author ✒️
@@ -169,7 +168,7 @@ _Pass: Test1234
 * **Jonathan Castro** - *Web Developer* - [jonathancastrodeveloper](https://github.com/jonathancastroccs)
 
 
-## Contact
+## Support
 
 _sistemaspymesjc@gmail.com_
 
@@ -178,6 +177,8 @@ _sistemaspymesjc@gmail.com_
 ## Donations
 
 * [Paypal](https://www.paypal.com/paypalme/programadorjonathan) - Thank you very much for your contribution.
+
+* [Ko-Fi](https://ko-fi.com/foroworkers) - Thank you very much for your contribution.
 
 * [Patreon](https://www.patreon.com/c/foroworkers) - Thank you very much for your contribution.
 
