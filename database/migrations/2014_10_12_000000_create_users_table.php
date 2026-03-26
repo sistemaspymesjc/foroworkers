@@ -92,7 +92,7 @@ return new class extends Migration
        $site->is_banned = 0;
         $site->reason_id = 1;
         $site->url_profile = 'https://www.upwork.com/freelancers/~016c272f36ca6d79ee';
-        $site->url_patreon = 'https://www.patreon.com/c/foroworkers';
+        $site->url_patreon = 'foroworkers';
         $site->ip_adress = '127.0.0.1';       
         $site->save();
 
@@ -118,7 +118,7 @@ return new class extends Migration
        $site->is_banned = 0;
         $site->reason_id = 1;
         $site->url_profile = 'https://www.udemy.com/user/jonathan-castro-33/';
-        $site->url_patreon = 'https://www.patreon.com/c/foroworkers';
+        $site->url_patreon = 'foroworkers';
         $site->ip_adress = '127.0.0.1';       
         $site->save();
 
