@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MainCategory extends Model
+class MainCategory extends MainModel
 {
-	use HasFactory;
+	
 
 	protected $table = 'maincategorys';
 
-	// public $timestamps = false;
 
 	protected $fillable = [		
 		'maincategory_name',
@@ -28,19 +27,13 @@ class MainCategory extends Model
 		// 'project_name'
 	];
 
-	// public function quotes(){
+	public function __construct()
+    {      
+        
+        $this->getAccess(); 
+        $this->getTutorial();               
+
+    }
+
 	
-	// 	return $this->hasMany(Quote::class);
-	// }
-
-	// public function users()
- //    {
-
- //    	// se referencia a la tabla pivot users_products y no a los id
- //    	return $this->belongsToMany(User::class, 'users_products');
-
- //        // return $this->belongsToMany(User::class, 'user_id');
-
- //        // return $this->belongsToMany(User::class);
- //    }
 }

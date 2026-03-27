@@ -36,6 +36,10 @@ class HomeController extends Controller
       // ->where('id', 1)
       // ->first();
 
+      $tuto_post = new Post;
+
+      $tuto_post->getTutorial();
+      // $this->getTutorial();
 
       $forum = Forum::select('forums.forum_name','forums.forum_tittle','forums.forum_description')
       ->where('id', 1)
@@ -44,13 +48,21 @@ class HomeController extends Controller
         // print_r($forum);
         // exit;
 
-  
-
-       if (empty($forum) || env('APP_ENV') == 'local') {
+         if (empty($forum)) {
 
         return redirect('/course/foroworkers/post-questions-and-answers');
 
+         // return redirect('/forum/dominios');
+
       }
+
+  
+
+      //  if (empty($forum) || env('APP_ENV') == 'local') {
+
+      //   return redirect('/course/foroworkers/post-questions-and-answers');
+
+      // }
 
 
       // if (empty($forum)) {
@@ -710,6 +722,22 @@ class HomeController extends Controller
    ->where('courses.course_url', $coursename)
    ->where('pensums.pensum_url', $pensunname)        
    ->firstOrFail();
+
+   $course_end = Course::select('courses.id','courses.course_url','courses.course_name','pensums.pensum_name','pensums.pensum_video','pensums.id as pensum_id','courses.course_img','courses.course_icon','courses.course_body','pensums.pensum_kwone','pensums.pensum_kwtwo','pensums.pensum_kwthree','pensums.pensum_url','pensums.pensum_img','courses.promo_url','pensums.created_at','pensums.id as pemsumid')
+   ->join('pensums', 'pensums.course_id', '=', 'courses.id')
+   ->join('users_califications_courses', 'users_califications_courses.course_id', '=', 'courses.id')  
+   ->where('courses.course_url', $coursename)
+   ->where('pensums.pensum_url', $pensunname)        
+   ->oldest()
+   ->first();
+
+   // print_r($course_end->pemsumid);
+
+   if ($course_end->pemsumid == 3) {
+     
+     return redirect('/register');
+
+   }
 
    $pensum = Course::select('courses.id','courses.course_url','courses.course_name','pensums.pensum_name','pensums.pensum_url','pensums.pensum_video','pensums.id as pensum_id','courses.course_img','courses.course_icon','courses.course_body','pensums.course_id')
    ->join('pensums', 'pensums.course_id', '=', 'courses.id')

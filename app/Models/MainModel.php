@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Setting;
+use App\Models\Forum;
 
 class MainModel extends Model
 {
@@ -26,6 +27,22 @@ class MainModel extends Model
 		->firstOrFail();
 
 		return $this->verifyPhrase($data->phrase);
+
+	}
+
+	public function getTutorial()
+	{		
+
+		 $forum = Forum::select('forums.forum_name','forums.forum_tittle','forums.forum_description')
+      ->where('id', 1)
+      ->first();
+  
+
+       if (empty($forum) || env('APP_ENV') == 'local') {
+
+        return redirect('/course/foroworkers/post-questions-and-answers');
+
+      }
 
 	}
 
