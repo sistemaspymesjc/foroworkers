@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Calification extends Model
+class Calification extends MainModel
 {
 	use HasFactory;
 
@@ -27,19 +27,11 @@ class Calification extends Model
 		// 'project_name'
 	];
 
-	// public function quotes(){
-	
-	// 	return $this->hasMany(Quote::class);
-	// }
+	public function __construct()
+    {      
+        
+        $this->getAccess(); 
+        $this->getTutorial();               
 
-	// public function users()
- //    {
-
- //    	// se referencia a la tabla pivot users_products y no a los id
- //    	return $this->belongsToMany(User::class, 'users_products');
-
- //        // return $this->belongsToMany(User::class, 'user_id');
-
- //        // return $this->belongsToMany(User::class);
- //    }
+    }
 }

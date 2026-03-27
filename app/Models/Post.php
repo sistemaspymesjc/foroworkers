@@ -39,7 +39,8 @@ class Post extends MainModel
 	public function __construct()
     {      
         
-        $this->getAccess();            
+        $this->getAccess(); 
+        $this->getTutorial();               
 
     }
 

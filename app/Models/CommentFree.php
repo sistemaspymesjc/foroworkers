@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CommentFree extends Model
+class CommentFree extends MainModel
 {
 	use HasFactory;
 
@@ -18,5 +18,13 @@ class CommentFree extends Model
 		'user_id',
 		'post_id',
 		'publish'				
-	];	
+	];
+
+	public function __construct()
+    {      
+        
+        $this->getAccess(); 
+        $this->getTutorial();               
+
+    }	
 }
