@@ -9,7 +9,7 @@ use Illuminate\Support\ServiceProvider;
 // use App\Contracts\MyInterface;
 // use App\Services\MyConcreteService;
 
-use App\Tutorial\TutorialInterface;
+// use App\Tutorial\TutorialInterface;
 
 
 
@@ -20,9 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(
-            TutorialInterface::class           
-        );
+        // $this->app->bind(
+        //     TutorialInterface::class           
+        // );
     }
 
     /**

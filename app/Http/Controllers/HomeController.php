@@ -20,13 +20,18 @@ use App\Models\Course;
 
 // use App\Traits\CheckTutorial;
 
-use App\Tutorial\TutorialInterface;
+use App\Interfaces\TutorialInterface;
+
+use App\Services\CheckTutorial;
+
+
 
 
 
 use Illuminate\Support\Facades\DB;
 
-class HomeController extends Controller implements TutorialInterface
+// class HomeController extends Controller implements TutorialInterface
+class HomeController extends Controller
 {
 
   // use CheckTutorial;
@@ -36,8 +41,13 @@ class HomeController extends Controller implements TutorialInterface
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(TutorialInterface $tutorial, CheckTutorial $tuto)
     {
+      // $this->getTuto(1);
+
+      // $tutorial->getTutorial();
+
+      $tuto->getTutorial();
 
        // return redirect()->route('cursospensum', ['cursoname' => 'foroworkers','pensunname' => 'post-questions-and-answers']);
 
@@ -766,21 +776,23 @@ class HomeController extends Controller implements TutorialInterface
 
  }
 
- public function getTutorial()
-  {  
-     
-     $forum = Forum::select('forums.forum_name','forums.forum_tittle','forums.forum_description')
-      ->where('id', 1)
-      ->first();  
-      
-       if (empty($forum) || env('APP_ENV') == 'local') {
+ public function getTuto(TutorialInterface $tutorial)
+ { 
 
-        return redirect('/course/foroworkers/post-questions-and-answers');        
+  $tutorial->getTutorial(); 
 
-      }
+     // $forum = Forum::select('forums.forum_name','forums.forum_tittle','forums.forum_description')
+     //  ->where('id', 1)
+     //  ->first();  
+
+     //   if (empty($forum) || env('APP_ENV') == 'local') {
+
+     //    return redirect('/course/foroworkers/post-questions-and-answers');        
+
+     //  }
 
 
-  }
+}
 
- 
+
 }

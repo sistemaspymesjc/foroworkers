@@ -10,9 +10,7 @@
 
 <br>
 
-<h4 align="center">
-  A powerful Open Source Business Forum that can be installed on your server. 
-</h4>
+The Foroworkers forum software is one of the open source projects using PHP and Laravel to manage self-hosted online communities on your server.
 
 <p align="center">
   <img alt="GitHub" src="https://img.shields.io/github/license/foroworkers/foroworkers?style=for-the-badge">

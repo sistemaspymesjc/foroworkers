@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Tutorial;
+namespace App\Interfaces;
 
 
 
