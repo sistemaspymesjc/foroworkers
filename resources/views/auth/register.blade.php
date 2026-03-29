@@ -44,6 +44,45 @@
         </div> --}}
       </div>
 
+
+      <!-- forum_name -->
+      <div>              
+
+       <div class="form-group">
+        <input type="email" class="form-control form-control-user" name="forum_name" id="forum_name"  placeholder="foroworkers" >
+        @if($errors->has('email'))
+        <div class="text-danger" id="msg_forum_name">{{ $errors->first('forum_name') }}</div>
+        @endif
+
+      </div>
+    </div>   
+
+     <!-- forum_tittle -->
+      <div>              
+
+       <div class="form-group">
+        <input type="email" class="form-control form-control-user" name="forum_tittle" id="forum_tittle"  placeholder="forum bussiness" >
+        @if($errors->has('forum_tittle'))
+        <div class="text-danger" id="msg_forum_tittle">{{ $errors->first('forum_tittle') }}</div>
+        @endif
+
+      </div>
+    </div>
+
+     <!-- forum_description -->
+      <div>              
+
+       <div class="form-group">
+        <textarea name="forum_description" id="editor">
+
+              </textarea>
+        @if($errors->has('forum_description'))
+        <div class="text-danger" id="msg_forum_description">{{ $errors->first('forum_description') }}</div>
+        @endif
+
+      </div>
+    </div>
+
       <!-- Email Address -->
       <div>              
 

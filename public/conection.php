@@ -1,6 +1,8 @@
 <?php
 
-include_once('myconfig.php');
+// include_once('myconfig.php');
+
+require __DIR__.'/../myconfig.php';
 
 
     $dbHost     = CDB_DATABASE_HOST;

@@ -108,7 +108,7 @@ $ First Step Create New Database in myconfig.php file Example: foroworkers
 ``` 
 
 ```bash
-First Second Create New Database Example: foroworkers
+Second step Create New Database Example: foroworkers
 
 APP_LOCALE=en
 PAYPAL_EMAIL=yourpaypalemail
