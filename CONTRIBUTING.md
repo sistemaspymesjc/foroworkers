@@ -96,6 +96,10 @@ $ php artisan storage:link
 ```bash
 $ php artisan optimize:clear
 ```
+
+```bash
+$ php artisan config:clear
+``` 
 - Run server
 
 ```bash

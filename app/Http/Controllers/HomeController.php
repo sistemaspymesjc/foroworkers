@@ -81,11 +81,11 @@ class HomeController extends Controller
       // }
 
 
-      // if (empty($forum) || env('APP_ENV') == 'local') {
+      if (empty($forum) || env('APP_ENV') == 'local') {
 
-      //   return redirect('/course/foroworkers/post-questions-and-answers');
+        return redirect('/course/foroworkers/installatton-tutorial-step-by-step');
 
-      // }
+      }
 
 
       // if (empty($forum)) {
@@ -746,21 +746,21 @@ class HomeController extends Controller
    ->where('pensums.pensum_url', $pensunname)        
    ->firstOrFail();
 
-   // $course_end = Course::select('courses.id','courses.course_url','courses.course_name','pensums.pensum_name','pensums.pensum_video','pensums.id as pensum_id','courses.course_img','courses.course_icon','courses.course_body','pensums.pensum_kwone','pensums.pensum_kwtwo','pensums.pensum_kwthree','pensums.pensum_url','pensums.pensum_img','courses.promo_url','pensums.created_at','pensums.id as pemsumid')
-   // ->join('pensums', 'pensums.course_id', '=', 'courses.id')
-   // ->join('users_califications_courses', 'users_califications_courses.course_id', '=', 'courses.id')  
-   // ->where('courses.course_url', $coursename)
-   // ->where('pensums.pensum_url', $pensunname)        
-   // ->oldest()
-   // ->first();
+   $course_end = Course::select('courses.id','courses.course_url','courses.course_name','pensums.pensum_name','pensums.pensum_video','pensums.id as pensum_id','courses.course_img','courses.course_icon','courses.course_body','pensums.pensum_kwone','pensums.pensum_kwtwo','pensums.pensum_kwthree','pensums.pensum_url','pensums.pensum_img','courses.promo_url','pensums.created_at','pensums.id as pemsumid')
+   ->join('pensums', 'pensums.course_id', '=', 'courses.id')
+   ->join('users_califications_courses', 'users_califications_courses.course_id', '=', 'courses.id')  
+   ->where('courses.course_url', $coursename)
+   ->where('pensums.pensum_url', $pensunname)        
+   ->oldest()
+   ->first();
 
    // print_r($course_end->pemsumid);
 
-   // if ($course_end->pemsumid == 3) {
+   if ($course_end->pemsumid == 3) {
 
-   //   return redirect('/register');
+     return redirect('/register');
 
-   // }
+   }
 
    $pensum = Course::select('courses.id','courses.course_url','courses.course_name','pensums.pensum_name','pensums.pensum_url','pensums.pensum_video','pensums.id as pensum_id','courses.course_img','courses.course_icon','courses.course_body','pensums.course_id')
    ->join('pensums', 'pensums.course_id', '=', 'courses.id')
