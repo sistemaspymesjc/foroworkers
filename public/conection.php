@@ -1,26 +1,19 @@
 <?php
 
+include_once('myconfig.php');
 
-if($_SERVER['SERVER_NAME'] == "opengiscrm.com" ) {  
-    $dbHost     = "localhost";
-    $dbUsername = "jonathan";
-    $dbPassword = "123";
-    $dbName     = "foroworkers";
-                                          
-}
-  else { 
-  
-    $dbHost     = "localhost";
-    $dbUsername = "jonathan";
-    $dbPassword = "123";
-    $dbName     = "foroworkers";
-} 
+
+    $dbHost     = CDB_DATABASE_HOST;
+    $dbUsername = CDB_DATABASE_USERNAME;
+    $dbPassword = CDB_DATABASE_PASSWORD;
+    $dbName     = CDB_DATABASE;
    
 
 $db = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
 
 if ($db->connect_error) {
-    die("Connection failed: " . $db->connect_error);
+     die("Connection failed:");
+    // die("Connection failed: " . $db->connect_error);
 }
 
 ?>

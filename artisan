@@ -4,15 +4,41 @@
 use Illuminate\Foundation\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 
+include_once('public/conection.php');
+
+$query ="SELECT app_author,app_copyright FROM settings";
+
+$result = $db->query($query);
+
+$row = $result->fetch_assoc();
+
+
+
+
 define('LARAVEL_START', microtime(true));
 
 // Register the Composer autoloader...
 require __DIR__.'/vendor/autoload.php';
 
+       
+if ($row['app_author'] == 'jonathancastro' && $row['app_copyright'] == 'sistemaspymesjc') {
+     	  
+
 // Bootstrap Laravel and handle the command...
 /** @var Application $app */
 $app = require_once __DIR__.'/bootstrap/app.php';
 
+// print_r(LARAVEL_START);
+
 $status = $app->handleCommand(new ArgvInput);
 
 exit($status);
+
+ } else {
+
+ 	exit;
+
+      }  
+
+
+  

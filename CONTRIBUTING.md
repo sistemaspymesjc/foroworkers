@@ -36,7 +36,7 @@ $ cd foroworkers
 $ composer install
 ```
 
-- Setup .env file and create database
+- Setup .env file, myconfig.php and create database
 - Avoid changing the author data as this may cause problems when running the project.
 
 - Copy .env.example config and generate Key project 
@@ -49,7 +49,15 @@ $ php artisan key:generate
 ``` 
 
 ```bash
-First Step Create New Database Example: foroworkers
+$ First Step Create New Database in myconfig.php file Example: foroworkers
+  define('CDB_DATABASE_HOST', '');
+  define('CDB_DATABASE_USERNAME', '');
+  define('CDB_DATABASE_PASSWORD', '');
+  define('CDB_DATABASE', '');
+``` 
+
+```bash
+Second Step Create New Database in .env file Example: foroworkers
 
 APP_LOCALE=en
 PAYPAL_EMAIL=yourpaypalemail

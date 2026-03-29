@@ -58,7 +58,7 @@ class UserFactory extends Factory
        'reason_id' => $this->faker->numberBetween(1,7),
        'url_profile' => $this->faker->randomElement(['https://www.udemy.com/user/jonathan-castro-33/','https://www.workana.com/freelancer/bc85b1df7df61ffb748ee88bf2a14905','https://www.upwork.com/freelancers/~016c272f36ca6d79ee']),
        'ip_adress' => $this->faker->randomElement(['192.168.1','192.168.2','192.168.3']),
-       'url_patreon' => 'https://www.patreon.com/c/foroworkers',
+       'url_patreon' => 'foroworkers',
        'phone_whatsapp' => '04241666224',
    ];
 
