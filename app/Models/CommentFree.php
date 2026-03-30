@@ -23,8 +23,8 @@ class CommentFree extends MainModel
 	public function __construct()
     {      
         
-        $this->getAccess(); 
-        $this->getTutorial();               
+        // $this->getAccess(); 
+        // $this->getTutorial();               
 
     }	
 }

@@ -6,12 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends MainModel
-{
-	use HasFactory;
+{	
 
 	protected $table = 'comments';
-
-	// public $timestamps = false;
+	
 
 	protected $fillable = [		
 		'comment',
@@ -20,11 +18,12 @@ class Comment extends MainModel
 		'publish'				
 	];
 
+	// los modelos siguien un orden para insertar en tablas
 	public function __construct()
     {      
         
-        $this->getAccess(); 
-        $this->getTutorial();               
+        // $this->getAccess(); 
+        // $this->getTutorial();               
 
     }	
 }
