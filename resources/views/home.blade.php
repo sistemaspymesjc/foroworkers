@@ -99,6 +99,8 @@ crossorigin=""/> --}}
 
 
 			<div class="col-4 offset-1">
+
+				@if(empty($forums))
 				{{-- <p>uno</p> --}}
 				<h1 class="h1">Foro de SEO, WebMasters en Español</h1>
 				<hr>
@@ -110,6 +112,12 @@ crossorigin=""/> --}}
 					<li>Negocios Seguros, siguiendo las recomendaciones</li>
 					<li>Recursos Premium y Gratis</li>
 				</ul>
+
+				@else 
+
+					{!! $forums->forum_content !!}
+
+				@endif
 
 			</div>
 

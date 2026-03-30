@@ -40,7 +40,7 @@ class Post extends MainModel
     {      
         
         $this->getAccess(); 
-        $this->getTutorial();               
+        // $this->getTutorial();               
 
     }
 

@@ -15,8 +15,12 @@ class Forum extends MainModel
 		'forum_name',
 		'forum_tittle',
 		'forum_description',
-		'user_id'		
-	];
+		'forum_content',
+		'user_id',
+		'is_digitalp',
+		'is_services',
+		'is_community'		
+	];	
 
 	
 }
