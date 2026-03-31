@@ -47,17 +47,16 @@
 <body>
     <div class="container">
         
-        <div class="message">
-           {{--  <p>Dear {{ $mailData['name'] }},</p>
-           <p>Thank you for providing your details Your Company Name. --}}
+        <div class="message">          
             <h1>{{ $mailData['title'] }}</h1>
             <p>{{ $mailData['body'] }}</p>
-           {{--  <a href="http://127.0.0.1:8000/activation?token={{$mailData['token']}}">Verificar Email</a> --}}
-            <a href="https://foroworkers.com/comunidad/{{$mailData['url_name']}}/{{$mailData['maincategory_id']}}/{{$mailData['post_id']}}">{{$mailData['url_name']}}/{{$mailData['maincategory_id']}}/{{$mailData['post_id']}}</a> 
-
-           
+             <a href="https://mailtrap.io?ref=jonathan61">email tool</a>
+            <br>
+            <a href="https://namecheap.pxf.io/rnOVB5">Best Hosting</a>
+            <br>         
+            <a href="https://foroworkers.com/comunidad/{{$mailData['url_name']}}/{{$mailData['maincategory_id']}}/{{$mailData['post_id']}}">{{$mailData['url_name']}}/{{$mailData['maincategory_id']}}/{{$mailData['post_id']}}</a>            
             
-            <p>Gracias</p>
+            <p>Thanks</p>
         </div>
         
     </div>
