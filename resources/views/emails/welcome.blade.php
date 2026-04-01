@@ -54,7 +54,9 @@
             <br>
             <a href="https://namecheap.pxf.io/rnOVB5">Best Hosting</a>
             <br>
-            <a href="http://127.0.0.1:8000/activation?token={{$mailData['token']}}">Verificar Email</a>            
+            <a href="{{env('APP_URL')}}/activation?token={{$mailData['token']}}">Verificar Email</a>
+
+             {{-- <a href="http://127.0.0.1:8000/activation?token={{$mailData['token']}}">Verificar Email</a>              --}}
             
             <p>Thank you</p>
         </div>

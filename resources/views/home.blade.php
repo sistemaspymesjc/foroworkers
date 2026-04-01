@@ -243,6 +243,8 @@ crossorigin=""/> --}}
 
 	<div id="msg_info"></div>
 
+	@if($forums->is_digitalp == 1 && $forums->is_services == 1 && $forums->is_community == 1 )
+
 	@if(empty($category))
 
 	<div class="subforum">
@@ -421,9 +423,11 @@ crossorigin=""/> --}}
 	</div> --}}
 	<!--More-->
 
+		@endif
+
 	{{-- guia --}}
 	
-
+	@if($forums->is_digitalp == 1)
 
 	<div class="subforum" style="margin-bottom: 250px;">
 		<div class="subforum-title">
@@ -470,7 +474,10 @@ crossorigin=""/> --}}
 	</div>
 	<!--More-->
 
-	
+	@endif
+
+
+		@if($forums->is_services == 1)
 
 	<div class="subforum" style="margin-bottom: 450px;">
 		<div class="subforum-title">
@@ -517,6 +524,11 @@ crossorigin=""/> --}}
 
 		</div>
 		<!--More-->
+
+		@endif
+
+
+		@if($forums->is_community == 1)
 
 		<div class="subforum" style="margin-bottom: 250px;">
 			<div class="subforum-title">
@@ -568,6 +580,7 @@ crossorigin=""/> --}}
 
 		</div>
 		<!--More-->
+			@endif	
 
 
 

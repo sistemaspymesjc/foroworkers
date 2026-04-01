@@ -65,9 +65,10 @@ class HomeController extends Controller
 
       // $forum = null;
 
-      $forum = Forum::select('forums.forum_name','forums.forum_tittle','forums.forum_description')
+      $forum = Forum::select('forums.forum_name','forums.forum_tittle','forums.forum_description','forums.forum_content','forums.is_digitalp','forums.is_services','forums.is_community')
       ->where('id', 1)
       ->first();
+    
 
         // print_r($forum);
         // exit;

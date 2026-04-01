@@ -53,8 +53,10 @@
              <a href="https://mailtrap.io?ref=jonathan61">email tool</a>
             <br>
             <a href="https://namecheap.pxf.io/rnOVB5">Best Hosting</a>
-            <br>         
-            <a href="https://foroworkers.com/comunidad/{{$mailData['url_name']}}/{{$mailData['maincategory_id']}}/{{$mailData['post_id']}}">{{$mailData['url_name']}}/{{$mailData['maincategory_id']}}/{{$mailData['post_id']}}</a>            
+            <br> 
+         
+            <a href="{{env('APP_URL')}}/ @lang('main.community')/{{$mailData['url_name']}}/{{$mailData['maincategory_id']}}/{{$mailData['post_id']}}">{{$mailData['url_name']}}/{{$mailData['maincategory_id']}}/{{$mailData['post_id']}}</a>          
+            {{-- <a href="https://foroworkers.com/comunidad/{{$mailData['url_name']}}/{{$mailData['maincategory_id']}}/{{$mailData['post_id']}}">{{$mailData['url_name']}}/{{$mailData['maincategory_id']}}/{{$mailData['post_id']}}</a>             --}}
             
             <p>Thanks</p>
         </div>
