@@ -100,7 +100,9 @@ crossorigin=""/> --}}
 
 			<div class="col-4 offset-1">
 
-				<script charset="UTF-8" type="text/javascript"  src="{{URL(env('APP_ENDPOINT_FACTORY'))}}/api/widget?api_key="+API_KEY_FACTORY></script>
+				{{-- <script charset="UTF-8" type="text/javascript"  src="{{URL(env('APP_ENDPOINT_FACTORY'))}}/api/widget?api_key="+API_KEY_FACTORY></script> --}}
+
+				<script charset="UTF-8" type="text/javascript"  src="{{URL(env('APP_ENDPOINT_FACTORY'))}}/api/widget?api_key={{ $forums->forum_api_key }}"></script>
 
 				@if(empty($forums))
 				{{-- <p>uno</p> --}}

@@ -26,7 +26,8 @@ return new class extends Migration
           $table->unsignedInteger('user_id');
           $table->boolean('is_digitalp'); 
           $table->boolean('is_services'); 
-          $table->boolean('is_community');      		            
+          $table->boolean('is_community');
+          $table->string('forum_api_key')->nullable();     		            
           $table->timestamps();
       });
 
@@ -51,10 +52,11 @@ return new class extends Migration
          $reply->user_id = 1;
          $reply->is_digitalp = 1;
          $reply->is_services = 1;
-         $reply->is_community = 1;           	       
+         $reply->is_community = 1;
+         $reply->forum_api_key   = 'sdk_123$$';
          $reply->save();
 
-       
+
 
      }
 
