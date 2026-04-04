@@ -40,35 +40,7 @@ return new class extends Migration
 
           if (env('APP_ENV') == 'local') {   
 
-        // propiedades digitales tiene 11 categorias
-        $post = new Post;
-        $post->post_name = 'negocio uno';
-        $post->url_name = 'negocio-uno';
-        $post->post_content = '<h1>Negocio de Ejemplo</h1><br><p>Detalla cada uno de los requisitos</p><br><p>Evita comunicarte en plataformas externas</p><br><p>Investiga la reputacion del cliente o freelance</p><br><p>Toma de ejemplos los tutoriales en youtube</p><br><p>Procura negociar con clientes o freelance que muestren una imagen real de su persona o de su marca</p><br><p>Solo califica cuando estes seguro y se pueden apelar luego de finalizadas</p>';
-        //categoria ejemplo dominios
-        $post->maincategory_id = 1;
-         // compra es 4 venta es 5
-        $post->type_id = 4;
-        // Premium 1 Free es 2
-        $post->site_id = 1;
-        $post->price = 10;
-        $post->comition_id = 1;
-        $post->payment_id = 1;
-        $post->revition_id = 1;                      
-        $post->save();
-
-        $post = new Post;
-        $post->post_name = 'negocio uno';
-        $post->url_name = 'negocio-uno';
-        $post->post_content = '<h1>Negocio de Ejemplo</h1><br><p>Detalla cada uno de los requisitos</p><br><p>Evita comunicarte en plataformas externas</p><br><p>Investiga la reputacion del cliente o freelance</p><br><p>Toma de ejemplos los tutoriales en youtube</p><br><p>Procura negociar con clientes o freelance que muestren una imagen real de su persona o de su marca</p><br><p>Solo califica cuando estes seguro y se pueden apelar luego de finalizadas</p>';
-        $post->maincategory_id = 1;
-        $post->type_id = 5;
-        $post->site_id = 2;
-        $post->price = 10;
-        $post->comition_id = 1;
-        $post->payment_id = 1;
-        $post->revition_id = 1;                      
-        $post->save();
+       
 
        
 

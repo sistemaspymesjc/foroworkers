@@ -28,25 +28,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        $userpost = new UserCalification;
-        $userpost->user_id = 1;
-        $userpost->post_id = 1;
-        $userpost->calification_id = 1;
-        $userpost->user_id_client = 2;
-        $userpost->review = 'genial buen servicio';
-        $userpost->review_back = 'gracias pago realizado';
-        $userpost->accept = 1;              
-        $userpost->save();
-
-        $userpost = new UserCalification;
-        $userpost->user_id = 1;
-        $userpost->post_id = 2;
-        $userpost->calification_id = 2;
-        $userpost->user_id_client = 2; 
-        $userpost->review = 'mal servicio no lo recomiendo';
-        $userpost->review_back = null;
-        $userpost->accept = 0;             
-        $userpost->save();
+        
     }
 
     /**

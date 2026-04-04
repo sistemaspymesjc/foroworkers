@@ -63,17 +63,17 @@ class HomeController extends Controller
 
      // $endpoint = "https://api.tibiadata.com/v4/character/".$player1->player_name;
 
-      $endpoint = "https://api.tibiadata.com/v4/character/".'issues';
+    //   $endpoint = "https://api.tibiadata.com/v4/character/".'issues';
 
-     $client = new \GuzzleHttp\Client(); 
+    //  $client = new \GuzzleHttp\Client(); 
 
-     $response = $client->request('GET', $endpoint);
+    //  $response = $client->request('GET', $endpoint);
 
 
-    // json decode convirete json a objeto
-     $contents = json_decode($response->getBody()->getContents());
+    // // json decode convirete json a objeto
+    //  $contents = json_decode($response->getBody()->getContents());
 
-     return $contents;
+    //  return $contents;
 
 
       // $this->getTuto(1);

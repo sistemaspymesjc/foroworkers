@@ -24,19 +24,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        $calification = new Calification;
-        $calification->calification_name = 'Positiva';
-        $calification->calification_color = 'bg-success';
-        $calification->calification_icon = 'fa-solid fa-thumbs-up';
-        // $calification->calification_icon = 'fa-regular fa-thumbs-up';             
-        $calification->save();
-
-        $calification = new Calification;
-        $calification->calification_name = 'Negativa';
-        $calification->calification_color = 'bg-danger';
-        $calification->calification_icon = 'fa-solid fa-thumbs-down';
-        // $calification->calification_icon = 'fa-regular fa-thumbs-down';            
-        $calification->save();
+      
     }
 
     /**

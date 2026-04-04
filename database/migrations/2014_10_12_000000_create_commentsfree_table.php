@@ -22,18 +22,7 @@ return new class extends Migration
            $table->timestamps();
        });
 
-    	$comment = new CommentFree;
-    	$comment->comment = '<p>Example conversation</p>';
-    	$comment->user_id = 1;
-    	$comment->post_id = 1;          
-    	$comment->save();
-
-
-    	$comment = new CommentFree;
-    	$comment->comment = '<p>Example conversation</p>';
-    	$comment->user_id = 1;
-    	$comment->post_id = 2;              
-    	$comment->save();    	
+    		
 
     }
 

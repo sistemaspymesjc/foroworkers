@@ -22,24 +22,7 @@ return new class extends Migration
            $table->timestamps();
        });
 
-    	$comment = new Comment;
-    	$comment->comment = '<p>pregunta negocio uno</p>';
-    	$comment->user_id = 1;
-    	$comment->post_id = 1;          
-    	$comment->save();
-
-
-    	$comment = new Comment;
-    	$comment->comment = '<p>pregunta negocio dos</p>';
-    	$comment->user_id = 2;
-    	$comment->post_id = 2;              
-    	$comment->save();
-
-    	$comment = new Comment;
-    	$comment->comment = '<p>pregunta negocio dos</p>';
-    	$comment->user_id = 3;
-    	$comment->post_id = 3;              
-    	$comment->save();
+    	
 
     }
 

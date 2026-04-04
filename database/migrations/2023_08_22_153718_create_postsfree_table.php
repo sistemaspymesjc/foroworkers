@@ -42,29 +42,7 @@ return new class extends Migration
 
   if (env('APP_ENV') == 'local') {     
 
-    	$post = new PostFree;
-    	$post->post_name = 'chatting one';
-    	$post->url_name = 'chatting-one';
-    	$post->post_content = '<h1>Sample Conversation</h1><br><p>Please read the forum rules before posting</p>';      
-    	$post->maincategory_id = 41;
-    	$post->content_id = 3;                           
-    	$post->save();
-
-    	$post = new PostFree;
-    	$post->post_name = 'chatting one';
-    	$post->url_name = 'chatting-one';
-    	$post->post_content = '<h1>Sample Conversation</h1><br><p>Please read the forum rules before posting</p>';     
-    	$post->maincategory_id = 42;
-    	$post->content_id = 3;                             
-    	$post->save();
-
-    	$post = new PostFree;
-    	$post->post_name = 'chatting one';
-    	$post->url_name = 'chatting-one';
-    	$post->post_content = '<h1>Sample Conversation</h1><br><p>Please read the forum rules before posting</p>';     
-    	$post->maincategory_id = 42;
-    	$post->content_id = 3;                             
-    	$post->save();
+    	
 
          }
 

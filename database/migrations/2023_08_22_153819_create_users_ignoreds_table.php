@@ -27,17 +27,7 @@ return new class extends Migration
     		$table->timestamps();
     	});
 
-    	$userpost = new UserIgnored;
-    	$userpost->user_id = 1;
-    	$userpost->user_id_msg = 2;
-    	$userpost->is_ignored = 1;               
-    	$userpost->save();
-
-    	$userpost = new UserIgnored;
-    	$userpost->user_id = 1;
-    	$userpost->user_id_msg = 3;
-    	$userpost->is_ignored = 0;               
-    	$userpost->save();
+    	
 
     }
 
