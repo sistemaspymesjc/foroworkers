@@ -22,15 +22,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        $usermem = new UserMembership;
-        $usermem->user_id = 1;
-        $usermem->membership_id = 1;      
-        $usermem->save();
-
-        $usermem = new UserMembership;
-        $usermem->user_id = 1;
-        $usermem->membership_id = 1;             
-        $usermem->save();
+       
     }
 
     /**

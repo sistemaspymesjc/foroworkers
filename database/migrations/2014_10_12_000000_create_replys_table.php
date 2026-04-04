@@ -21,23 +21,7 @@ return new class extends Migration
     		$table->timestamps();
     	});
 
-    	$reply = new Reply;
-    	$reply->reply = '<p>replica negocio uno</p>';
-    	$reply->user_id = 1;
-    	$reply->message_id = 1;          
-    	$reply->save();
-
-    	$reply = new Reply;
-    	$reply->reply = '<p>replica negocio dos</p>';
-    	$reply->user_id = 2;
-    	$reply->message_id = 2;          
-    	$reply->save();
-
-    	$reply = new Reply;
-    	$reply->reply = '<p>replica negocio tres</p>';
-    	$reply->user_id = 2;
-    	$reply->message_id = 3;          
-    	$reply->save();
+    	
 
 
 

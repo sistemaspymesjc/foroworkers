@@ -23,9 +23,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        //11 x 2 = 22 propiedades digitales 
-        //29 x 2 = 58 propiedades digitales 
-        // total 80 post
+      
 
         // Propiedades digitales
         $userpost = new UserPostFree;

@@ -251,14 +251,14 @@ crossorigin=""/> --}}
 
 	@if($forums->is_digitalp == 1 && $forums->is_services == 1 && $forums->is_community == 1 )
 
-	@if(empty($category))
+	@if(!empty($category))
 
 	<div class="subforum">
 		<div class="subforum-title">
 			{{-- <h1>Sección de negocios</h1> --}}
 			{{-- <h2 class="">Últimos temas Negocios, Servicios, Comunidad</h2> --}}
 
-			<h2 class="">Últimos temas Negocios, @lang('main.services'),  @lang('main.community')</h2>
+			<h2 class="">The Last Business, @lang('main.services'),  @lang('main.community')</h2>
 
 			 {{-- @lang('admin::app.users.sessions.title') --}}
 		</div>

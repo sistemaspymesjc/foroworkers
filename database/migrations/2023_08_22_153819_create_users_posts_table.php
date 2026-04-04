@@ -23,18 +23,29 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        
+       
         $userpost = new UserPost;
         $userpost->user_id = 1;
-        $userpost->post_id = 1;       
+        $userpost->post_id = 1;   
         $userpost->maincategory_id = 1;      
         $userpost->save();
 
         $userpost = new UserPost;
         $userpost->user_id = 2;
-        $userpost->post_id = 2;      
+        $userpost->post_id = 2;
         $userpost->maincategory_id = 2;      
         $userpost->save();
+
+        $userpost = new UserPost;
+        $userpost->user_id = 3;
+        $userpost->post_id = 3;     
+        $userpost->maincategory_id = 3;      
+        $userpost->save();      
+
+
+
+
+
 
     }
 
