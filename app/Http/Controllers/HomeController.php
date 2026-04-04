@@ -22,7 +22,7 @@ use App\Models\Course;
 
 use App\Interfaces\TutorialInterface;
 
-use App\Services\CheckTutorial;
+// use App\Services\CheckTutorial;
 
 
 
@@ -57,8 +57,25 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     // public function index(TutorialInterface $tutorial, CheckTutorial $tuto)
+    // public function index(TutorialInterface $tutorial)
     public function index()
     {
+
+     // $endpoint = "https://api.tibiadata.com/v4/character/".$player1->player_name;
+
+      $endpoint = "https://api.tibiadata.com/v4/character/".'issues';
+
+     $client = new \GuzzleHttp\Client(); 
+
+     $response = $client->request('GET', $endpoint);
+
+
+    // json decode convirete json a objeto
+     $contents = json_decode($response->getBody()->getContents());
+
+     return $contents;
+
+
       // $this->getTuto(1);
 
       // $tutorial->getTutorial();
@@ -80,15 +97,15 @@ class HomeController extends Controller
 
       // $forum = null;
 
-      $forum = Forum::select('forums.forum_name','forums.forum_tittle','forums.forum_description','forums.forum_content','forums.is_digitalp','forums.is_services','forums.is_community','forums.forum_api_key')
-      ->where('id', 1)
-      ->first();
+     $forum = Forum::select('forums.forum_name','forums.forum_tittle','forums.forum_description','forums.forum_content','forums.is_digitalp','forums.is_services','forums.is_community','forums.forum_api_key')
+     ->where('id', 1)
+     ->first();
 
 
         // print_r($forum);
         // exit;
 
-      if (empty($forum)) {
+     if (empty($forum)) {
 
        return redirect('/course/foroworkers/installatton-tutorial-step-by-step');
 
@@ -611,6 +628,15 @@ class HomeController extends Controller
 
      //  }
 
+
+}
+
+// public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
+// public function getTutorial(TutorialInterface $request): TutorialInterfaceInterface
+public function getTutorial()
+{
+
+  return exit;
 
 }
 

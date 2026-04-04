@@ -4,8 +4,6 @@
 namespace App\Interfaces;
 
 
-
-
 interface TutorialInterface
 {  
 

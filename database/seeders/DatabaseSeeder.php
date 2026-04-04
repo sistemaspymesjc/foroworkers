@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
        // \App\Models\Product::truncate();
-       // \App\Models\User::truncate();
+       \App\Models\User::truncate();
      // \App\Models\Category::truncate();
      // \App\Models\SubCategory::truncate();
      // \App\Models\MainCategory::truncate();
@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
 
        // creamos productos
        // \App\Models\Product::factory(10)->create();
-       \App\Models\User::factory(3)->create();
+       // \App\Models\User::factory(3)->create();
      // \App\Models\Category::factory(3)->create();
      // \App\Models\SubCategory::factory(6)->create();
      // \App\Models\MainCategory::factory(12)->create();
