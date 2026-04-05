@@ -25,6 +25,8 @@ use Session;
 use App\Models\Country;
 use App\Models\Forum;
 
+use GuzzleHttp\Client;
+
 
 
 class RegisteredUserController extends Controller
@@ -120,8 +122,8 @@ class RegisteredUserController extends Controller
           'token' =>  $random_token,
           'role_id' => 1,
           'country_id' => 7, 
-          'statu_id' => 1,
-          'is_buyer' => 1,
+          'statu_id' => 0,
+          'is_buyer' => 0,
           'theme_color' => 'white',
           'theme_color' => 'gray',
           'rank_id' => 1,
@@ -129,13 +131,52 @@ class RegisteredUserController extends Controller
           'membership_end' => null,
           'remember_token' => Str::random(10),
           'terms' => 1,
-          'is_verified' => 1,       
+          'is_verified' => 0,       
           'is_banned' => 0,
           'reason_id' => 1,
           'url_profile' => 'https://www.upwork.com/freelancers/~016c272f36ca6d79ee',
           'url_patreon' => 'https://www.patreon.com/c/foroworkers',
           'ip_adress' => $_SERVER['REMOTE_ADDR'],
         ]);
+
+         $client = new Client();
+         $response = $client->post(env('APP_ENDPOINT_FACTORY').'/api/register', [
+          'headers' => [
+        // 'Authorization' => 'Bearer your-token',
+            'Accept'        => 'application/json',
+          ],
+          'json' => [
+            'forum_name' => 'John Doe',
+            'forum_website' => $_SERVER['HTTP_HOST'],
+            'user_id' => 1,
+            'img' => 'admin.png',
+            'banner' => 'userbanner.png',        
+            'username' => 'AdminForoworkers',       
+            'email' => $emaillower,
+            'email_verified_at' => now(),         
+            'password' => Hash::make($request->password),
+            'token' =>  $random_token,
+            'role_id' => 1,
+            'country_id' => 7, 
+            'statu_id' => 0,
+            'is_buyer' => 0,
+            'theme_color' => 'white',
+            'theme_color' => 'gray',
+            'rank_id' => 1,
+            'membership_start' => null,
+            'membership_end' => null,
+            'remember_token' => Str::random(10),
+            'terms' => 1,
+            'is_verified' => 0,       
+            'is_banned' => 0,
+            'reason_id' => 1,
+            'url_profile' => 'https://www.upwork.com/freelancers/~016c272f36ca6d79ee',
+            'url_patreon' => 'https://www.patreon.com/c/foroworkers',
+            'ip_adress' => $_SERVER['REMOTE_ADDR'],
+          ],
+        ]);
+
+         $body = json_decode($response->getBody()->getContents(), true);
 
          // $reply = new Forum;
          // $reply->forum_name = 'Foroworkers';
@@ -144,17 +185,19 @@ class RegisteredUserController extends Controller
          // $reply->user_id =  $user->id;             
          // $reply->save();
 
-         $reply = new Forum;
-         $reply->forum_name = $request->forum_name;
-         $reply->forum_tittle = $request->forum_tittle;
-         $reply->forum_description = $request->forum_description;
-         $reply->forum_content = $request->forum_content;
-         $reply->user_id =  $user->id;
-         $reply->is_digitalp = $request->is_digitalp;
-         $reply->is_services = $request->is_services;
-         $reply->is_community = $request->is_community;
-         // $reply->forum_api_key = 'sdk_123$$';                        
-         $reply->save();           
+         // $reply = new Forum;
+         // $reply->forum_name = $request->forum_name;
+         // $reply->forum_tittle = $request->forum_tittle;
+         // $reply->forum_description = $request->forum_description;
+         // $reply->forum_content = $request->forum_content;
+         // $reply->user_id =  $user->id;
+         // $reply->is_digitalp = $request->is_digitalp;
+         // $reply->is_services = $request->is_services;
+         // $reply->is_community = $request->is_community;
+         // // $reply->forum_api_key = 'sdk_123$$';                        
+         // $reply->save();
+
+
 
          event(new Registered($user));
 

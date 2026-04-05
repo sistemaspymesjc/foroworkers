@@ -35,26 +35,26 @@ return new class extends Migration
 
      if (env('APP_ENV') == 'local') {    
 
-         $reply = new Forum;
-         $reply->forum_name = 'Foroworkers';
-         $reply->forum_tittle = 'Foro de SEO, WebMasters en Español';
-         $reply->forum_description = 'Foro de SEO en Español, Webmasters, Negocios, Emprendedores, Compra y Venta de Servicios Online, Ofertas, Promociones en foroworkers.com';
-         $reply->forum_content = '<h1 class="h1">Foro de SEO, WebMasters en Español</h1>
-         <hr>
-         <ul>
-         <li><b>Foro de Negocios</b></li>
-         <li>Compra y Venta de Servicios Online</li>
-         <li>Gana dinero como Freelance con tu Talento</li>
-         <li>Descubre ofertas de trabajos diariamente o mensualmente</li>
-         <li>Negocios Seguros, siguiendo las recomendaciones</li>
-         <li>Recursos Premium y Gratis</li>
-         </ul>';
-         $reply->user_id = 1;
-         $reply->is_digitalp = 1;
-         $reply->is_services = 1;
-         $reply->is_community = 1;
-         $reply->forum_api_key   = 'sdk_123$$';
-         $reply->save();
+         // $reply = new Forum;
+         // $reply->forum_name = 'Foroworkers';
+         // $reply->forum_tittle = 'Foro de SEO, WebMasters en Español';
+         // $reply->forum_description = 'Foro de SEO en Español, Webmasters, Negocios, Emprendedores, Compra y Venta de Servicios Online, Ofertas, Promociones en foroworkers.com';
+         // $reply->forum_content = '<h1 class="h1">Foro de SEO, WebMasters en Español</h1>
+         // <hr>
+         // <ul>
+         // <li><b>Foro de Negocios</b></li>
+         // <li>Compra y Venta de Servicios Online</li>
+         // <li>Gana dinero como Freelance con tu Talento</li>
+         // <li>Descubre ofertas de trabajos diariamente o mensualmente</li>
+         // <li>Negocios Seguros, siguiendo las recomendaciones</li>
+         // <li>Recursos Premium y Gratis</li>
+         // </ul>';
+         // $reply->user_id = 1;
+         // $reply->is_digitalp = 1;
+         // $reply->is_services = 1;
+         // $reply->is_community = 1;
+         // $reply->forum_api_key   = 'sdk_123$$';
+         // $reply->save();
 
 
 

@@ -30,9 +30,15 @@ use App\Interfaces\TutorialInterface;
 
 use Illuminate\Support\Facades\DB;
 
+// use App\Http\Controllers\GuzzleHttp\Client;
+
+  use GuzzleHttp\Client;
+
 // class HomeController extends Controller implements TutorialInterface
 class HomeController extends Controller
 {
+
+  // use GuzzleHttp\Client;
 
   // use CheckTutorial;
 
@@ -61,19 +67,52 @@ class HomeController extends Controller
     public function index()
     {
 
+      // print_r($_SERVER['HTTP_HOST']);
+
+      // print($_SERVER['SERVER_NAME']);
+
+      // exit;
+
      // $endpoint = "https://api.tibiadata.com/v4/character/".$player1->player_name;
 
-    //   $endpoint = "https://api.tibiadata.com/v4/character/".'issues';
+     //  $endpoint = "https://api.tibiadata.com/v4/character/".'issues';
 
-    //  $client = new \GuzzleHttp\Client(); 
+     // $client = new \GuzzleHttp\Client(); 
 
-    //  $response = $client->request('GET', $endpoint);
+     // $response = $client->request('GET', $endpoint);
 
 
     // // json decode convirete json a objeto
     //  $contents = json_decode($response->getBody()->getContents());
 
     //  return $contents;
+
+      // $endpoint = "https://api.tibiadata.com/v4/character/".$player1->player_name;
+
+      // $endpoint = "https://api.tibiadata.com/v4/character/".'issues';
+
+      // $client = new \GuzzleHttp\Client(); 
+
+      // $response = $client->request('GET', $endpoint);
+
+//       $client = new Client();
+// $response = $client->post(env('APP_ENDPOINT_FACTORY').'/api/register', [
+//     'headers' => [
+//         // 'Authorization' => 'Bearer your-token',
+//         'Accept'        => 'application/json',
+//     ],
+//     'json' => [
+//         'forum_name' => 'John Doe',
+//         'forum_website' => $_SERVER['HTTP_HOST'],
+//          'user_id' => 1,
+//     ],
+// ]);
+
+// $body = json_decode($response->getBody()->getContents(), true);
+
+// print_r($body);
+
+// exit;
 
 
       // $this->getTuto(1);
@@ -97,15 +136,15 @@ class HomeController extends Controller
 
       // $forum = null;
 
-     $forum = Forum::select('forums.forum_name','forums.forum_tittle','forums.forum_description','forums.forum_content','forums.is_digitalp','forums.is_services','forums.is_community','forums.forum_api_key')
-     ->where('id', 1)
-     ->first();
+      $forum = Forum::select('forums.forum_name','forums.forum_tittle','forums.forum_description','forums.forum_content','forums.is_digitalp','forums.is_services','forums.is_community','forums.forum_api_key')
+      ->where('id', 1)
+      ->first();
 
 
         // print_r($forum);
         // exit;
 
-     if (empty($forum)) {
+      if (empty($forum)) {
 
        return redirect('/course/foroworkers/installatton-tutorial-step-by-step');
 
