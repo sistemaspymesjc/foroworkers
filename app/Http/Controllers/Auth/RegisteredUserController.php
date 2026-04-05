@@ -148,7 +148,7 @@ class RegisteredUserController extends Controller
           'json' => [
             'forum_name' => 'John Doe',
             'forum_website' => $_SERVER['HTTP_HOST'],
-            'user_id' => 1,
+            'user_id' => $user->id,
             'img' => 'admin.png',
             'banner' => 'userbanner.png',        
             'username' => 'AdminForoworkers',       
@@ -243,6 +243,46 @@ class RegisteredUserController extends Controller
           'ip_adress' => $_SERVER['REMOTE_ADDR'],
         ]);
 
+         $client = new Client();
+         $response = $client->post(env('APP_ENDPOINT_FACTORY').'/api/register/leads', [
+          'headers' => [
+        // 'Authorization' => 'Bearer your-token',
+            'Accept'        => 'application/json',
+          ],
+          'json' => [
+            'img' => 'user.png',
+          'banner' => 'userbanner.png',
+        // 'username' => $request->username,
+          // 'username' => $usernamelower,
+          'username' => $username_final,
+        // 'email' => $request->email,
+          'email' => $emaillower,
+          'email_verified_at' => now(),         
+          'password' => Hash::make($request->password),
+          'token' =>  $random_token,
+          'role_id' => 2,
+          'country_id' => 1, 
+          'statu_id' => 0,
+          'is_buyer' => 0,
+        // 'theme_color' => 'white',
+          'theme_color' => 'gray',
+          'rank_id' => 1,
+          'membership_start' => null,
+          'membership_end' => null,
+          'remember_token' => Str::random(10),
+          'terms' => 1,
+          'is_verified' => 0,
+        // 'is_ignored' => 0,
+          'is_banned' => 0,
+          'reason_id' => 1,
+          'url_profile' => null,
+          'url_patreon' => null,
+          'ip_adress' => $_SERVER['REMOTE_ADDR'],
+          ],
+        ]);
+
+         $body = json_decode($response->getBody()->getContents(), true);
+
       }else{
 
         $user = User::create([
@@ -275,6 +315,46 @@ class RegisteredUserController extends Controller
           'url_patreon' => null,
           'ip_adress' => $_SERVER['REMOTE_ADDR'],
         ]);
+
+        $client = new Client();
+         $response = $client->post(env('APP_ENDPOINT_FACTORY').'/api/register/leads', [
+          'headers' => [
+        // 'Authorization' => 'Bearer your-token',
+            'Accept'        => 'application/json',
+          ],
+          'json' => [
+            'img' => 'user.png',
+          'banner' => 'userbanner.png',
+        // 'username' => $request->username,
+          // 'username' => $usernamelower,
+          'username' => $username_final,
+        // 'email' => $request->email,
+          'email' => $emaillower,
+          'email_verified_at' => now(),         
+          'password' => Hash::make($request->password),
+          'token' =>  $random_token,
+          'role_id' => 2,
+          'country_id' => 1, 
+          'statu_id' => 0,
+          'is_buyer' => 0,
+        // 'theme_color' => 'white',
+          'theme_color' => 'gray',
+          'rank_id' => 1,
+          'membership_start' => null,
+          'membership_end' => null,
+          'remember_token' => Str::random(10),
+          'terms' => 1,
+          'is_verified' => 0,
+        // 'is_ignored' => 0,
+          'is_banned' => 0,
+          'reason_id' => 1,
+          'url_profile' => null,
+          'url_patreon' => null,
+          'ip_adress' => $_SERVER['REMOTE_ADDR'],
+          ],
+        ]);
+
+         $body = json_decode($response->getBody()->getContents(), true);
 
 
       }
