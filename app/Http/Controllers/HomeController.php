@@ -152,7 +152,7 @@ class HomeController extends Controller
 
      }
 
-     $user = user::select('users.api_key_factory')
+     $user = user::select('users.id','users.api_key_factory')
      ->where('id', $forum->user_id)
      ->firstOrFail();
 

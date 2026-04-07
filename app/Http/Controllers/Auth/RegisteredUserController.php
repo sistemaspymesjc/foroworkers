@@ -195,6 +195,7 @@ class RegisteredUserController extends Controller
          $reply->is_digitalp = $request->is_digitalp;
          $reply->is_services = $request->is_services;
          $reply->is_community = $request->is_community;
+         // $reply->software_id = 1;
          // $reply->forum_api_key = 'sdk_123$$';                        
          $reply->save();
 

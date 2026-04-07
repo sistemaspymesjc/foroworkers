@@ -218,25 +218,9 @@ crossorigin=""/> --}}
 	</a>
 	</div>
 </div> --}}
-<div class="row offset-2">
-	{{-- <div class="">
-	
-			<form method="POST" action="" id="logForm">
-     
+<div class="row offset-2">	
 
-		<div class="input-group">
-            <input type="text" id="findPost" class="form-control" placeholder="Buscar Tema">
-            <div class="input-group-append">
-              <button class="btn btn-danger" type="submit">
-                <i class="fa fa-search"></i>
-            </button>
-        </div>
-    </div>
-</form>
-
-	</div> --}}
-
-			<script charset="UTF-8" type="text/javascript"  src="{{URL(env('APP_ENDPOINT_FACTORY'))}}/api/modules/search?api_key={{ $users->api_key_factory }}&website={{ $websites }}&{{ $forums->user_id }}"></script>
+			<script charset="UTF-8" type="text/javascript"  src="{{URL(env('APP_ENDPOINT_FACTORY'))}}/api/modules/search?api_key={{ $users->api_key_factory }}&website={{ $websites }}&user_id={{ $forums->user_id }}"></script>
 </div>
 
 
