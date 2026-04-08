@@ -157,6 +157,23 @@ class HomeController extends Controller
      ->firstOrFail();
 
 
+     
+
+       $endpoint = env('APP_ENDPOINT_FACTORY').'/api/modules/seo?api_key='.$user->api_key_factory.'&website='.$website.'&user_id='.$forum->user_id;      
+
+      $client = new \GuzzleHttp\Client(); 
+
+      $response = $client->request('GET', $endpoint);
+
+        $ms_contents = json_decode($response->getBody()->getContents());
+
+        $m_seo = $ms_contents;
+
+      // print_r($contents);
+
+      // exit;
+
+
 
 
 
@@ -393,6 +410,7 @@ class HomeController extends Controller
         'forums' =>  $forum,
         'websites' =>  $website,
         'users' =>  $user,
+        'm_seos' =>  $ms_contents,
         'categorylastnegocios' =>  $categorylastnegocios,
         'categorylastservicios' =>   $categorylastservicios,              
         // 'categorys' => $array,
@@ -419,6 +437,7 @@ class HomeController extends Controller
        'forums' =>  $forum,
        'websites' =>  $website,
        'users' =>  $user,
+       'm_seos' =>  $ms_contents,
        'categorylastnegocios' =>  $categorylastnegocios,
        'categorylastservicios' =>   $categorylastservicios,     
         // 'categorys' => $array,

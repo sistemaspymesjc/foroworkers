@@ -21,10 +21,10 @@
 <meta property="og:description" content="{{ $forums->forum_description }}" /> --}}
 
 @else 
+
+@if(!empty($m_seos->is_active))
   
 <title>{{ $forums->forum_tittle }}</title>
-{{-- <title>Foro de SEO, WebMasters en Español</title> --}}
-
     
 
 <link rel="canonical" href="{{env('APP_URL')}}" />
@@ -33,11 +33,12 @@
 
 <meta name="description" content="{{ $forums->forum_description }}">
 
-{{-- <meta name="description" content="Foro de SEO en Español, Webmasters, Negocios, Emprendedores, Compra y Venta de Servicios Online, Ofertas, Promociones en foroworkers.com"> --}}
-
 
 <meta property="og:title" content="{{ $forums->forum_tittle }}" />
 <meta property="og:description" content="{{ $forums->forum_description }}" />
+
+@endif
+
 
 @endif
 

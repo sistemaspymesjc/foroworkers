@@ -51,7 +51,9 @@ use App\Http\Controllers\Admin\OrdersController;
 
 // Route::group(["middleware" => "wallk.validate"], function () {
 
-Route::get('/', [HomeController::class, 'index'])->middleware(WallkValidate::class);
+Route::get('/', [HomeController::class, 'index']);
+
+// Route::get('/', [HomeController::class, 'index'])->middleware(WallkValidate::class);
 
 // Route::group(["middleware" => "wallk.validate"], function () {
 
