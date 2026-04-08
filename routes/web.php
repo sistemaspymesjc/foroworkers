@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Middleware\WallkValidate;
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\SubCategoryController;
@@ -47,9 +49,16 @@ use App\Http\Controllers\Admin\OrdersController;
 // 	return view('home');
 // });
 
-Route::get('/', [HomeController::class, 'index']);
+// Route::group(["middleware" => "wallk.validate"], function () {
+
+Route::get('/', [HomeController::class, 'index'])->middleware(WallkValidate::class);
+
+// Route::group(["middleware" => "wallk.validate"], function () {
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+// });
+
 
 Route::get('/courses/{cursoname}', [HomeController::class, 'coursesall'])->name('cursosall');
 
@@ -186,6 +195,7 @@ Route::middleware('auth')->group(function () {
 
 	// Route::get('/members/ignored/{id}', [MemberController::class, 'ignored']);
 
+// Route::group(["middleware" => "wallk.validate"], function () {
 
 // postear
 	Route::get('/forum/{subcategory}/{id}/post-thread', [PostController::class, 'index'])->name('post');
@@ -260,6 +270,8 @@ Route::get('/'. __('routes.community') . '/{subcategory}', [SubCategoryFreeContr
 // Route::get('/'. __('routes.community') . 
 
 	Route::get('/'. __('routes.community') . '/{tema}/{id}/{postid}', [PostFreeController::class, 'show'])->name('post.showcom');
+
+	// });
 
 
 
