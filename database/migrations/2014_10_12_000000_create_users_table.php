@@ -68,96 +68,78 @@ return new class extends Migration
 
         if (env('APP_ENV') == 'local') {
 
-           $password = password_hash('Test1234',PASSWORD_BCRYPT);           
+         $password = password_hash('Test1234',PASSWORD_BCRYPT);
 
-           $site = new User;      
-           $site->img = 'user.png';
-           $site->banner = 'userbanner.png';       
-           $site->username = 'user';    
-           $site->email = 'user@gmail.com';
-           $site->email_verified_at = now();         
-           $site->password = $password;
-           $site->token =  $password;
-           $site->role_id = 2;
-           $site->country_id = 2; 
-           $site->statu_id = 1;
-           $site->is_buyer = 1;      
-           $site->theme_color = 'black';
-           $site->rank_id = 2;
-           $site->membership_start = null;
-           $site->membership_end = null;
-           $site->remember_token = 'pqDjqmL6hQ';
-           $site->terms = 1;
-           $site->is_verified = 1;      
-           $site->is_banned = 0;
-           $site->reason_id = 1;
-           $site->url_profile = 'https://www.udemy.com/user/jonathan-castro-33/';
-           $site->url_patreon = 'foroworkers';
-           $site->ip_adress = '127.0.0.1';
-            // $site->api_key_factory = 'pk_1234';         
-           $site->save();
-
-           $site = new User;      
-           $site->img = 'user.png';
-           $site->banner = 'userbanner.png';       
-           $site->username = 'admin';    
-           $site->email = 'admin@gmail.com';
-           $site->email_verified_at = now();         
-           $site->password = $password;
-           $site->token =  $password;
-           $site->role_id = 1;
-           $site->country_id = 1; 
-           $site->statu_id = 1;
-           $site->is_buyer = 1;      
-           $site->theme_color = 'gray';
-           $site->rank_id = 1;
-           $site->membership_start = null;
-           $site->membership_end = null;
-           $site->remember_token = 'pqDjqmL6hQ';
-           $site->terms = 1;
-           $site->is_verified = 1;      
-           $site->is_banned = 0;
-           $site->reason_id = 1;
-           $site->url_profile = 'https://www.upwork.com/freelancers/~016c272f36ca6d79ee';
-           $site->url_patreon = 'foroworkers';
-           $site->ip_adress = '127.0.0.1';
-           $site->api_key_factory = 'pk_1234';         
-           $site->save();
-
-           $site = new User;      
-           $site->img = 'user.png';
-           $site->banner = 'userbanner.png';       
-           $site->username = 'leads';    
-           $site->email = 'leads@gmail.com';
-           $site->email_verified_at = now();         
-           $site->password = $password;
-           $site->token =  $password;
-           $site->role_id = 3;
-           $site->country_id = 2; 
-           $site->statu_id = 1;
-           $site->is_buyer = 0;      
-           $site->theme_color = 'black';
-           $site->rank_id = 2;
-           $site->membership_start = null;
-           $site->membership_end = null;
-           $site->remember_token = 'pqDjqmL6hQ';
-           $site->terms = 1;
-           $site->is_verified = 1;      
-           $site->is_banned = 0;
-           $site->reason_id = 1;
-           $site->url_profile = 'https://www.udemy.com/user/jonathan-castro-33/';
-           $site->url_patreon = 'foroworkers';
-           $site->ip_adress = '127.0.0.1';
-         // $site->api_key_factory = '123456';         
-           $site->save();          
+         User::insert([
+            [
+             'img' => 'user.png',
+             'banner' => 'userbanner.png',
+             'username' => 'user',
+             'email' => 'user@gmail.com',
+             'email_verified_at' => now(),
+             'password' => $password,
+             'token' => $password,
+             'role_id' => 2,
+             'country_id' => 2,
+             'statu_id' => 1,
+             'is_buyer' => 1,
+             'theme_color' => 'black',
+             'rank_id' => 2,
+             'membership_start' => null,
+             'membership_end' => null,
+             'remember_token' => 'pqDjqmL6hQ',
+             'terms' => 1,
+             'is_verified' => 1,
+             'is_banned' => 0,
+             'reason_id' => 1,
+             'url_profile' => 'https://www.upwork.com/freelancers/~016c272f36ca6d79ee',
+             'url_patreon' => 'foroworkers',
+             'ip_adress' => '127.0.0.1',
+             'created_at' => now(),
+             'updated_at' => now()
+         ]
+         ,
+         [
+            'img' => 'admin.png',
+             'banner' => 'userbanner.png',
+             'username' => 'admin',
+             'email' => 'admin@gmail.com',
+             'email_verified_at' => now(),
+             'password' => $password,
+             'token' => $password,
+             'role_id' => 1,
+             'country_id' => 1,
+             'statu_id' => 1,
+             'is_buyer' => 1,
+             'theme_color' => 'gray',
+             'rank_id' => 2,
+             'membership_start' => null,
+             'membership_end' => null,
+             'remember_token' => 'pqDjqmL6hQ',
+             'terms' => 1,
+             'is_verified' => 1,
+             'is_banned' => 0,
+             'reason_id' => 1,
+             'url_profile' => 'https://www.workana.com/freelancer/bc85b1df7df61ffb748ee88bf2a14905',
+             'url_patreon' => 'foroworkers',
+             'ip_adress' => '127.0.0.1',
+             'created_at' => now(),
+             'updated_at' => now()
+         ]
+         ,
+     ]);     
 
 
 
 
-       }
 
 
-   }
+
+
+     }
+
+
+ }
 
     /**
      * Reverse the migrations.
