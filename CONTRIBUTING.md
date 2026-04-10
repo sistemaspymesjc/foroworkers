@@ -17,7 +17,7 @@ https://www.youtube.com/watch?v=U1zIbFJqXHU
 - Clone Project
 
 ```bash
-$ git clone https://github.com/foroworkers/foroworkers.git
+$ git clone https://github.com/sistemaspymesjc/foroworkers.git
 ``` 
 
 - Pull Project Dev Branch

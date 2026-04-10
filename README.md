@@ -27,6 +27,7 @@ The Foroworkers forum software is one of the open source projects using PHP and 
 
 <p align="center">
   <a href="#about">About</a> •
+   <a href="#contributors">Contributors</a> •
   <a href="#features">Features</a> •
   <a href="#setup">Setup</a> •
   <a href="#installation">Installation</a> •
@@ -39,6 +40,11 @@ The Foroworkers forum software is one of the open source projects using PHP and 
 
 ## About
 A powerful Open Source Business Forum that can be installed on your server.Open source Laravel Forum
+
+## Contributors
+We thank everyone who contributes to this project.
+
+* **Jonathan Castro** - *Software Engineer* - [jonathancastrodeveloper](https://github.com/jonathancastroccs)
 
 ## Starting
 
@@ -68,7 +74,7 @@ The following steps are meant to be used on a development server.
 - Clone Project
 
 ```bash
-$ git clone https://github.com/foroworkers/foroworkers.git
+$ git clone https://github.com/sistemaspymesjc/foroworkers.git
 ``` 
 
 - Pull Project Dev Branch
