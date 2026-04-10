@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 // usar clase
 use Illuminate\Support\Facades\Auth;
 
+// use App\Services\SeoService;
+
+use App\Http\Services\SeoService;
+
 
 use App\Models\User;
 use App\Models\Category;
@@ -25,14 +29,11 @@ use App\Interfaces\TutorialInterface;
 // use App\Services\CheckTutorial;
 
 
-
-
-
 use Illuminate\Support\Facades\DB;
 
 // use App\Http\Controllers\GuzzleHttp\Client;
 
-use GuzzleHttp\Client;
+// use GuzzleHttp\Client;
 
 // class HomeController extends Controller implements TutorialInterface
 class HomeController extends Controller
@@ -42,14 +43,16 @@ class HomeController extends Controller
 
   // use CheckTutorial;
 
+ protected $seoService;
  protected $posts;
  protected $postsfree;
  protected $categorys;
 
   // protected $userService;
 
- public function __construct(Post $posts, PostFree $postsfree, Category $categorys){
+ public function __construct(SeoService $seoService, Post $posts, PostFree $postsfree, Category $categorys){
 
+  $this->seoService = $seoService;
   $this->posts = $posts;
   $this->postsfree = $postsfree;
   $this->categorys = $categorys;
@@ -159,17 +162,25 @@ class HomeController extends Controller
 
      
 
-       $endpoint = env('APP_ENDPOINT_FACTORY').'/api/modules/seo?api_key='.$user->api_key_factory.'&website='.$website.'&user_id='.$forum->user_id;      
+      //  $endpoint = env('APP_ENDPOINT_FACTORY').'/api/modules/seo?api_key='.$user->api_key_factory.'&website='.$website.'&user_id='.$forum->user_id;      
 
-      $client = new \GuzzleHttp\Client(); 
+      // $client = new \GuzzleHttp\Client(); 
 
-      $response = $client->request('GET', $endpoint);
+      // $response = $client->request('GET', $endpoint);
 
-        $ms_contents = json_decode($response->getBody()->getContents());
+      //   $ms_contents = json_decode($response->getBody()->getContents());
 
-        $m_seo = $ms_contents;
+      //   $m_seo = $ms_contents;
 
       // print_r($contents);
+
+      // exit;
+
+      $ms_contents = $this->seoService->getModuleSeo($user->api_key_factory, $website, $forum->user_id);
+
+      $m_seo = $ms_contents;
+
+      // print_r($m_seo);
 
       // exit;
 
