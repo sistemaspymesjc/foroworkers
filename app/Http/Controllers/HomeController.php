@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Services\SeoService;
 
+use App\Repository\Post\PostRepository; 
+
 
 use App\Models\User;
 use App\Models\Category;
@@ -50,9 +52,11 @@ class HomeController extends Controller
 
   // protected $userService;
 
- public function __construct(SeoService $seoService, Post $posts, PostFree $postsfree, Category $categorys){
+ public function __construct(SeoService $seoService, PostRepository $post, Post $posts, PostFree $postsfree, Category $categorys){
 
   $this->seoService = $seoService;
+  $this->post = $post;
+
   $this->posts = $posts;
   $this->postsfree = $postsfree;
   $this->categorys = $categorys;
@@ -69,6 +73,7 @@ class HomeController extends Controller
     // public function index(TutorialInterface $tutorial)
     public function index()
     {
+
 
       // print_r($_SERVER['HTTP_HOST']);
 
@@ -176,9 +181,9 @@ class HomeController extends Controller
 
       // exit;
 
-      $ms_contents = $this->seoService->getModuleSeo($user->api_key_factory, $website, $forum->user_id);
+     $ms_contents = $this->seoService->getModuleSeo($user->api_key_factory, $website, $forum->user_id);
 
-      $m_seo = $ms_contents;
+     $m_seo = $ms_contents;
 
       // print_r($m_seo);
 
@@ -211,14 +216,18 @@ class HomeController extends Controller
       // $categorylastnegocios =  $posts->getLastPosts(1);
 
 
-     $categorylastnegocios =  $this->posts->getLastPosts(1);
+     $categorylastnegocios = $this->post->getLastPosts(1);
 
-     $categorylastservicios =  $this->posts->getLastPosts(2);
+     // $categorylastnegocios =  $this->posts->getLastPosts(1);
+
+     $categorylastservicios =  $this->post->getLastPosts(2);
+
+     // $categorylastservicios =  $this->posts->getLastPosts(2);
 
      $categorylastcomumidad =  $this->postsfree->getLastPosts(3);
 
 
-     $tablelast = array($categorylastnegocios,$categorylastservicios,$categorylastcomumidad );
+     $tablelast = array($categorylastnegocios,$categorylastservicios,$categorylastcomumidad);
 
         // mejorar este query  
      $category =  $this->categorys->getCategorys(1);

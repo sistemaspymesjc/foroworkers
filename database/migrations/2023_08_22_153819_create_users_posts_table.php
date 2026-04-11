@@ -23,31 +23,28 @@ return new class extends Migration
             $table->timestamps();
         });
 
-       
-        $userpost = new UserPost;
-        $userpost->user_id = 1;
-        $userpost->post_id = 1;   
-        $userpost->maincategory_id = 1;      
-        $userpost->save();
+        if (env('APP_ENV') == 'local') {        
 
-        $userpost = new UserPost;
-        $userpost->user_id = 2;
-        $userpost->post_id = 2;
-        $userpost->maincategory_id = 2;      
-        $userpost->save();
+            UserPost::insert([
+                [
+                 'user_id' => 1,
+                 'post_id' => 1,
+                 'maincategory_id' => 1,             
+                 'created_at' => now(),
+                 'updated_at' => now()
+             ]
+             ,
+             [
+                'user_id' => 2,
+                'post_id' => 2,
+                'maincategory_id' => 1,             
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+            ,
+        ]);
 
-        $userpost = new UserPost;
-        $userpost->user_id = 3;
-        $userpost->post_id = 3;     
-        $userpost->maincategory_id = 3;      
-        $userpost->save();      
-
-
-
-
-
-
-    }
+        }
 
     /**
      * Reverse the migrations.
