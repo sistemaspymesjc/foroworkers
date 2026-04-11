@@ -27,6 +27,29 @@ return new class extends Migration
             $table->timestamps();
         });
 
+         if (env('APP_ENV') == 'local') {        
+
+            MainCategory::insert([
+            [
+               'maincategory_icon' => 'fa-solid fa-house',
+               'maincategory_name' => 'Domains',
+               'maincategory_url' => 'domains',
+               'subcategory_id' => 1,             
+               'created_at' => now(),
+               'updated_at' => now()
+           ]
+           ,
+           [
+           'maincategory_icon' => 'fa-solid fa-palette',
+               'maincategory_name' => 'Developers',
+               'maincategory_url' => 'developers',
+               'subcategory_id' => 2,             
+               'created_at' => now(),
+               'updated_at' => now()
+        ]
+        ,
+    ]);     
+
        
     }
 
