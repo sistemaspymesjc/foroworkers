@@ -64,12 +64,7 @@
 						<div class="text-danger" id="msg_email">{{ $errors->first('post_name') }}</div>
 						@endif
 
-						{{-- <input type="text" class="form-control form-control-user" name="url_name" id="postal_code"  placeholder="Url"> --}}
-
-					{{-- <select class="form-control" name="maincategory_id" id="maincategory_id">
-						<option id="option" value="">Category</option>
-						<option value="{{$categoryid}}">{{$categoryid}}</option>						     
-					</select> --}}
+						
 
 					<input type="hidden" name="maincategory_id" id="maincategory_id" value="{{$categoryid}}">
 
@@ -109,13 +104,6 @@
 					@endif
 
 
-{{-- 
-					<select class="form-control" name="type_id" id="type_id">
-						@foreach($types as $type)
-						<option id="option" value="">Category</option>
-						<option value="{{$type->id}}">{{$type->type_name}}</option>
-						@endforeach						     
-					</select> --}}
 
 					<select class="form-control" name="comition_id" id="comition_id">
 						@foreach($comitions as $comition)
@@ -205,73 +193,31 @@
 
 </div>
 
-<script>
-	// ClassicEditor
-	// .create( document.querySelector( '#editor' ) )
-	// .catch( error => {
-	// 	console.error( error );
-	// } );
-
-	// ClassicEditor
-	// .create( document.querySelector( '#editor' ), {
-	// 	toolbar: {
-	// 		items: [
-	// 		'link',
- //                // More toolbar items.
- //                // ...
- //                ],
- //            },
- //            link: {
- //            // Automatically add target="_blank" and rel="noopener noreferrer" to all external links.
- //            addTargetToExternalLinks: true,
-
- //            // Let the users control the "download" attribute of each link.
- //            decorators: [
- //            {
- //            	mode: 'manual',
- //            	// label: 'Downloadable',
- //            	attributes: {
- //            		// download: 'download'
- //            		rel: 'nofollow',
- //            		target: '_blank',
- //            	}
- //            }
- //            ]
- //        }
- //    } )
-	// .then( /* ... */ )
-	// .catch( /* ... */ );
-
-
+{{-- <script>
 	ClassicEditor
-    .create( document.querySelector( '#editor' ), {
-        link: {
-            decorators: {
-                // toggleDownloadable: {
-                //     mode: 'manual',
-                //     label: 'Downloadable',
-                //     attributes: {
-                //         download: 'file'
-                //     }
-                // },
+	.create( document.querySelector( '#editor' ), {
+		link: {
+			decorators: {               
                 openInNewTab: {
-                    mode: 'manual',
-                    // label: 'Open in a new tab',
-                    defaultValue: true,			// This option will be selected by default.
+                	mode: 'manual',                  
+                    defaultValue: true,			
                     attributes: {
-                        target: '_blank',
-                        // rel: 'noopener noreferrer'
-                        rel: 'nofollow',
+                    	target: '_blank',                     
+                        rel: 'nofollow ugc',
                     }
                 }
             }
         }
-        // More of the editor's configuration.
- 		// ...
-    } )
-    .then( /* ... */ )
-    .catch( /* ... */ );
-</script>
+       
+ 	} )
+	.then( )
+	.catch();
+
+</script> --}}
+
+
+
+<script charset="UTF-8" type="text/javascript"  src="{{URL(env('APP_ENDPOINT_FACTORY'))}}/api/modules/form?api_key={{ $users->api_key_factory }}&website={{ $websites }}&user_id={{ $forums->user_id }}&software_id={{ $forums->software_id }}"></script>
 
 @endsection 
 

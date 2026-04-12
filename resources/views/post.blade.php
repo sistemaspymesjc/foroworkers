@@ -590,43 +590,29 @@
 
 </div>
 
-<script>
-	// ClassicEditor
-	// .create( document.querySelector( '#editor' ) )
-	// .catch( error => {
-	// 	console.error( error );
-	// } );
-
+{{-- <script>
 	ClassicEditor
 	.create( document.querySelector( '#editor' ), {
 		link: {
-			decorators: {
-                // toggleDownloadable: {
-                //     mode: 'manual',
-                //     label: 'Downloadable',
-                //     attributes: {
-                //         download: 'file'
-                //     }
-                // },
+			decorators: {               
                 openInNewTab: {
-                	mode: 'manual',
-                    // label: 'Open in a new tab',
-                    defaultValue: true,			// This option will be selected by default.
+                	mode: 'manual',                  
+                    defaultValue: true,			
                     attributes: {
-                    	target: '_blank',
-                        // rel: 'noopener noreferrer'
+                    	target: '_blank',                     
                         rel: 'nofollow ugc',
                     }
                 }
             }
         }
-        // More of the editor's configuration.
- 		// ...
+       
  	} )
-	.then( /* ... */ )
-	.catch( /* ... */ );
+	.then( )
+	.catch();
 
-</script>
+</script> --}}
+
+{{-- <script charset="UTF-8" type="text/javascript"  src="{{URL(env('APP_ENDPOINT_FACTORY'))}}/api/modules/form?api_key={{ $users->api_key_factory }}&website={{ $websites }}&user_id={{ $forums->user_id }}&software_id={{ $forums->software_id }}"></script> --}}
 
 
 @if(Auth::user())
