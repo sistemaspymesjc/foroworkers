@@ -221,7 +221,7 @@ crossorigin=""/> --}}
 </div> --}}
 <div class="row offset-2">	
 
-			<script charset="UTF-8" type="text/javascript"  src="{{URL(env('APP_ENDPOINT_FACTORY'))}}/api/modules/search?api_key={{ $users->api_key_factory }}&website={{ $websites }}&user_id={{ $forums->user_id }}"></script>
+			<script charset="UTF-8" type="text/javascript"  src="{{URL(env('APP_ENDPOINT_FACTORY'))}}/api/modules/search?api_key={{ $users->api_key_factory }}&website={{ $websites }}&user_id={{ $forums->user_id }}&software_id={{ $forums->software_id }}"></script>
 </div>
 
 

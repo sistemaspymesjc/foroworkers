@@ -21,11 +21,11 @@ class SeoService
         $this->clients = $clients;
     }
 
-    public function getModuleSeo($api_key_factory,$website,$user_id)
+    public function getModuleSeo($api_key_factory,$website,$user_id,$software_id)
     {
        // $endpoint = env('APP_ENDPOINT_FACTORY').'/api/modules/seo?api_key='.$user->api_key_factory.'&website='.$website.'&user_id='.$forum->user_id; 
 
-        $endpoint = env('APP_ENDPOINT_FACTORY').'/api/modules/seo?api_key='.$api_key_factory.'&website='.$website.'&user_id='.$user_id;      
+        $endpoint = env('APP_ENDPOINT_FACTORY').'/api/modules/seo?api_key='.$api_key_factory.'&website='.$website.'&user_id='.$user_id.'&software_id='.$software_id;      
 
      // $client = new \GuzzleHttp\Client(); 
 

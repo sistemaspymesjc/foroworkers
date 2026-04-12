@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 // use App\Services\SeoService;
 
 use App\Http\Services\SeoService;
+use App\Http\Services\HomeService;
 
 use App\Repository\Post\PostRepository; 
 
@@ -46,15 +47,17 @@ class HomeController extends Controller
   // use CheckTutorial;
 
  protected $seoService;
+ protected $homeService;
  protected $posts;
  protected $postsfree;
  protected $categorys;
 
   // protected $userService;
 
- public function __construct(SeoService $seoService, PostRepository $post, Post $posts, PostFree $postsfree, Category $categorys){
+ public function __construct(SeoService $seoService,HomeService $homeService, PostRepository $post, Post $posts, PostFree $postsfree, Category $categorys){
 
   $this->seoService = $seoService;
+  $this->homeService = $homeService;
   $this->post = $post;
 
   $this->posts = $posts;
@@ -81,70 +84,9 @@ class HomeController extends Controller
 
       // exit;
 
-     // $endpoint = "https://api.tibiadata.com/v4/character/".$player1->player_name;
-
-     //  $endpoint = "https://api.tibiadata.com/v4/character/".'issues';
-
-     // $client = new \GuzzleHttp\Client(); 
-
-     // $response = $client->request('GET', $endpoint);
 
 
-    // // json decode convirete json a objeto
-    //  $contents = json_decode($response->getBody()->getContents());
-
-    //  return $contents;
-
-      // $endpoint = "https://api.tibiadata.com/v4/character/".$player1->player_name;
-
-      // $endpoint = "https://api.tibiadata.com/v4/character/".'issues';
-
-      // $client = new \GuzzleHttp\Client(); 
-
-      // $response = $client->request('GET', $endpoint);
-
-//       $client = new Client();
-// $response = $client->post(env('APP_ENDPOINT_FACTORY').'/api/register', [
-//     'headers' => [
-//         // 'Authorization' => 'Bearer your-token',
-//         'Accept'        => 'application/json',
-//     ],
-//     'json' => [
-//         'forum_name' => 'John Doe',
-//         'forum_website' => $_SERVER['HTTP_HOST'],
-//          'user_id' => 1,
-//     ],
-// ]);
-
-// $body = json_decode($response->getBody()->getContents(), true);
-
-// print_r($body);
-
-// exit;
-
-
-      // $this->getTuto(1);
-
-      // $tutorial->getTutorial();
-
-      // $tuto->getTutorial();
-
-       // return redirect()->route('cursospensum', ['cursoname' => 'foroworkers','pensunname' => 'post-questions-and-answers']);
-
-      // $forum = DB::table('forums')
-      // ->where('id', 1)
-      // ->first();
-
-      // $tuto_post = new Post;
-
-      // $tuto_post->getTutorial();
-
-      //tampoco hace redirect usando trait
-      // $this->getTutorial();
-
-      // $forum = null;
-
-      $forum = Forum::select('forums.forum_name','forums.forum_tittle','forums.forum_description','forums.forum_content','forums.is_digitalp','forums.is_services','forums.is_community','forums.user_id')
+      $forum = Forum::select('forums.forum_name','forums.forum_tittle','forums.forum_description','forums.forum_content','forums.is_digitalp','forums.is_services','forums.is_community','forums.user_id','forums.id')
       ->where('id', 1)
       ->first();
 
@@ -167,21 +109,8 @@ class HomeController extends Controller
 
      
 
-      //  $endpoint = env('APP_ENDPOINT_FACTORY').'/api/modules/seo?api_key='.$user->api_key_factory.'&website='.$website.'&user_id='.$forum->user_id;      
 
-      // $client = new \GuzzleHttp\Client(); 
-
-      // $response = $client->request('GET', $endpoint);
-
-      //   $ms_contents = json_decode($response->getBody()->getContents());
-
-      //   $m_seo = $ms_contents;
-
-      // print_r($contents);
-
-      // exit;
-
-     $ms_contents = $this->seoService->getModuleSeo($user->api_key_factory, $website, $forum->user_id);
+     $ms_contents = $this->seoService->getModuleSeo($user->api_key_factory, $website, $forum->user_id, $forum->id);
 
      $m_seo = $ms_contents;
 
@@ -213,14 +142,23 @@ class HomeController extends Controller
 
      // echo __('messages.welcome');
 
+      $mh_contents = $this->homeService->getModuleHome($user->api_key_factory, $website, $forum->user_id, $forum->id);
+
+     // $m_seo = $ms_contents;
+
+      // print_r($mh_contents);
+      print_r($mh_contents->script_controller);
+
+      // exit;
+
       // $categorylastnegocios =  $posts->getLastPosts(1);
 
 
-     $categorylastnegocios = $this->post->getLastPosts(1);
+     // $categorylastnegocios = $this->post->getLastPosts(1);
 
      // $categorylastnegocios =  $this->posts->getLastPosts(1);
 
-     $categorylastservicios =  $this->post->getLastPosts(2);
+     // $categorylastservicios =  $this->post->getLastPosts(2);
 
      // $categorylastservicios =  $this->posts->getLastPosts(2);
 
