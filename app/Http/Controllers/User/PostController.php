@@ -22,6 +22,7 @@ use App\Models\Site;
 use App\Models\Comition;
 use App\Models\Payment;
 use App\Models\Revition;
+use App\Models\Forum;
 
 
 use Illuminate\Support\Facades\DB;
@@ -36,42 +37,36 @@ class PostController extends Controller
     public function index($subcategory, $id)
     {
 
-      // $searchString = " ";
-      // $replaceString = "-";
-      // $originalString = "This is a programming tutorial"; 
+        $forum = Forum::select('forums.forum_name','forums.forum_tittle','forums.forum_description','forums.forum_content','forums.is_digitalp','forums.is_services','forums.is_community','forums.user_id','forums.id')
+        ->where('id', 1)
+        ->first();
 
-      // $outputString = str_replace($searchString, $replaceString, $originalString); 
-      // echo("The original string is: $originalString \n");  
-      // echo("The string without spaces is: $outputString");
+        $website = $_SERVER['HTTP_HOST'];
 
-      // exit; 
-
-
-
-     //   print_r($subcategory.$id);
-
-     // // dd($category);
+        $user = user::select('users.id','users.api_key_factory')
+        ->where('id', $forum->user_id)
+        ->firstOrFail();
 
      // exit;
 
-      $types = Type::select('types.id','types.type_name')        
-      ->get();
+        $types = Type::select('types.id','types.type_name')        
+        ->get();
 
-      $sites = Site::select('sites.id','sites.site')        
-      ->get();
+        $sites = Site::select('sites.id','sites.site')        
+        ->get();
 
-      $comitions = Comition::select('comitions.id','comitions.comition_name')        
-      ->get();
+        $comitions = Comition::select('comitions.id','comitions.comition_name')        
+        ->get();
 
-      $payments = Payment::select('payments.id','payments.payment_name')        
-      ->get();
+        $payments = Payment::select('payments.id','payments.payment_name')        
+        ->get();
 
-      $revitions = Revition::select('revitions.id','revitions.revition')        
-      ->get();
+        $revitions = Revition::select('revitions.id','revitions.revition')        
+        ->get();
 
-      $subid = MainCategory::select('maincategorys.subcategory_id')
-      ->where('maincategorys.id', $id)        
-      ->first();
+        $subid = MainCategory::select('maincategorys.subcategory_id')
+        ->where('maincategorys.id', $id)        
+        ->first();
 
       // dd($subid);
       // exit;
@@ -80,15 +75,18 @@ class PostController extends Controller
 
 
 
-      return view('user.post', [
-        'categoryid' => $id,
-        'types' => $types,
-        'sites' => $sites,
-        'comitions' => $comitions,
-        'payments' => $payments,
-        'revitions' => $revitions,
-        'subid' =>  $subid
-      ]);
+        return view('user.post', [
+            'forums' =>  $forum,
+            'websites' =>  $website,
+            'users' =>  $user,
+            'categoryid' => $id,
+            'types' => $types,
+            'sites' => $sites,
+            'comitions' => $comitions,
+            'payments' => $payments,
+            'revitions' => $revitions,
+            'subid' =>  $subid
+        ]);
     }
 
     public function checkout($id)
@@ -109,25 +107,25 @@ class PostController extends Controller
      return view('products.checkout', [
         // 'products' => $users,
       'products_sell' => $product_all
-    ]);
+  ]);
 
       // return view('products.checkout')->with(['products_sell'=>$product_all]);
-   }
-
-   public function success()
-   {
-    return view('products.success');
-  }
-
-  public function cancel()
-  {
-   return view('products.cancel');
  }
 
- public function notify()
+ public function success()
  {
+    return view('products.success');
+}
 
- }
+public function cancel()
+{
+   return view('products.cancel');
+}
+
+public function notify()
+{
+
+}
 
 
     /**
@@ -165,7 +163,7 @@ class PostController extends Controller
         'post_name' => ['required', 'max:120'],
         'price' => ['required'],
         'post_content' => ['required', 'max:1500'],              
-      ]);
+    ]);
 
 
 
@@ -277,44 +275,44 @@ class PostController extends Controller
       if ( $totalpostfree >= 5) {
 
         throw new \Exception('Ya superaste los 5 post');
-      }
+    }
 
-      if ( $totalpostpremium >= 20) {
+    if ( $totalpostpremium >= 20) {
 
         throw new \Exception('Ya superaste los 20 post');
-      }
+    }
 
 
      // insert post
 
-      $post = new Post;
+    $post = new Post;
 
-      $post->post_name = $request->post_name;
+    $post->post_name = $request->post_name;
       // $post->url_name = $request->url_name;
-      $post->url_name = $convert_url3;
-      $post->post_content = $request->post_content;
-      $post->maincategory_id = $request->maincategory_id;
-      $post->type_id = $request->type_id;
-      $post->site_id = $request->site_id;
-      $post->price = $request->price;
-      $post->comition_id = $request->comition_id;
-      $post->payment_id = $request->payment_id;  
-      $post->revition_id = $request->revition_id;                  
+    $post->url_name = $convert_url3;
+    $post->post_content = $request->post_content;
+    $post->maincategory_id = $request->maincategory_id;
+    $post->type_id = $request->type_id;
+    $post->site_id = $request->site_id;
+    $post->price = $request->price;
+    $post->comition_id = $request->comition_id;
+    $post->payment_id = $request->payment_id;  
+    $post->revition_id = $request->revition_id;                  
 
-      $post->save();
+    $post->save();
 
-      $userpost = new UserPost;
+    $userpost = new UserPost;
 
-      $userpost->user_id = $user_id ;
-      $userpost->post_id = $post->id ;
-      $userpost->maincategory_id  = $request->maincategory_id;
+    $userpost->user_id = $user_id ;
+    $userpost->post_id = $post->id ;
+    $userpost->maincategory_id  = $request->maincategory_id;
 
 
-      $userpost->save();
+    $userpost->save();
 
-      return back();
+    return back();
 
-    }
+}
 
     /**
      * Display the specified resource.
@@ -465,7 +463,7 @@ class PostController extends Controller
      //   $sumpostcomment = count($totalpostcomment);
 
      //   dd($sumpostcomment);
-     }
+   }
 
       // dd($user_id_comment);
 
@@ -476,71 +474,71 @@ class PostController extends Controller
      // exit;
 
      // para el total post comentarios
-     $totalpostcomment = Post::select('up.user_id')   
-     ->join('users_posts as up', 'up.post_id', '=', 'posts.id')
-     ->join('users as u', 'u.id', '=', 'up.user_id')    
-     ->where('up.user_id', $user_id_comment)
+   $totalpostcomment = Post::select('up.user_id')   
+   ->join('users_posts as up', 'up.post_id', '=', 'posts.id')
+   ->join('users as u', 'u.id', '=', 'up.user_id')    
+   ->where('up.user_id', $user_id_comment)
      // ->count('up.user_id AS totalpost')
-     ->get();
+   ->get();
 
      // dd($totalpost);
 
-     $sumpostcomment = count($totalpostcomment);
+   $sumpostcomment = count($totalpostcomment);
 
      //   dd($sumpostcomment);
      // exit;
 
       // para post commentado
 
-     $calificationspositivecomment = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
-     ->join('users_califications as uc', 'uc.calification_id', '=', 'califications.id')
-     ->join('users as u', 'u.id', '=', 'uc.user_id')
-     ->where('u.id',  $user_id_comment )
-     ->where('uc.calification_id', 1)
-     ->where('uc.accept', 1)
+   $calificationspositivecomment = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
+   ->join('users_califications as uc', 'uc.calification_id', '=', 'califications.id')
+   ->join('users as u', 'u.id', '=', 'uc.user_id')
+   ->where('u.id',  $user_id_comment )
+   ->where('uc.calification_id', 1)
+   ->where('uc.accept', 1)
       // ->where('uc.calification_id', 2)
-     ->get();
+   ->get();
 
-     $sumcalificationcomment = count($calificationspositivecomment);
+   $sumcalificationcomment = count($calificationspositivecomment);
 
-     $calificationsnegativecomment = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
-     ->join('users_califications as uc', 'uc.calification_id', '=', 'califications.id')
-     ->join('users as u', 'u.id', '=', 'uc.user_id')
-     ->where('u.id',  $user_id_comment )     
-     ->where('uc.calification_id', 2)
-     ->where('uc.accept', 1)     
-     ->get();
+   $calificationsnegativecomment = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
+   ->join('users_califications as uc', 'uc.calification_id', '=', 'califications.id')
+   ->join('users as u', 'u.id', '=', 'uc.user_id')
+   ->where('u.id',  $user_id_comment )     
+   ->where('uc.calification_id', 2)
+   ->where('uc.accept', 1)     
+   ->get();
 
-     $restcalificationcomment = count($calificationsnegativecomment);
+   $restcalificationcomment = count($calificationsnegativecomment);
 
 
-     if (!empty($calificationspositivecomment[0])) {
+   if (!empty($calificationspositivecomment[0])) {
 
 
        $iconposicolorcomment = $calificationspositivecomment[0]->calification_color;
        $iconposicomment = $calificationspositivecomment[0]->calification_icon;
 
-     }
+   }
 
-     if (empty($calificationspositivecomment[0])) {
+   if (empty($calificationspositivecomment[0])) {
 
 
        $iconposicolorcomment = 'bg-success';
        $iconposicomment = 'fa-solid fa-thumbs-up';
 
-     }
+   }
 
-     if (empty($calificationsnegativecomment[0])) {
+   if (empty($calificationsnegativecomment[0])) {
 
       $iconnegacolorcomment = 'bg-danger';
       $iconnegacomment = 'fa-solid fa-thumbs-down';
-    }
+  }
 
-    if (!empty($calificationsnegativecomment[0])) {
+  if (!empty($calificationsnegativecomment[0])) {
 
       $iconnegacolorcomment = $calificationsnegativecomment[0]->calification_color;
       $iconnegacomment = $calificationsnegativecomment[0]->calification_icon;
-    }
+  }
 
      // join general
      // $califications = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
@@ -554,57 +552,57 @@ class PostController extends Controller
 
      // para post publicado
 
-    $calificationspositive = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
-    ->join('users_califications as uc', 'uc.calification_id', '=', 'califications.id')
-    ->join('users as u', 'u.id', '=', 'uc.user_id')
-    ->where('u.id',  $user_id )
-    ->where('uc.calification_id', 1)
-    ->where('uc.accept', 1)
+  $calificationspositive = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
+  ->join('users_califications as uc', 'uc.calification_id', '=', 'califications.id')
+  ->join('users as u', 'u.id', '=', 'uc.user_id')
+  ->where('u.id',  $user_id )
+  ->where('uc.calification_id', 1)
+  ->where('uc.accept', 1)
       // ->where('uc.calification_id', 2)
-    ->get();
+  ->get();
 
-    $sumcalification = count($calificationspositive);
+  $sumcalification = count($calificationspositive);
 
-    $calificationsnegative = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
-    ->join('users_califications as uc', 'uc.calification_id', '=', 'califications.id')
-    ->join('users as u', 'u.id', '=', 'uc.user_id')
-    ->where('u.id',  $user_id )     
-    ->where('uc.calification_id', 2)
-    ->where('uc.accept', 1)     
-    ->get();
+  $calificationsnegative = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
+  ->join('users_califications as uc', 'uc.calification_id', '=', 'califications.id')
+  ->join('users as u', 'u.id', '=', 'uc.user_id')
+  ->where('u.id',  $user_id )     
+  ->where('uc.calification_id', 2)
+  ->where('uc.accept', 1)     
+  ->get();
 
-    $restcalification = count($calificationsnegative);
+  $restcalification = count($calificationsnegative);
 
      // dd($calificationspositive);
      // exit;
 
-    if (!empty($calificationspositive[0])) {
+  if (!empty($calificationspositive[0])) {
 
 
      $iconposicolor = $calificationspositive[0]->calification_color;
      $iconposi = $calificationspositive[0]->calification_icon;
 
-   }
+ }
 
-   if (empty($calificationspositive[0])) {
+ if (empty($calificationspositive[0])) {
 
 
      $iconposicolor = 'bg-success';
      $iconposi = 'fa-solid fa-thumbs-up';
 
-   }
+ }
 
-   if (empty($calificationsnegative[0])) {
+ if (empty($calificationsnegative[0])) {
 
     $iconnegacolor = 'bg-danger';
     $iconnega = 'fa-solid fa-thumbs-down';
-  }
+}
 
-  if (!empty($calificationsnegative[0])) {
+if (!empty($calificationsnegative[0])) {
 
     $iconnegacolor = $calificationsnegative[0]->calification_color;
     $iconnega = $calificationsnegative[0]->calification_icon;
-  }
+}
 
      // $iconposicolor = $calificationspositive[0]->calification_color;
      // $iconnegacolor = $calificationsnegative[0]->calification_color;
@@ -646,26 +644,26 @@ class PostController extends Controller
      // }
 
 //total de reseñas del servicios positivas y negativas
-  $caliserv = UserCalification::select('users_califications.calification_id')
-  ->where('users_califications.post_id',  $postid )  
+$caliserv = UserCalification::select('users_califications.calification_id')
+->where('users_califications.post_id',  $postid )  
   // ->where('users_califications.calification_id', 1)
   // ->where('users_califications.calification_id', 2)
-  ->where('users_califications.accept', 1)     
-  ->get();
+->where('users_califications.accept', 1)     
+->get();
 
 
-  if (!empty($caliserv[0])) {
+if (!empty($caliserv[0])) {
 
    $tcaliserv = count($caliserv);
 
- }
+}
 
- if (empty($caliserv[0])) {
+if (empty($caliserv[0])) {
 
 
    $tcaliserv = 0;
 
- }
+}
 
   // $tcaliserv = count($caliserv);
 
@@ -673,13 +671,13 @@ class PostController extends Controller
 
   // exit;
 
- $calipos = UserCalification::select('users_califications.calification_id')
- ->where('users_califications.post_id',  $postid )  
- ->where('users_califications.calification_id', 1)
- ->where('users_califications.accept', 1)     
- ->get();
+$calipos = UserCalification::select('users_califications.calification_id')
+->where('users_califications.post_id',  $postid )  
+->where('users_califications.calification_id', 1)
+->where('users_califications.accept', 1)     
+->get();
 
- if (!empty($calipos[0])) {
+if (!empty($calipos[0])) {
 
    $tcalipos = count($calipos);
 
@@ -688,29 +686,29 @@ class PostController extends Controller
    $tcalculres = 5 * $tcalipos / $tcaliserv;
 
 
- }
+}
 
- if (empty($calipos[0])) {
+if (empty($calipos[0])) {
 
 
    $tcalipos = 0;
 
    $tcalculres = 0; 
 
- }
+}
 
   // $tcalipos = count($calipos);
 
   // print_r($tcalipos);
 
- $calineg = UserCalification::select('users_califications.calification_id')
- ->where('users_califications.post_id',  $postid )  
- ->where('users_califications.calification_id', 2)
- ->where('users_califications.accept', 1)     
- ->get();
+$calineg = UserCalification::select('users_califications.calification_id')
+->where('users_califications.post_id',  $postid )  
+->where('users_califications.calification_id', 2)
+->where('users_califications.accept', 1)     
+->get();
 
 
- if (!empty($calineg[0])) {
+if (!empty($calineg[0])) {
 
   $tcalineg = count($calineg);
 
@@ -792,19 +790,19 @@ public function unpublish($postid)
  if (Auth::user()->role_id == 2) {
 
    return redirect()->to('/');
- }
+}
 
 
 
 
- $data = DB::table('posts')
- ->where('id', $postid)
- ->update(['publish' => 1]);
+$data = DB::table('posts')
+->where('id', $postid)
+->update(['publish' => 1]);
 
 
    // return redirect()->to('/');
 
- return response()->json($data);
+return response()->json($data);
 
 }
 
@@ -814,19 +812,19 @@ public function commentunpublish($postid)
  if (Auth::user()->role_id == 2) {
 
    return redirect()->to('/');
- }
+}
 
 
 
 
- $data = DB::table('comments')
- ->where('post_id', $postid)
- ->update(['publish' => 1]);
+$data = DB::table('comments')
+->where('post_id', $postid)
+->update(['publish' => 1]);
 
 
    // return redirect()->to('/');
 
- return response()->json($data);
+return response()->json($data);
 
 }
 
@@ -852,4 +850,4 @@ public function commentunpublish($postid)
     {
         //
     }
-  }
+}

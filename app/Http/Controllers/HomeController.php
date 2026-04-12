@@ -147,20 +147,16 @@ class HomeController extends Controller
      // $m_seo = $ms_contents;
 
       // print_r($mh_contents);
-      print_r($mh_contents->script_controller);
+      // no reconoce la variable
+      // print_r($mh_contents->script_controller);
 
       // exit;
+   
 
-      // $categorylastnegocios =  $posts->getLastPosts(1);
 
+     $categorylastnegocios = $this->post->getLastPosts(1);
 
-     // $categorylastnegocios = $this->post->getLastPosts(1);
-
-     // $categorylastnegocios =  $this->posts->getLastPosts(1);
-
-     // $categorylastservicios =  $this->post->getLastPosts(2);
-
-     // $categorylastservicios =  $this->posts->getLastPosts(2);
+     $categorylastservicios =  $this->post->getLastPosts(2);   
 
      $categorylastcomumidad =  $this->postsfree->getLastPosts(3);
 
