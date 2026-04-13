@@ -20,9 +20,7 @@ return new class extends Migration
             $table->string('category_name',255)->nullable();
             $table->timestamps();
         });
-
-
-        // 'category_name' => $this->faker->randomElement(['Negocios','Gestores de Contenido','Redes Sociales']),
+       
 
         $category = new Category;
         $category->category_name = 'Negocios';

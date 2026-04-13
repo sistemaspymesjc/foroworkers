@@ -47,7 +47,7 @@ class PostController extends Controller
         ->where('id', $forum->user_id)
         ->firstOrFail();
 
-     // exit;
+   
 
         $types = Type::select('types.id','types.type_name')        
         ->get();
@@ -68,12 +68,7 @@ class PostController extends Controller
         ->where('maincategorys.id', $id)        
         ->first();
 
-      // dd($subid);
-      // exit;
-
-
-
-
+      
 
         return view('user.post', [
             'forums' =>  $forum,

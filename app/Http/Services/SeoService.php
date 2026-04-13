@@ -25,13 +25,25 @@ class SeoService
     {
        // $endpoint = env('APP_ENDPOINT_FACTORY').'/api/modules/seo?api_key='.$user->api_key_factory.'&website='.$website.'&user_id='.$forum->user_id; 
 
-        $endpoint = env('APP_ENDPOINT_FACTORY').'/api/modules/seo?api_key='.$api_key_factory.'&website='.$website.'&user_id='.$user_id.'&software_id='.$software_id;      
+        $endpoint = env('APP_ENDPOINT_FACTORY').'/api/modules/seo?api_key='.$api_key_factory.'&website='.$website.'&user_id='.$user_id.'&software_id='.$software_id; 
+
+        // print_r($endpoint); 
+
+        // exit;    
 
      // $client = new \GuzzleHttp\Client(); 
 
        // $response = $client->request('GET', $endpoint);
 
-       $response = $this->clients->request('GET', $endpoint);
+       // $response = $this->clients->request('GET', $endpoint);
+
+       // if(empty($this->clients->request('GET', $endpoint))){
+
+         $response = $this->clients->request('GET', $endpoint);
+
+       // print_r($response); 
+
+       //  exit;   
 
        // $ms_contents = json_decode($response->getBody()->getContents());
 
@@ -42,6 +54,8 @@ class SeoService
        // print_r($contents);
 
        // exit;
+
+        // }
 
 
    }

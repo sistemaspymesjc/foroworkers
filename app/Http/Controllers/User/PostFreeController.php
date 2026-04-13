@@ -41,45 +41,23 @@ class PostFreeController extends Controller
     public function index($subcategory, $id)
     {
 
-      // $searchString = " ";
-      // $replaceString = "-";
-      // $originalString = "This is a programming tutorial"; 
+         $forum = Forum::select('forums.forum_name','forums.forum_tittle','forums.forum_description','forums.forum_content','forums.is_digitalp','forums.is_services','forums.is_community','forums.user_id','forums.id')
+        ->where('id', 1)
+        ->first();
 
-      // $outputString = str_replace($searchString, $replaceString, $originalString); 
-      // echo("The original string is: $originalString \n");  
-      // echo("The string without spaces is: $outputString");
+        $website = $_SERVER['HTTP_HOST'];
 
-      // exit; 
+        $user = user::select('users.id','users.api_key_factory')
+        ->where('id', $forum->user_id)
+        ->firstOrFail();
 
-
-
-     //   print_r($subcategory.$id);
-
-     // // dd($category);
-
-     // exit;
-
-      // $types = Type::select('types.id','types.type_name')        
-      // ->get();
-
-      // $sites = Site::select('sites.id','sites.site')        
-      // ->get();
-
-      // $comitions = Comition::select('comitions.id','comitions.comition_name')        
-      // ->get();
-
-      // $payments = Payment::select('payments.id','payments.payment_name')        
-      // ->get();
-
-      // $revitions = Revition::select('revitions.id','revitions.revition')        
-      // ->get();
+      
 
       $subid = MainCategory::select('maincategorys.subcategory_id')
       ->where('maincategorys.id', $id)        
       ->first();
 
-      // dd($subid);
-      // exit;
+     
 
       if (Auth::user()->role_id == 1) {
 
@@ -99,12 +77,10 @@ class PostFreeController extends Controller
 
 
       return view('user.postfree', [
-        'categoryid' => $id,
-        // 'types' => $types,
-        // 'sites' => $sites,
-        // 'comitions' => $comitions,
-        // 'payments' => $payments,
-        // 'revitions' => $revitions,
+        'forums' =>  $forum,
+        'websites' =>  $website,
+        'users' =>  $user,
+        'categoryid' => $id,       
         'subid' =>  $subid,
         'contents' =>  $contents
       ]);

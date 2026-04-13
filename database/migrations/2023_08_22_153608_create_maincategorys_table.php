@@ -48,7 +48,18 @@ return new class extends Migration
                'updated_at' => now()
         ]
         ,
-    ]);     
+         [
+           'maincategory_icon' => 'fa-solid fa-code',
+               'maincategory_name' => 'Laravel',
+               'maincategory_url' => 'laravel',
+               'subcategory_id' => 3,             
+               'created_at' => now(),
+               'updated_at' => now()
+        ]
+        ,
+    ]); 
+
+    }    
 
        
     }
