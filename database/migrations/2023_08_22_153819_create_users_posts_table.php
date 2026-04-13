@@ -27,7 +27,7 @@ return new class extends Migration
 
             UserPost::insert([
                 [
-                 'user_id' => 1,
+                 'user_id' => 2,
                  'post_id' => 1,
                  'maincategory_id' => 1,             
                  'created_at' => now(),
@@ -37,12 +37,22 @@ return new class extends Migration
              [
                 'user_id' => 2,
                 'post_id' => 2,
-                'maincategory_id' => 1,             
+                'maincategory_id' => 2,             
+                'created_at' => now(),
+                'updated_at' => now()
+            ]
+            ,
+            [
+                'user_id' => 2,
+                'post_id' => 3,
+                'maincategory_id' => 3,             
                 'created_at' => now(),
                 'updated_at' => now()
             ]
             ,
         ]);
+
+            }
 
         }
 

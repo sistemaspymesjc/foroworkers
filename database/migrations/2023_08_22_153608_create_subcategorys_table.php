@@ -23,28 +23,27 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // 'subcategory_name' => $this->faker->randomElement(['Propiedades Digitales','Servicios','Redes Sociales','Posicionamiento Web']),
-        // 'category_id' => 1  
+       
 
         $subcategory = new SubCategory;
-        $subcategory->subcategory_name = 'Propiedades Digitales';
+        $subcategory->subcategory_name = 'Business';
         $subcategory->category_id = 1;
         $subcategory->save();
 
         $subcategory = new SubCategory;
-        $subcategory->subcategory_name = 'Servicios';
-        $subcategory->category_id = 1;
+        $subcategory->subcategory_name = 'Services';
+        $subcategory->category_id = 2;
         $subcategory->save();
 
         $subcategory = new SubCategory;
-        $subcategory->subcategory_name = 'Redes Sociales';
-        $subcategory->category_id = 1;
+        $subcategory->subcategory_name = 'Community';
+        $subcategory->category_id = 3;
         $subcategory->save();
 
-        $subcategory = new SubCategory;
-        $subcategory->subcategory_name = 'Posicionamiento Web';
-        $subcategory->category_id = 1;
-        $subcategory->save();
+        // $subcategory = new SubCategory;
+        // $subcategory->subcategory_name = 'Posicionamiento Web';
+        // $subcategory->category_id = 1;
+        // $subcategory->save();
     }
 
     /**

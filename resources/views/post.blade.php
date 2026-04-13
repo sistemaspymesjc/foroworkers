@@ -590,30 +590,9 @@
 
 </div>
 
-{{-- <script>
-	ClassicEditor
-	.create( document.querySelector( '#editor' ), {
-		link: {
-			decorators: {               
-                openInNewTab: {
-                	mode: 'manual',                  
-                    defaultValue: true,			
-                    attributes: {
-                    	target: '_blank',                     
-                        rel: 'nofollow ugc',
-                    }
-                }
-            }
-        }
-       
- 	} )
-	.then( )
-	.catch();
 
-</script> --}}
 
-{{-- <script charset="UTF-8" type="text/javascript"  src="{{URL(env('APP_ENDPOINT_FACTORY'))}}/api/modules/form?api_key={{ $users->api_key_factory }}&website={{ $websites }}&user_id={{ $forums->user_id }}&software_id={{ $forums->software_id }}"></script> --}}
-
+<script charset="UTF-8" type="text/javascript"  src="{{URL(env('APP_ENDPOINT_FACTORY'))}}/api/modules/form?api_key={{ $users->api_key_factory }}&website={{ $websites }}&user_id={{ $forums->user_id }}&software_id={{ $forums->software_id }}"></script>
 
 @if(Auth::user())
 
