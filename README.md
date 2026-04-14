@@ -71,7 +71,13 @@ sudo apt-get install php8.3 php8.3-pgsql php8.3-mysql php8.3-intl php8.3-json ph
 
 The following steps are meant to be used on a development server.
 
-- Clone Project
+- Option 1: Install with Composer
+
+```bash
+$ composer create-project sistemaspymesjc/foroworkers
+``` 
+
+- Option 2: Clone Project
 
 ```bash
 $ git clone https://github.com/sistemaspymesjc/foroworkers.git
@@ -80,7 +86,7 @@ $ git clone https://github.com/sistemaspymesjc/foroworkers.git
 - Pull Project Dev Branch
 
 ```bash
-$ git pull origin dev
+$ git pull dev
 ``` 
 - Navigate to the root of the Laravel project
 

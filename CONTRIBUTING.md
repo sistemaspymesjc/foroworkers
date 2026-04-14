@@ -14,7 +14,13 @@ Please note we have a code of conduct, please follow it in all your interactions
 
 https://www.youtube.com/watch?v=U1zIbFJqXHU
 
-- Clone Project
+- Option 1: Install with Composer
+
+```bash
+$ composer create-project sistemaspymesjc/foroworkers
+``` 
+
+- Option 2: Clone Project
 
 ```bash
 $ git clone https://github.com/sistemaspymesjc/foroworkers.git
@@ -23,7 +29,7 @@ $ git clone https://github.com/sistemaspymesjc/foroworkers.git
 - Pull Project Dev Branch
 
 ```bash
-$ git pull origin dev
+$ git pull dev
 ``` 
 - Navigate to the root of the Laravel project
 
