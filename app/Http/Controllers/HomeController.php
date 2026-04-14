@@ -9,8 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 // use App\Services\SeoService;
 
-use App\Http\Services\SeoService;
-use App\Http\Services\HomeService;
+use App\Http\Services\ModuleService;
+// use App\Http\Services\SeoService;
+// use App\Http\Services\HomeService;
 
 use App\Repository\Post\PostRepository; 
 
@@ -42,22 +43,23 @@ use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
 
-  // use GuzzleHttp\Client;
 
   // use CheckTutorial;
 
- protected $seoService;
- protected $homeService;
+ protected $moduleService;
+ // protected $seoService;
+ // protected $homeService;
  protected $posts;
  protected $postsfree;
  protected $categorys;
 
   // protected $userService;
 
- public function __construct(SeoService $seoService,HomeService $homeService, PostRepository $post, Post $posts, PostFree $postsfree, Category $categorys){
+ public function __construct(ModuleService $moduleService, PostRepository $post, Post $posts, PostFree $postsfree, Category $categorys){
 
-  $this->seoService = $seoService;
-  $this->homeService = $homeService;
+  $this->moduleService = $moduleService;
+  // $this->seoService = $seoService;
+  // $this->homeService = $homeService;
   $this->post = $post;
 
   $this->posts = $posts;
@@ -110,7 +112,9 @@ class HomeController extends Controller
      
 
 
-     $ms_contents = $this->seoService->getModuleSeo($user->api_key_factory, $website, $forum->user_id, $forum->id);
+     // $ms_contents = $this->seoService->getModuleSeo($user->api_key_factory, $website, $forum->user_id, $forum->id);
+
+      $ms_contents = $this->moduleService->responseGet('/api/modules/seo',$user->api_key_factory, $website, $forum->user_id, $forum->id);
 
      $m_seo = $ms_contents;
 
@@ -142,7 +146,9 @@ class HomeController extends Controller
 
      // echo __('messages.welcome');
 
-      $mh_contents = $this->homeService->getModuleHome($user->api_key_factory, $website, $forum->user_id, $forum->id);
+     // $mh_contents = $this->homeService->getModuleHome($user->api_key_factory, $website, $forum->user_id, $forum->id);
+
+      $mh_contents = $this->moduleService->responseGet('/api/modules/home',$user->api_key_factory, $website, $forum->user_id, $forum->id);
 
      // $m_seo = $ms_contents;
 
@@ -151,7 +157,7 @@ class HomeController extends Controller
       // print_r($mh_contents->script_controller);
 
       // exit;
-   
+
 
 
      $categorylastnegocios = $this->post->getLastPosts(1);
