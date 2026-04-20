@@ -50,7 +50,7 @@ return new class extends Migration
            <li>Negocios Seguros, siguiendo las recomendaciones</li>
            <li>Recursos Premium y Gratis</li>
            </ul>';
-           $reply->user_id = 2;
+           $reply->user_id = 1;
            $reply->is_digitalp = 1;
            $reply->is_services = 1;
            $reply->is_community = 1;       

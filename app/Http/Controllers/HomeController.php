@@ -100,7 +100,9 @@ class HomeController extends Controller
 
       if (empty($forum)) {
 
-       return redirect('/course/foroworkers/installatton-tutorial-step-by-step');
+       return redirect('/register');
+
+         // return redirect('/course/foroworkers/installatton-tutorial-step-by-step');
 
      }
 

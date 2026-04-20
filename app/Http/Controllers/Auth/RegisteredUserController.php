@@ -84,6 +84,8 @@ class RegisteredUserController extends Controller
 
       $username_final = 'user'.rand(1,100).$username_start;
 
+      $usernameadmin_final = 'admin'.rand(1,100).$username_start;
+
 
 
       $emaillower = strtolower($request->email);
@@ -110,12 +112,18 @@ class RegisteredUserController extends Controller
         ->where('role_id', 1) 
         ->first();
 
+        if ($adminuser->username == 'admindemo') {
+
+          User::where('username', 'admindemo')->delete();
+
+           }
+
         if (empty($adminuser)) {
 
          $user = User::create([
           'img' => 'admin.png',
           'banner' => 'userbanner.png',        
-          'username' => 'AdminForoworkers',       
+          'username' => $usernameadmin_final,       
           'email' => $emaillower,
           'email_verified_at' => now(),         
           'password' => Hash::make($request->password),
@@ -152,7 +160,7 @@ class RegisteredUserController extends Controller
             'user_id' => $user->id,
             'img' => 'admin.png',
             'banner' => 'userbanner.png',        
-            'username' => 'AdminForoworkers',       
+            'username' => $usernameadmin_final,       
             'email' => $emaillower,
             'email_verified_at' => now(),         
             'password' => Hash::make($request->password),
