@@ -124,13 +124,13 @@ class HomeController extends Controller
 
       // exit;
 
-     $ms_contentscol = $this->moduleService->responseGetPublic('/api/modules/getcol','posts');
+     // $ms_contentscol = $this->moduleService->responseGetPublic('/api/modules/getcol','post');
 
-     $m_col = $ms_contentscol;
+     // $m_col = $ms_contentscol;
 
-      print_r($m_col);
+     //  print_r($m_col);
 
-      exit;
+     //  exit;
 
 
 
@@ -165,6 +165,14 @@ class HomeController extends Controller
       // print_r($mh_contents);
       // no reconoce la variable
       // print_r($mh_contents->script_controller);
+
+      // exit;
+
+     $ms_contentscol = $this->moduleService->responseGetPublic('/api/modules/getcol','post');
+
+     $m_col = $ms_contentscol;
+
+      // print_r($m_col);
 
       // exit;
 

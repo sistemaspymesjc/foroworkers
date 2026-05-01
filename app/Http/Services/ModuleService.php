@@ -33,10 +33,10 @@ class ModuleService implements ModuleInterface
 		return  $ms_contents = json_decode($response->getBody()->getContents());
 	}
 
-	public function responseGetPublic($segment,$table_name)
+	public function responseGetPublic($segment,$model_name)
 	{        
 
-		$endpoint = env('APP_ENDPOINT_FACTORY').$table_name;        
+		$endpoint = env('APP_ENDPOINT_FACTORY').$segment.'/'.$model_name;        
 
 		$response = $this->clients->request('GET', $endpoint);      
 
