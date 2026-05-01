@@ -116,13 +116,21 @@ class HomeController extends Controller
 
      // $ms_contents = $this->seoService->getModuleSeo($user->api_key_factory, $website, $forum->user_id, $forum->id);
 
-      $ms_contents = $this->moduleService->responseGet('/api/modules/seo',$user->api_key_factory, $website, $forum->user_id, $forum->id);
+     $ms_contents = $this->moduleService->responseGet('/api/modules/seo',$user->api_key_factory, $website, $forum->user_id, $forum->id);
 
      $m_seo = $ms_contents;
 
       // print_r($m_seo);
 
       // exit;
+
+     // $ms_contentscol = $this->moduleService->responseGetPublic('/api/modules/getcol','post');
+
+     // $m_col = $ms_contentscol;
+
+     //  print_r($m_col);
+
+     //  exit;
 
 
 
@@ -150,13 +158,21 @@ class HomeController extends Controller
 
      // $mh_contents = $this->homeService->getModuleHome($user->api_key_factory, $website, $forum->user_id, $forum->id);
 
-      $mh_contents = $this->moduleService->responseGet('/api/modules/home',$user->api_key_factory, $website, $forum->user_id, $forum->id);
+     $mh_contents = $this->moduleService->responseGet('/api/modules/home',$user->api_key_factory, $website, $forum->user_id, $forum->id);
 
      // $m_seo = $ms_contents;
 
       // print_r($mh_contents);
       // no reconoce la variable
       // print_r($mh_contents->script_controller);
+
+      // exit;
+
+     $ms_contentscol = $this->moduleService->responseGetPublic('/api/modules/getcol','post');
+
+     $m_col = $ms_contentscol;
+
+      // print_r($m_col);
 
       // exit;
 
