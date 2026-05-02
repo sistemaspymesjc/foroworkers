@@ -168,13 +168,23 @@ class HomeController extends Controller
 
       // exit;
 
-     $ms_contentscol = $this->moduleService->responseGetPublic('/api/modules/getcol','post');
+     // $ms_contentscol = $this->moduleService->responseGetPublic('/api/modules/getcol','post');
 
-     $m_col = $ms_contentscol;
+     $ms_contentscol_mc = $this->moduleService->responseGetPublic('/api/modules/getcol','maincategory');
 
-      // print_r($m_col);
+     $m_col_mc = $ms_contentscol_mc;
 
-      // exit;
+     $ms_contentscol_sc = $this->moduleService->responseGetPublic('/api/modules/getcol','subcategory');
+
+     $m_col_sc = $ms_contentscol_sc;
+
+     $ms_contentscol_c = $this->moduleService->responseGetPublic('/api/modules/getcol','category');
+
+     $m_col_c = $ms_contentscol_c;
+
+     // print_r($m_col[9]);
+
+     // exit;
 
 
 
@@ -188,11 +198,21 @@ class HomeController extends Controller
      $tablelast = array($categorylastnegocios,$categorylastservicios,$categorylastcomumidad);
 
         // mejorar este query  
-     $category =  $this->categorys->getCategorys(1);
+     // $category =  $this->categorys->getCategorys(1);
 
-     $category1 =  $this->categorys->getCategorys(2);
+     $category =  $this->categorys->getCategorys(1,$m_col_mc,$m_col_c,$m_col_sc);
 
-     $category2 =  $this->categorys->getCategorys(3);
+     //  print_r($category);
+
+     // exit;
+
+     // $category1 =  $this->categorys->getCategorys(2);
+
+     $category1 =  $this->categorys->getCategorys(2,$m_col_mc,$m_col_c,$m_col_sc);
+
+     // $category2 =  $this->categorys->getCategorys(3);
+
+     $category2 =  $this->categorys->getCategorys(3,$m_col_mc,$m_col_c,$m_col_sc);
 
      $categorylast =  $this->posts->getOneLastPosts(1);
 
