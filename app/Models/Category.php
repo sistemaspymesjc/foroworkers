@@ -15,13 +15,17 @@ class Category extends Model
 		'category_name'		
 	];
 
-	public function getCategorys($options)
+	public function getCategorys($options,$m_col_mc,$m_col_c,$m_col_sc)
 	{
-		return Category::select('categorys.category_name','sc.subcategory_name','mc.maincategory_icon','mc.maincategory_name','mc.maincategory_url')
-		->join('subcategorys as sc', 'sc.category_id', '=', 'categorys.id')
-		->join('maincategorys as mc', 'mc.subcategory_id', '=', 'sc.id')
-		->where('mc.subcategory_id', $options)
+
+		// return $m_col_mc[7];		
+
+		return Category::select('categorys.'.$m_col_c[1],'sc.'.$m_col_sc[1],'mc.'.$m_col_mc[1],'mc.'.$m_col_mc[2],'mc.'.$m_col_mc[3])
+		->join('subcategorys as sc', 'sc.'.$m_col_sc[3], '=', 'categorys.'.$m_col_c[0])
+		->join('maincategorys as mc', 'mc.'.$m_col_mc[7], '=', 'sc.'.$m_col_sc[0])
+		->where('mc.'.$m_col_mc[7], $options)
 		->get();
+		
 	}
 
 	
