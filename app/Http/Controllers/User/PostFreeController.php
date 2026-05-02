@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use App\Http\Services\ModuleService;
+
 // usar clase
 use Illuminate\Support\Facades\Auth;
 
@@ -27,12 +29,38 @@ use App\Models\Revition;
 use App\Models\StatisticsBanner;
 use App\Models\CommentFree;
 use App\Models\Content;
+use App\Models\Forum;
 
 
 use Illuminate\Support\Facades\DB;
 
 class PostFreeController extends Controller
 {
+
+       // use CheckTutorial;
+
+   protected $moduleService;
+ // protected $seoService;
+ // protected $homeService;
+   protected $posts;
+   // protected $postsfree;
+   protected $categorys;
+
+  // protected $userService;
+
+   public function __construct(ModuleService $moduleService, PostFree $posts,Category $categorys){
+
+      $this->moduleService = $moduleService;
+  // $this->seoService = $seoService;
+  // $this->homeService = $homeService;
+      // $this->post = $post;
+
+      $this->posts = $posts;
+      // $this->postsfree = $postsfree;
+      $this->categorys = $categorys;
+
+
+  }
     /**
      * Display a listing of the resource.
      *
@@ -41,88 +69,88 @@ class PostFreeController extends Controller
     public function index($subcategory, $id)
     {
 
-         $forum = Forum::select('forums.forum_name','forums.forum_tittle','forums.forum_description','forums.forum_content','forums.is_digitalp','forums.is_services','forums.is_community','forums.user_id','forums.id')
-        ->where('id', 1)
-        ->first();
+     $forum = Forum::select('forums.forum_name','forums.forum_tittle','forums.forum_description','forums.forum_content','forums.is_digitalp','forums.is_services','forums.is_community','forums.user_id','forums.id')
+     ->where('id', 1)
+     ->first();
 
-        $website = $_SERVER['HTTP_HOST'];
+     $website = $_SERVER['HTTP_HOST'];
 
-        $user = user::select('users.id','users.api_key_factory')
-        ->where('id', $forum->user_id)
-        ->firstOrFail();
+     $user = user::select('users.id','users.api_key_factory')
+     ->where('id', $forum->user_id)
+     ->firstOrFail();
 
-      
 
-      $subid = MainCategory::select('maincategorys.subcategory_id')
-      ->where('maincategorys.id', $id)        
-      ->first();
 
-     
+     $subid = MainCategory::select('maincategorys.subcategory_id')
+     ->where('maincategorys.id', $id)        
+     ->first();
 
-      if (Auth::user()->role_id == 1) {
+
+
+     if (Auth::user()->role_id == 1) {
 
         $contents = Content::select('contents.content_name','contents.id')
         ->get();
-      }
+    }
 
-      if (Auth::user()->role_id == 2) {
+    if (Auth::user()->role_id == 2) {
 
         $contents = Content::select('contents.content_name','contents.id')
         ->take(4) 
         ->get();
-      }
+    }
 
 
 
 
 
-      return view('user.postfree', [
+    return view('user.postfree', [
         'forums' =>  $forum,
         'websites' =>  $website,
         'users' =>  $user,
         'categoryid' => $id,       
         'subid' =>  $subid,
         'contents' =>  $contents
-      ]);
-    }
+    ]);
+}
 
-    public function checkout($id)
-    {
+public function checkout($id)
+{
 
-     $email = Auth::user()->email;
+ $email = Auth::user()->email;
 
-     $product_all = DB::table('products as p')
-     ->leftJoin('prices as pr', 'pr.id', '=', 'p.price_id')
-     ->where('p.id', $id)        
+ $product_all = DB::table('products as p')
+ ->leftJoin('prices as pr', 'pr.id', '=', 'p.price_id')
+ ->where('p.id', $id)        
      // ->get();
-     ->first();
+ ->first();
 
      // print_r($product_all);
 
      // exit;
 
-     return view('products.checkout', [
+ return view('products.checkout', [
         // 'products' => $users,
-      'products_sell' => $product_all
-    ]);
+  'products_sell' => $product_all
+]);
 
       // return view('products.checkout')->with(['products_sell'=>$product_all]);
-   }
+}
 
-   public function success()
-   {
+public function success()
+{
     return view('products.success');
-  }
+}
 
-  public function cancel()
-  {
+public function cancel()
+{
    return view('products.cancel');
- }
+}
 
- public function notify()
- {
+public function notify()
+{
 
- }
+}
 
 
     /**
@@ -160,7 +188,7 @@ class PostFreeController extends Controller
         'post_name' => ['required', 'max:120'],
         // 'price' => ['required'],
         'post_content' => ['required', 'max:1500']             
-      ]);
+    ]);
 
 
 
@@ -310,7 +338,7 @@ class PostFreeController extends Controller
 
       return back();
 
-    }
+  }
 
     /**
      * Display the specified resource.
@@ -319,44 +347,54 @@ class PostFreeController extends Controller
      * @return \Illuminate\Http\Response
      */
     // public function show($scurl,$mcurl,$tema,$subcategoryid,$postid)
-     public function show($tema,$subcategoryid,$postid)   
+    public function show($tema,$subcategoryid,$postid)   
     {
+
+        $forum = Forum::select('forums.forum_name','forums.forum_tittle','forums.forum_description','forums.forum_content','forums.is_digitalp','forums.is_services','forums.is_community','forums.user_id','forums.id')
+        ->where('id', 1)
+        ->first();
+
+        $website = $_SERVER['HTTP_HOST'];
+
+        $user = user::select('users.id','users.api_key_factory')
+        ->where('id', $forum->user_id)
+        ->firstOrFail();
 
       // print_r($scurl.$mcurl.$tema.$subcategoryid.$postid);
 
       // exit;
 
         // $category = Post::select('posts.post_name','posts.url_name','posts.id as postid','mc.maincategory_name','u.id as userid', 'u.username','u.img','mc.id','mc.maincategory_url')
-     $category = PostFree::select('posts_free.post_name','posts_free.url_name','posts_free.id as postid','posts_free.post_content','u.id as userid', 'u.username','u.img','r.rank_name','u.is_banned','co.country_name','posts_free.views','mc.maincategory_name','mc.subcategory_id','mc.maincategory_url','posts_free.created_at','mc.promo_url','posts_free.maincategory_id','co.country_flag','mc.promo_banner','u.url_patreon','mc.id as maincategoryid','posts_free.content_id','cont.content_name','cont.content_color','posts_free.post_img','sc.subcategory_url','mc.maincategory_url')    
+        $category = PostFree::select('posts_free.post_name','posts_free.url_name','posts_free.id as postid','posts_free.post_content','u.id as userid', 'u.username','u.img','r.rank_name','u.is_banned','co.country_name','posts_free.views','mc.maincategory_name','mc.subcategory_id','mc.maincategory_url','posts_free.created_at','mc.promo_url','posts_free.maincategory_id','co.country_flag','mc.promo_banner','u.url_patreon','mc.id as maincategoryid','posts_free.content_id','cont.content_name','cont.content_color','posts_free.post_img','sc.subcategory_url','mc.maincategory_url')    
         // ->join('maincategorys as mc', 'mc.id', '=', 'posts.maincategory_id')
         // ->join('maincategorys as mc', 'mc.id', '=', 'posts.maincategory_id')
      // ->join('users_posts as up', 'up.maincategory_id', '=', 'posts.maincategory_id')
-     ->join('users_posts_free as up', 'up.post_id', '=', 'posts_free.id')
-     ->join('users as u', 'u.id', '=', 'up.user_id')
-     ->join('ranks as r', 'u.rank_id', '=', 'r.id')
-     ->join('contents as cont', 'cont.id', '=', 'posts_free.content_id')
+        ->join('users_posts_free as up', 'up.post_id', '=', 'posts_free.id')
+        ->join('users as u', 'u.id', '=', 'up.user_id')
+        ->join('ranks as r', 'u.rank_id', '=', 'r.id')
+        ->join('contents as cont', 'cont.id', '=', 'posts_free.content_id')
      // ->join('comitions as c', 'c.id', '=', 'posts.comition_id')
      // ->join('payments as p', 'p.id', '=', 'posts.payment_id')
      // ->join('revitions as re', 're.id', '=', 'posts.revition_id')
      // ->join('types as t', 't.id', '=', 'posts.type_id')
-     ->join('countrys as co', 'u.country_id', '=', 'co.id') 
-     ->join('maincategorys as mc', 'mc.id', '=', 'posts_free.maincategory_id')
-     ->join('subcategorys as sc', 'sc.id', '=', 'mc.subcategory_id')           
+        ->join('countrys as co', 'u.country_id', '=', 'co.id') 
+        ->join('maincategorys as mc', 'mc.id', '=', 'posts_free.maincategory_id')
+        ->join('subcategorys as sc', 'sc.id', '=', 'mc.subcategory_id')           
      // ->join('subcategorys as sc', 'sc.category_id', '=', 'categorys.id')
      // ->join('maincategorys', 'mc.subcategory_id', '=', 'sc.id')
      // ->where('sc.subcategory_url', $scurl)
      // ->where('mc.maincategory_url', $mcurl)
-     ->where('posts_free.id', $postid)
-     ->where('posts_free.maincategory_id', $subcategoryid)
-     ->where('posts_free.url_name', $tema)
-     ->where('posts_free.publish', null)
+        ->where('posts_free.id', $postid)
+        ->where('posts_free.maincategory_id', $subcategoryid)
+        ->where('posts_free.url_name', $tema)
+        ->where('posts_free.publish', null)
         // ->where('u.user_id', $postid)
      // ->where('mc.id', 8)
         // ->orderBy('posts.id', 'asc')
      // ->first()
      // ->count('up.user_id AS totalpost')
      // ->first();
-     ->firstOrFail();
+        ->firstOrFail();
         // ->get();
 
      // dd($category);
@@ -365,32 +403,32 @@ class PostFreeController extends Controller
 
      // exit;
 
-     $post_view_number = $category->views;
+        $post_view_number = $category->views;
 
-     $post_sum = $post_view_number + 1;
+        $post_sum = $post_view_number + 1;
 
      // dd($post_sum);
      // exit;
 
-     $sumviews = DB::table('posts_free')
-     ->where('id', $postid)
-     ->update(['views' => $post_sum  ]);
+        $sumviews = DB::table('posts_free')
+        ->where('id', $postid)
+        ->update(['views' => $post_sum  ]);
 
      //
 
-     $user_id = $category->userid;
+        $user_id = $category->userid;
 
      // para el total post
-     $totalpost = PostFree::select('up.user_id')   
-     ->join('users_posts_free as up', 'up.post_id', '=', 'posts_free.id')
-     ->join('users as u', 'u.id', '=', 'up.user_id')    
-     ->where('up.user_id', $user_id)
+        $totalpost = PostFree::select('up.user_id')   
+        ->join('users_posts_free as up', 'up.post_id', '=', 'posts_free.id')
+        ->join('users as u', 'u.id', '=', 'up.user_id')    
+        ->where('up.user_id', $user_id)
      // ->count('up.user_id AS totalpost')
-     ->get();
+        ->get();
 
      // dd($totalpost);
 
-     $sumpost = count($totalpost);
+        $sumpost = count($totalpost);
 
      //   dd($sumpost);
      // exit;
@@ -400,25 +438,25 @@ class PostFreeController extends Controller
 
      // comentarios
      // $comments = Post::select('posts.post_name','posts.url_name','posts.id as postid','posts.post_content','u.id as userid', 'u.username','u.img','c.comment')
-     $comments = PostFree::select('u.id as userid', 'u.username','u.img','c.comment','r.rank_name','co.country_name','c.created_at','co.country_flag','u.url_patreon')         
-     ->join('comments_free as c', 'posts_free.id', '=', 'c.post_id')
-     ->join('users as u', 'u.id', '=', 'c.user_id')
-     ->join('ranks as r', 'u.rank_id', '=', 'r.id')
+        $comments = PostFree::select('u.id as userid', 'u.username','u.img','c.comment','r.rank_name','co.country_name','c.created_at','co.country_flag','u.url_patreon')         
+        ->join('comments_free as c', 'posts_free.id', '=', 'c.post_id')
+        ->join('users as u', 'u.id', '=', 'c.user_id')
+        ->join('ranks as r', 'u.rank_id', '=', 'r.id')
      // ->join('comitions as c', 'c.id', '=', 'posts.comition_id')
      // ->join('payments as p', 'p.id', '=', 'posts.payment_id')
      // ->join('revitions as re', 're.id', '=', 'posts.revition_id')
      // ->join('types as t', 't.id', '=', 'posts.type_id')
-     ->join('countrys as co', 'u.country_id', '=', 'co.id') 
+        ->join('countrys as co', 'u.country_id', '=', 'co.id') 
      // ->join('ranks as r', 'u.rank_id', '=', 'r.id')       
      // ->where('posts.id', $postid)
-     ->where('c.post_id', $postid)
-     ->where('c.publish', null)
+        ->where('c.post_id', $postid)
+        ->where('c.publish', null)
         // ->where('u.user_id', $postid)
      // ->where('mc.id', 8)
         // ->orderBy('posts.id', 'asc')
      // ->first();
      // ->first();
-     ->get();     
+        ->get();     
      // ->get()
      // ->count('c.comment');
 
@@ -436,10 +474,10 @@ class PostFreeController extends Controller
      // $user_id_comment = $comments->userid;
 
 
-     $user_id_comment = 0;
+        $user_id_comment = 0;
 
      //funciona
-     foreach ($comments  as $comment) {
+        foreach ($comments  as $comment) {
      // foreach ($user_id_comment   as $comment) {
        # code...
         // dd($comment);
@@ -451,7 +489,7 @@ class PostFreeController extends Controller
             // $user_id_comment  += $comment->userid;
 
              //aqui es para asignar valor 
-       $user_id_comment = $comment->userid;
+           $user_id_comment = $comment->userid;
 
            //exit no funciona adentro de foreach
         // exit;
@@ -467,7 +505,7 @@ class PostFreeController extends Controller
      //   $sumpostcomment = count($totalpostcomment);
 
      //   dd($sumpostcomment);
-     }
+       }
 
       // dd($user_id_comment);
 
@@ -478,205 +516,43 @@ class PostFreeController extends Controller
      // exit;
 
      // para el total post comentarios
-     $totalpostcomment = PostFree::select('up.user_id')   
-     ->join('users_posts_free as up', 'up.post_id', '=', 'posts_free.id')
-     ->join('users as u', 'u.id', '=', 'up.user_id')    
-     ->where('up.user_id', $user_id_comment)
+       $totalpostcomment = PostFree::select('up.user_id')   
+       ->join('users_posts_free as up', 'up.post_id', '=', 'posts_free.id')
+       ->join('users as u', 'u.id', '=', 'up.user_id')    
+       ->where('up.user_id', $user_id_comment)
      // ->count('up.user_id AS totalpost')
-     ->get();
+       ->get();
 
      // dd($totalpost);
 
-     $sumpostcomment = count($totalpostcomment);
+       $sumpostcomment = count($totalpostcomment);
 
      //   dd($sumpostcomment);
      // exit;
 
-     $alltotalpostcomment = CommentFree::select('comment')       
-     ->where('post_id', $postid)     
-     ->get();
+       $alltotalpostcomment = CommentFree::select('comment')       
+       ->where('post_id', $postid)     
+       ->get();
 
      // dd($totalpost);
 
-     $sumpostcommentall = count($alltotalpostcomment);
-
-      // para post commentado
-
-    //  $calificationspositivecomment = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
-    //  ->join('users_califications as uc', 'uc.calification_id', '=', 'califications.id')
-    //  ->join('users as u', 'u.id', '=', 'uc.user_id')
-    //  ->where('u.id',  $user_id_comment )
-    //  ->where('uc.calification_id', 1)
-    //  ->where('uc.accept', 1)
-    //   // ->where('uc.calification_id', 2)
-    //  ->get();
-
-    //  $sumcalificationcomment = count($calificationspositivecomment);
-
-    //  $calificationsnegativecomment = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
-    //  ->join('users_califications as uc', 'uc.calification_id', '=', 'califications.id')
-    //  ->join('users as u', 'u.id', '=', 'uc.user_id')
-    //  ->where('u.id',  $user_id_comment )     
-    //  ->where('uc.calification_id', 2)
-    //  ->where('uc.accept', 1)     
-    //  ->get();
-
-    //  $restcalificationcomment = count($calificationsnegativecomment);
-
-
-    //  if (!empty($calificationspositivecomment[0])) {
-
-
-    //    $iconposicolorcomment = $calificationspositivecomment[0]->calification_color;
-    //    $iconposicomment = $calificationspositivecomment[0]->calification_icon;
-
-    //  }
-
-    //  if (empty($calificationspositivecomment[0])) {
-
-
-    //    $iconposicolorcomment = 'bg-success';
-    //    $iconposicomment = 'fa-solid fa-thumbs-up';
-
-    //  }
-
-    //  if (empty($calificationsnegativecomment[0])) {
-
-    //   $iconnegacolorcomment = 'bg-danger';
-    //   $iconnegacomment = 'fa-solid fa-thumbs-down';
-    // }
-
-    // if (!empty($calificationsnegativecomment[0])) {
-
-    //   $iconnegacolorcomment = $calificationsnegativecomment[0]->calification_color;
-    //   $iconnegacomment = $calificationsnegativecomment[0]->calification_icon;
-    // }
-
-     // join general
-     // $califications = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
-     // ->join('users_califications as uc', 'uc.calification_id', '=', 'califications.id')
-     // ->join('users as u', 'u.id', '=', 'uc.user_id')
-     // ->where('u.id',  $user_id )
-     // // ->where('uc.calification_id', 1)
-     //  ->where('uc.calification_id', 2)
-     // ->get();
-
-
-     // para post publicado
-
-    // $calificationspositive = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
-    // ->join('users_califications as uc', 'uc.calification_id', '=', 'califications.id')
-    // ->join('users as u', 'u.id', '=', 'uc.user_id')
-    // ->where('u.id',  $user_id )
-    // ->where('uc.calification_id', 1)
-    // ->where('uc.accept', 1)
-    //   // ->where('uc.calification_id', 2)
-    // ->get();
-
-    // $sumcalification = count($calificationspositive);
-
-    // $calificationsnegative = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
-    // ->join('users_califications as uc', 'uc.calification_id', '=', 'califications.id')
-    // ->join('users as u', 'u.id', '=', 'uc.user_id')
-    // ->where('u.id',  $user_id )     
-    // ->where('uc.calification_id', 2)
-    // ->where('uc.accept', 1)     
-    // ->get();
-
-    // $restcalification = count($calificationsnegative);
-
-     // dd($calificationspositive);
-     // exit;
-
-  //   if (!empty($calificationspositive[0])) {
-
-
-  //    $iconposicolor = $calificationspositive[0]->calification_color;
-  //    $iconposi = $calificationspositive[0]->calification_icon;
-
-  //  }
-
-  //  if (empty($calificationspositive[0])) {
-
-
-  //    $iconposicolor = 'bg-success';
-  //    $iconposi = 'fa-solid fa-thumbs-up';
-
-  //  }
-
-  //  if (empty($calificationsnegative[0])) {
-
-  //   $iconnegacolor = 'bg-danger';
-  //   $iconnega = 'fa-solid fa-thumbs-down';
-  // }
-
-  // if (!empty($calificationsnegative[0])) {
-
-  //   $iconnegacolor = $calificationsnegative[0]->calification_color;
-  //   $iconnega = $calificationsnegative[0]->calification_icon;
-  // }
-
-     // $iconposicolor = $calificationspositive[0]->calification_color;
-     // $iconnegacolor = $calificationsnegative[0]->calification_color;
-    // $iconposi = $calificationspositive[0]->calification_icon;
-    // $iconnega = $calificationsnegative[0]->calification_icon;
-
-     // dd($calificationsnegative[0]->calification_icon);
-
-     // dd($sumcalification);
-     // dd($restcalification);
-     // // dd($califications->calification_id);
-
-     // exit;
-
-     // $calification_positive = 0;
-     // foreach ($califications  as $calification) {
-
-     //   // dd($calification->calification_id);
-
-     //   var_dump($calification->calification_name);
-
-     //   exit;
-
-     //   // $sumTokens  += $paymentToken->mytoken;
-     // }
-
-     // var_dump($sumTokens);
-
-     // if (condition) {
-     //   # code...
-     // }
-
-     // if (condition) {
-     //   # code...
-     // }
-
-     // if (condition) {
-     //   # code...
-     // }
+       $sumpostcommentall = count($alltotalpostcomment);
 
 
 
-     return view('postfree', [
-      'post' => $category,
-      'sumpost' =>  $sumpost,
-    // 'sumcalification' =>  $sumcalification,
-    // 'restcalification' =>   $restcalification,
-    // 'iconposi' =>  $iconposi,
-    // 'iconnega' => $iconnega,
-    // 'iconposicolor' => $iconposicolor,
-    // 'iconnegacolor' => $iconnegacolor,
-      'comments' => $comments,
-      'sumpostcomment' =>  $sumpostcomment,
-    // 'sumcalificationcomment' =>  $sumcalificationcomment,
-    // 'restcalificationcomment' =>   $restcalificationcomment,
-    // 'iconposicomment' =>  $iconposicomment,
-    // 'iconnegacomment' => $iconnegacomment,
-    // 'iconposicolorcomment' => $iconposicolorcomment,
-    // 'iconnegacolorcomment' => $iconnegacolorcomment,
-      'urluserid' => $subcategoryid,
-      'urlpostid' => $postid,
-      'sumpostcommentall' => $sumpostcommentall                 
+
+
+       return view('postfree', [
+        'forums' =>  $forum,
+        'websites' =>  $website,
+        'users' =>  $user,
+        'post' => $category,
+        'sumpost' =>  $sumpost,   
+        'comments' => $comments,
+        'sumpostcomment' =>  $sumpostcomment,   
+        'urluserid' => $subcategoryid,
+        'urlpostid' => $postid,
+        'sumpostcommentall' => $sumpostcommentall                 
       // 'califications' =>  $califications    
 
     ]);
@@ -694,46 +570,46 @@ class PostFreeController extends Controller
      if (Auth::user()->role_id == 2) {
 
        return redirect()->to('/');
-     }
+   }
 
 
 
 
-     $data = DB::table('posts')
-     ->where('id', $postid)
-     ->update(['publish' => 1]);
+   $data = DB::table('posts')
+   ->where('id', $postid)
+   ->update(['publish' => 1]);
 
 
    // return redirect()->to('/');
 
-     return response()->json($data);
+   return response()->json($data);
 
-   }
+}
 
-   public function commentunpublish($postid)
-   {
+public function commentunpublish($postid)
+{
 
-     if (Auth::user()->role_id == 2) {
+ if (Auth::user()->role_id == 2) {
 
-       return redirect()->to('/');
-     }
-
-
+   return redirect()->to('/');
+}
 
 
-     $data = DB::table('comments')
-     ->where('post_id', $postid)
-     ->update(['publish' => 1]);
+
+
+$data = DB::table('comments')
+->where('post_id', $postid)
+->update(['publish' => 1]);
 
 
    // return redirect()->to('/');
 
-     return response()->json($data);
+return response()->json($data);
 
-   }
+}
 
-   public function findCategory(Request $request)
-   {
+public function findCategory(Request $request)
+{
 
 
 
@@ -745,11 +621,11 @@ class PostFreeController extends Controller
 
       // $search->save();
 
-     $search = new StatisticsBanner;
+ $search = new StatisticsBanner;
 
-     $search->maincategory_id = $request->query('category_id');            
+ $search->maincategory_id = $request->query('category_id');            
 
-     $search->save();
+ $search->save();
 
 
     // $data2= $request->all();
@@ -758,11 +634,11 @@ class PostFreeController extends Controller
 
       // }
 
-     
 
-     return response()->json("success");
 
-   }
+ return response()->json("success");
+
+}
 
     /**
      * Update the specified resource in storage.
@@ -786,4 +662,4 @@ class PostFreeController extends Controller
     {
         //
     }
-  }
+}
