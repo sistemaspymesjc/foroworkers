@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use App\Http\Services\ModuleService;
+
 // usar clase
 use Illuminate\Support\Facades\Auth;
 
@@ -29,6 +31,32 @@ use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
+
+     // use CheckTutorial;
+
+   protected $moduleService;
+ // protected $seoService;
+ // protected $homeService;
+   protected $posts;
+   // protected $postsfree;
+   protected $categorys;
+
+  // protected $userService;
+
+   public function __construct(ModuleService $moduleService, Post $posts,Category $categorys){
+
+      $this->moduleService = $moduleService;
+  // $this->seoService = $seoService;
+  // $this->homeService = $homeService;
+      // $this->post = $post;
+
+      $this->posts = $posts;
+      // $this->postsfree = $postsfree;
+      $this->categorys = $categorys;
+
+
+  }
+
     /**
      * Display a listing of the resource.
      *
@@ -47,7 +75,7 @@ class PostController extends Controller
         ->where('id', $forum->user_id)
         ->firstOrFail();
 
-   
+
 
         $types = Type::select('types.id','types.type_name')        
         ->get();
@@ -68,7 +96,7 @@ class PostController extends Controller
         ->where('maincategorys.id', $id)        
         ->first();
 
-      
+
 
         return view('user.post', [
             'forums' =>  $forum,
@@ -318,70 +346,51 @@ public function notify()
     public function show($tema,$subcategoryid,$postid)
     {
 
+       $forum = Forum::select('forums.forum_name','forums.forum_tittle','forums.forum_description','forums.forum_content','forums.is_digitalp','forums.is_services','forums.is_community','forums.user_id','forums.id')
+       ->where('id', 1)
+       ->first();
 
-        // $category = Post::select('posts.post_name','posts.url_name','posts.id as postid','mc.maincategory_name','u.id as userid', 'u.username','u.img','mc.id','mc.maincategory_url')
-     $category = Post::select('posts.post_name','posts.url_name','posts.id as postid','posts.post_content','posts.price','u.id as userid', 'u.username','u.img','r.rank_name','c.comition_name','p.payment_name','re.revition','t.type_name','t.type_color','u.is_banned','co.country_name','posts.views','mc.maincategory_name','mc.subcategory_id','mc.maincategory_url','posts.created_at','co.country_flag','posts.type_id')    
-        // ->join('maincategorys as mc', 'mc.id', '=', 'posts.maincategory_id')
-        // ->join('maincategorys as mc', 'mc.id', '=', 'posts.maincategory_id')
-     // ->join('users_posts as up', 'up.maincategory_id', '=', 'posts.maincategory_id')
-     ->join('users_posts as up', 'up.post_id', '=', 'posts.id')
-     ->join('users as u', 'u.id', '=', 'up.user_id')
-     ->join('ranks as r', 'u.rank_id', '=', 'r.id')
-     ->join('comitions as c', 'c.id', '=', 'posts.comition_id')
-     ->join('payments as p', 'p.id', '=', 'posts.payment_id')
-     ->join('revitions as re', 're.id', '=', 'posts.revition_id')
-     ->join('types as t', 't.id', '=', 'posts.type_id')
-     ->join('countrys as co', 'u.country_id', '=', 'co.id') 
-     ->join('maincategorys as mc', 'mc.id', '=', 'posts.maincategory_id')        
-     // ->join('subcategorys as sc', 'sc.category_id', '=', 'categorys.id')
-     // ->join('maincategorys', 'mc.subcategory_id', '=', 'sc.id')
-        // ->where('mc.subcategory_id', $subcategoryid)
-        // ->where('up.maincategory_id', $subcategoryid)
-     ->where('posts.id', $postid)
-     ->where('posts.maincategory_id', $subcategoryid)
-     ->where('posts.url_name', $tema)
-     ->where('posts.publish', null)
-        // ->where('u.user_id', $postid)
-     // ->where('mc.id', 8)
-        // ->orderBy('posts.id', 'asc')
-     // ->first()
-     // ->count('up.user_id AS totalpost')
-     // ->first();
-     ->firstOrFail();
-        // ->get();
+       $website = $_SERVER['HTTP_HOST'];
 
-     // dd($category);
+       $user = user::select('users.id','users.api_key_factory')
+       ->where('id', $forum->user_id)
+       ->firstOrFail();
 
-     // dd($postid);
+       $ms_contentscol_p = $this->moduleService->responseGetPublic('/api/modules/getcol','post');
 
-     // exit;
+       $m_col_p = $ms_contentscol_p;
 
-     $post_view_number = $category->views;
+       $category = $this->posts->getAllPosts($postid,$subcategoryid,$tema,$m_col_p);
 
-     $post_sum = $post_view_number + 1;
+
+
+
+       $post_view_number = $category->views;
+
+       $post_sum = $post_view_number + 1;
 
      // dd($post_sum);
      // exit;
 
-     $sumviews = DB::table('posts')
-     ->where('id', $postid)
-     ->update(['views' => $post_sum  ]);
+       $sumviews = DB::table('posts')
+       ->where('id', $postid)
+       ->update(['views' => $post_sum  ]);
 
      //
 
-     $user_id = $category->userid;
+       $user_id = $category->userid;
 
      // para el total post
-     $totalpost = Post::select('up.user_id')   
-     ->join('users_posts as up', 'up.post_id', '=', 'posts.id')
-     ->join('users as u', 'u.id', '=', 'up.user_id')    
-     ->where('up.user_id', $user_id)
+       $totalpost = Post::select('up.user_id')   
+       ->join('users_posts as up', 'up.post_id', '=', 'posts.id')
+       ->join('users as u', 'u.id', '=', 'up.user_id')    
+       ->where('up.user_id', $user_id)
      // ->count('up.user_id AS totalpost')
-     ->get();
+       ->get();
 
      // dd($totalpost);
 
-     $sumpost = count($totalpost);
+       $sumpost = count($totalpost);
 
      //   dd($sumpost);
      // exit;
@@ -391,274 +400,194 @@ public function notify()
 
      // comentarios
      // $comments = Post::select('posts.post_name','posts.url_name','posts.id as postid','posts.post_content','u.id as userid', 'u.username','u.img','c.comment')
-     $comments = Post::select('u.id as userid', 'u.username','u.img','c.comment','r.rank_name','co.country_name','c.created_at','co.country_flag')         
-     ->join('comments as c', 'posts.id', '=', 'c.post_id')
-     ->join('users as u', 'u.id', '=', 'c.user_id')
-     ->join('ranks as r', 'u.rank_id', '=', 'r.id')
+       $comments = Post::select('u.id as userid', 'u.username','u.img','c.comment','r.rank_name','co.country_name','c.created_at','co.country_flag')         
+       ->join('comments as c', 'posts.id', '=', 'c.post_id')
+       ->join('users as u', 'u.id', '=', 'c.user_id')
+       ->join('ranks as r', 'u.rank_id', '=', 'r.id')
      // ->join('comitions as c', 'c.id', '=', 'posts.comition_id')
      // ->join('payments as p', 'p.id', '=', 'posts.payment_id')
      // ->join('revitions as re', 're.id', '=', 'posts.revition_id')
      // ->join('types as t', 't.id', '=', 'posts.type_id')
-     ->join('countrys as co', 'u.country_id', '=', 'co.id') 
+       ->join('countrys as co', 'u.country_id', '=', 'co.id') 
      // ->join('ranks as r', 'u.rank_id', '=', 'r.id')       
      // ->where('posts.id', $postid)
-     ->where('c.post_id', $postid)
-     ->where('c.publish', null)
+       ->where('c.post_id', $postid)
+       ->where('c.publish', null)
         // ->where('u.user_id', $postid)
      // ->where('mc.id', 8)
         // ->orderBy('posts.id', 'asc')
      // ->first();
      // ->first();
-     ->get();     
+       ->get();     
      // ->get()
      // ->count('c.comment');
 
-     // dd($comments);
-
-     // dd($postid);
-
-     // exit;
-
-     // https://stackoverflow.com/questions/45308267/how-can-i-get-query-result-id-in-controller-from-laravel
 
 
-     // $user_id_comment = $comments[0]->userid;
 
-     // $user_id_comment = $comments->userid;
-
-
-     $user_id_comment = 0;
+       $user_id_comment = 0;
 
      //funciona
-     foreach ($comments  as $comment) {
-     // foreach ($user_id_comment   as $comment) {
-       # code...
-        // dd($comment);
-           // dd($comment->userid);
-         // var_dump($comment->userid);
+       foreach ($comments  as $comment) {
 
-
-            // aqui es para sumar a la variable
-            // $user_id_comment  += $comment->userid;
 
              //aqui es para asignar valor 
-       $user_id_comment = $comment->userid;
+           $user_id_comment = $comment->userid;
 
-           //exit no funciona adentro de foreach
-        // exit;
-     //   $totalpostcomment = Post::select('up.user_id')   
-     //   ->join('users_posts as up', 'up.post_id', '=', 'posts.id')
-     //   ->join('users as u', 'u.id', '=', 'up.user_id')    
-     //   ->where('up.user_id', $user_id_comment)
-     // // ->count('up.user_id AS totalpost')
-     //   ->get();
 
-     // // dd($totalpost);
+       }
 
-     //   $sumpostcomment = count($totalpostcomment);
 
-     //   dd($sumpostcomment);
-   }
-
-      // dd($user_id_comment);
-
-     //       // dd($comments[0]);
-
-           // var_dump($user_id_comment);
-
-     // exit;
 
      // para el total post comentarios
-   $totalpostcomment = Post::select('up.user_id')   
-   ->join('users_posts as up', 'up.post_id', '=', 'posts.id')
-   ->join('users as u', 'u.id', '=', 'up.user_id')    
-   ->where('up.user_id', $user_id_comment)
+       $totalpostcomment = Post::select('up.user_id')   
+       ->join('users_posts as up', 'up.post_id', '=', 'posts.id')
+       ->join('users as u', 'u.id', '=', 'up.user_id')    
+       ->where('up.user_id', $user_id_comment)
      // ->count('up.user_id AS totalpost')
-   ->get();
+       ->get();
 
      // dd($totalpost);
 
-   $sumpostcomment = count($totalpostcomment);
+       $sumpostcomment = count($totalpostcomment);
 
      //   dd($sumpostcomment);
      // exit;
 
       // para post commentado
 
-   $calificationspositivecomment = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
-   ->join('users_califications as uc', 'uc.calification_id', '=', 'califications.id')
-   ->join('users as u', 'u.id', '=', 'uc.user_id')
-   ->where('u.id',  $user_id_comment )
-   ->where('uc.calification_id', 1)
-   ->where('uc.accept', 1)
+       $calificationspositivecomment = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
+       ->join('users_califications as uc', 'uc.calification_id', '=', 'califications.id')
+       ->join('users as u', 'u.id', '=', 'uc.user_id')
+       ->where('u.id',  $user_id_comment )
+       ->where('uc.calification_id', 1)
+       ->where('uc.accept', 1)
       // ->where('uc.calification_id', 2)
-   ->get();
+       ->get();
 
-   $sumcalificationcomment = count($calificationspositivecomment);
+       $sumcalificationcomment = count($calificationspositivecomment);
 
-   $calificationsnegativecomment = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
-   ->join('users_califications as uc', 'uc.calification_id', '=', 'califications.id')
-   ->join('users as u', 'u.id', '=', 'uc.user_id')
-   ->where('u.id',  $user_id_comment )     
-   ->where('uc.calification_id', 2)
-   ->where('uc.accept', 1)     
-   ->get();
+       $calificationsnegativecomment = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
+       ->join('users_califications as uc', 'uc.calification_id', '=', 'califications.id')
+       ->join('users as u', 'u.id', '=', 'uc.user_id')
+       ->where('u.id',  $user_id_comment )     
+       ->where('uc.calification_id', 2)
+       ->where('uc.accept', 1)     
+       ->get();
 
-   $restcalificationcomment = count($calificationsnegativecomment);
-
-
-   if (!empty($calificationspositivecomment[0])) {
+       $restcalificationcomment = count($calificationsnegativecomment);
 
 
-       $iconposicolorcomment = $calificationspositivecomment[0]->calification_color;
-       $iconposicomment = $calificationspositivecomment[0]->calification_icon;
-
-   }
-
-   if (empty($calificationspositivecomment[0])) {
+       if (!empty($calificationspositivecomment[0])) {
 
 
-       $iconposicolorcomment = 'bg-success';
-       $iconposicomment = 'fa-solid fa-thumbs-up';
+           $iconposicolorcomment = $calificationspositivecomment[0]->calification_color;
+           $iconposicomment = $calificationspositivecomment[0]->calification_icon;
 
-   }
+       }
 
-   if (empty($calificationsnegativecomment[0])) {
+       if (empty($calificationspositivecomment[0])) {
 
-      $iconnegacolorcomment = 'bg-danger';
-      $iconnegacomment = 'fa-solid fa-thumbs-down';
-  }
 
-  if (!empty($calificationsnegativecomment[0])) {
+           $iconposicolorcomment = 'bg-success';
+           $iconposicomment = 'fa-solid fa-thumbs-up';
 
-      $iconnegacolorcomment = $calificationsnegativecomment[0]->calification_color;
-      $iconnegacomment = $calificationsnegativecomment[0]->calification_icon;
-  }
+       }
 
-     // join general
-     // $califications = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
-     // ->join('users_califications as uc', 'uc.calification_id', '=', 'califications.id')
-     // ->join('users as u', 'u.id', '=', 'uc.user_id')
-     // ->where('u.id',  $user_id )
-     // // ->where('uc.calification_id', 1)
-     //  ->where('uc.calification_id', 2)
-     // ->get();
+       if (empty($calificationsnegativecomment[0])) {
+
+          $iconnegacolorcomment = 'bg-danger';
+          $iconnegacomment = 'fa-solid fa-thumbs-down';
+      }
+
+      if (!empty($calificationsnegativecomment[0])) {
+
+          $iconnegacolorcomment = $calificationsnegativecomment[0]->calification_color;
+          $iconnegacomment = $calificationsnegativecomment[0]->calification_icon;
+      }
+
+
 
 
      // para post publicado
 
-  $calificationspositive = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
-  ->join('users_califications as uc', 'uc.calification_id', '=', 'califications.id')
-  ->join('users as u', 'u.id', '=', 'uc.user_id')
-  ->where('u.id',  $user_id )
-  ->where('uc.calification_id', 1)
-  ->where('uc.accept', 1)
+      $calificationspositive = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
+      ->join('users_califications as uc', 'uc.calification_id', '=', 'califications.id')
+      ->join('users as u', 'u.id', '=', 'uc.user_id')
+      ->where('u.id',  $user_id )
+      ->where('uc.calification_id', 1)
+      ->where('uc.accept', 1)
       // ->where('uc.calification_id', 2)
-  ->get();
+      ->get();
 
-  $sumcalification = count($calificationspositive);
+      $sumcalification = count($calificationspositive);
 
-  $calificationsnegative = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
-  ->join('users_califications as uc', 'uc.calification_id', '=', 'califications.id')
-  ->join('users as u', 'u.id', '=', 'uc.user_id')
-  ->where('u.id',  $user_id )     
-  ->where('uc.calification_id', 2)
-  ->where('uc.accept', 1)     
-  ->get();
+      $calificationsnegative = Calification::select('califications.calification_name','califications.calification_icon','califications.calification_color','uc.calification_id')
+      ->join('users_califications as uc', 'uc.calification_id', '=', 'califications.id')
+      ->join('users as u', 'u.id', '=', 'uc.user_id')
+      ->where('u.id',  $user_id )     
+      ->where('uc.calification_id', 2)
+      ->where('uc.accept', 1)     
+      ->get();
 
-  $restcalification = count($calificationsnegative);
+      $restcalification = count($calificationsnegative);
 
      // dd($calificationspositive);
      // exit;
 
-  if (!empty($calificationspositive[0])) {
+      if (!empty($calificationspositive[0])) {
 
 
-     $iconposicolor = $calificationspositive[0]->calification_color;
-     $iconposi = $calificationspositive[0]->calification_icon;
+         $iconposicolor = $calificationspositive[0]->calification_color;
+         $iconposi = $calificationspositive[0]->calification_icon;
 
- }
+     }
 
- if (empty($calificationspositive[0])) {
+     if (empty($calificationspositive[0])) {
 
 
-     $iconposicolor = 'bg-success';
-     $iconposi = 'fa-solid fa-thumbs-up';
+         $iconposicolor = 'bg-success';
+         $iconposi = 'fa-solid fa-thumbs-up';
 
- }
+     }
 
- if (empty($calificationsnegative[0])) {
+     if (empty($calificationsnegative[0])) {
 
-    $iconnegacolor = 'bg-danger';
-    $iconnega = 'fa-solid fa-thumbs-down';
-}
+        $iconnegacolor = 'bg-danger';
+        $iconnega = 'fa-solid fa-thumbs-down';
+    }
 
-if (!empty($calificationsnegative[0])) {
+    if (!empty($calificationsnegative[0])) {
 
-    $iconnegacolor = $calificationsnegative[0]->calification_color;
-    $iconnega = $calificationsnegative[0]->calification_icon;
-}
+        $iconnegacolor = $calificationsnegative[0]->calification_color;
+        $iconnega = $calificationsnegative[0]->calification_icon;
+    }
 
-     // $iconposicolor = $calificationspositive[0]->calification_color;
-     // $iconnegacolor = $calificationsnegative[0]->calification_color;
-    // $iconposi = $calificationspositive[0]->calification_icon;
-    // $iconnega = $calificationsnegative[0]->calification_icon;
 
-     // dd($calificationsnegative[0]->calification_icon);
 
-     // dd($sumcalification);
-     // dd($restcalification);
-     // // dd($califications->calification_id);
 
-     // exit;
-
-     // $calification_positive = 0;
-     // foreach ($califications  as $calification) {
-
-     //   // dd($calification->calification_id);
-
-     //   var_dump($calification->calification_name);
-
-     //   exit;
-
-     //   // $sumTokens  += $paymentToken->mytoken;
-     // }
-
-     // var_dump($sumTokens);
-
-     // if (condition) {
-     //   # code...
-     // }
-
-     // if (condition) {
-     //   # code...
-     // }
-
-     // if (condition) {
-     //   # code...
-     // }
 
 //total de reseñas del servicios positivas y negativas
-$caliserv = UserCalification::select('users_califications.calification_id')
-->where('users_califications.post_id',  $postid )  
+    $caliserv = UserCalification::select('users_califications.calification_id')
+    ->where('users_califications.post_id',  $postid )  
   // ->where('users_califications.calification_id', 1)
   // ->where('users_califications.calification_id', 2)
-->where('users_califications.accept', 1)     
-->get();
+    ->where('users_califications.accept', 1)     
+    ->get();
 
 
-if (!empty($caliserv[0])) {
+    if (!empty($caliserv[0])) {
 
-   $tcaliserv = count($caliserv);
+       $tcaliserv = count($caliserv);
 
-}
+   }
 
-if (empty($caliserv[0])) {
+   if (empty($caliserv[0])) {
 
 
-   $tcaliserv = 0;
+       $tcaliserv = 0;
 
-}
+   }
 
   // $tcaliserv = count($caliserv);
 
@@ -666,106 +595,83 @@ if (empty($caliserv[0])) {
 
   // exit;
 
-$calipos = UserCalification::select('users_califications.calification_id')
-->where('users_califications.post_id',  $postid )  
-->where('users_califications.calification_id', 1)
-->where('users_califications.accept', 1)     
-->get();
+   $calipos = UserCalification::select('users_califications.calification_id')
+   ->where('users_califications.post_id',  $postid )  
+   ->where('users_califications.calification_id', 1)
+   ->where('users_califications.accept', 1)     
+   ->get();
 
-if (!empty($calipos[0])) {
+   if (!empty($calipos[0])) {
 
-   $tcalipos = count($calipos);
+       $tcalipos = count($calipos);
 
           // $tcalculres = 5 / $tcalipos;
 
-   $tcalculres = 5 * $tcalipos / $tcaliserv;
+       $tcalculres = 5 * $tcalipos / $tcaliserv;
 
 
-}
+   }
 
-if (empty($calipos[0])) {
+   if (empty($calipos[0])) {
 
 
-   $tcalipos = 0;
+       $tcalipos = 0;
 
-   $tcalculres = 0; 
+       $tcalculres = 0; 
 
-}
+   }
 
   // $tcalipos = count($calipos);
 
   // print_r($tcalipos);
 
-$calineg = UserCalification::select('users_califications.calification_id')
-->where('users_califications.post_id',  $postid )  
-->where('users_califications.calification_id', 2)
-->where('users_califications.accept', 1)     
-->get();
+   $calineg = UserCalification::select('users_califications.calification_id')
+   ->where('users_califications.post_id',  $postid )  
+   ->where('users_califications.calification_id', 2)
+   ->where('users_califications.accept', 1)     
+   ->get();
 
 
-if (!empty($calineg[0])) {
+   if (!empty($calineg[0])) {
 
-  $tcalineg = count($calineg);
+      $tcalineg = count($calineg);
 
-}
+  }
 
-if (empty($calineg[0])) {
-
-
- $tcalineg = 0;
-
-}
+  if (empty($calineg[0])) {
 
 
+     $tcalineg = 0;
 
-
-  // $tcalineg = count($calineg);
-
-  // print_r($tcalineg);
-
-  // $calcul = $tcalipos / $tcalineg;
-
-  // mientras tanto
-  // $tcalculres = 5 / $tcalipos; 
-
-// $tcalculres = $tcaliserv / $tcalipos / 5 * 10;
-
-// se acerca a la formula
-// $tcalculres = 100 * 5 / $tcaliserv;
-
-// $tcalculres = 100 * 5 / $tcalipos / 100;
-
-// $tcalculres = $tcaliserv * 5 / $tcalipos;     
-
-// $tcalculres = 100 * 5 / $tcaliserv / $tcalipos / 100;       
-
-  // print_r($tcalculres);
-
-  // exit;
+ }
 
 
 
-return view('post', [
-  'post' => $category,
-  'sumpost' =>  $sumpost,
-  'sumcalification' =>  $sumcalification,
-  'restcalification' =>   $restcalification,
-  'iconposi' =>  $iconposi,
-  'iconnega' => $iconnega,
-  'iconposicolor' => $iconposicolor,
-  'iconnegacolor' => $iconnegacolor,
-  'comments' => $comments,
-  'sumpostcomment' =>  $sumpostcomment,
-  'sumcalificationcomment' =>  $sumcalificationcomment,
-  'restcalificationcomment' =>   $restcalificationcomment,
-  'iconposicomment' =>  $iconposicomment,
-  'iconnegacomment' => $iconnegacomment,
-  'iconposicolorcomment' => $iconposicolorcomment,
-  'iconnegacolorcomment' => $iconnegacolorcomment,
-  'urluserid' => $subcategoryid,
-  'urlpostid' => $postid,
-  'tcalculres' => $tcalculres,
-  'tcaliserv' => $tcaliserv
+
+ return view('post', [
+    'forums' =>  $forum,
+    'websites' =>  $website,
+    'users' =>  $user,
+    'post' => $category,
+    'sumpost' =>  $sumpost,
+    'sumcalification' =>  $sumcalification,
+    'restcalification' =>   $restcalification,
+    'iconposi' =>  $iconposi,
+    'iconnega' => $iconnega,
+    'iconposicolor' => $iconposicolor,
+    'iconnegacolor' => $iconnegacolor,
+    'comments' => $comments,
+    'sumpostcomment' =>  $sumpostcomment,
+    'sumcalificationcomment' =>  $sumcalificationcomment,
+    'restcalificationcomment' =>   $restcalificationcomment,
+    'iconposicomment' =>  $iconposicomment,
+    'iconnegacomment' => $iconnegacomment,
+    'iconposicolorcomment' => $iconposicolorcomment,
+    'iconnegacolorcomment' => $iconnegacolorcomment,
+    'urluserid' => $subcategoryid,
+    'urlpostid' => $postid,
+    'tcalculres' => $tcalculres,
+    'tcaliserv' => $tcaliserv
 
 
       // 'califications' =>  $califications    

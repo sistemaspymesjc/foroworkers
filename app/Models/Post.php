@@ -60,6 +60,25 @@ class Post extends MainModel
 		->first(); 
 	}
 
+	public function getAllPosts($postid,$subcategoryid,$tema,$m_col_p)
+	{
+		return Post::select('posts.'.$m_col_p[1],'posts.url_name','posts.id as postid','posts.post_content','posts.price','u.id as userid', 'u.username','u.img','r.rank_name','c.comition_name','p.payment_name','re.revition','t.type_name','t.type_color','u.is_banned','co.country_name','posts.views','mc.maincategory_name','mc.subcategory_id','mc.maincategory_url','posts.created_at','co.country_flag','posts.type_id')      
+       ->join('users_posts as up', 'up.post_id', '=', 'posts.id')
+       ->join('users as u', 'u.id', '=', 'up.user_id')
+       ->join('ranks as r', 'u.rank_id', '=', 'r.id')
+       ->join('comitions as c', 'c.id', '=', 'posts.comition_id')
+       ->join('payments as p', 'p.id', '=', 'posts.payment_id')
+       ->join('revitions as re', 're.id', '=', 'posts.revition_id')
+       ->join('types as t', 't.id', '=', 'posts.type_id')
+       ->join('countrys as co', 'u.country_id', '=', 'co.id') 
+       ->join('maincategorys as mc', 'mc.id', '=', 'posts.maincategory_id')    
+       ->where('posts.id', $postid)
+       ->where('posts.maincategory_id', $subcategoryid)
+       ->where('posts.url_name', $tema)
+       ->where('posts.publish', null)      
+       ->firstOrFail(); 
+	}
+
 	
 	
 }
