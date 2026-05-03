@@ -360,11 +360,11 @@ public function notify()
         ->where('id', $forum->user_id)
         ->firstOrFail();
 
-      // print_r($scurl.$mcurl.$tema.$subcategoryid.$postid);
+        $ms_contents = $this->moduleService->responseGet('/api/modules/seo',$user->api_key_factory, $website, $forum->user_id, $forum->id);
 
-      // exit;
+        $m_seo = $ms_contents;
 
-        // $category = Post::select('posts.post_name','posts.url_name','posts.id as postid','mc.maincategory_name','u.id as userid', 'u.username','u.img','mc.id','mc.maincategory_url')
+        
         $category = PostFree::select('posts_free.post_name','posts_free.url_name','posts_free.id as postid','posts_free.post_content','u.id as userid', 'u.username','u.img','r.rank_name','u.is_banned','co.country_name','posts_free.views','mc.maincategory_name','mc.subcategory_id','mc.maincategory_url','posts_free.created_at','mc.promo_url','posts_free.maincategory_id','co.country_flag','mc.promo_banner','u.url_patreon','mc.id as maincategoryid','posts_free.content_id','cont.content_name','cont.content_color','posts_free.post_img','sc.subcategory_url','mc.maincategory_url')    
         // ->join('maincategorys as mc', 'mc.id', '=', 'posts.maincategory_id')
         // ->join('maincategorys as mc', 'mc.id', '=', 'posts.maincategory_id')
@@ -546,6 +546,7 @@ public function notify()
         'forums' =>  $forum,
         'websites' =>  $website,
         'users' =>  $user,
+        'm_seos' =>  $ms_contents,
         'post' => $category,
         'sumpost' =>  $sumpost,   
         'comments' => $comments,

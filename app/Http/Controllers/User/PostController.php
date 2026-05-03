@@ -356,6 +356,10 @@ public function notify()
        ->where('id', $forum->user_id)
        ->firstOrFail();
 
+       $ms_contents = $this->moduleService->responseGet('/api/modules/seo',$user->api_key_factory, $website, $forum->user_id, $forum->id);
+
+       $m_seo = $ms_contents;
+
        $ms_contentscol_p = $this->moduleService->responseGetPublic('/api/modules/getcol','post');
 
        $m_col_p = $ms_contentscol_p;
@@ -652,6 +656,7 @@ public function notify()
     'forums' =>  $forum,
     'websites' =>  $website,
     'users' =>  $user,
+    'm_seos' =>  $ms_contents,
     'post' => $category,
     'sumpost' =>  $sumpost,
     'sumcalification' =>  $sumcalification,
