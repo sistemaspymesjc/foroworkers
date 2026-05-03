@@ -2,9 +2,8 @@
 
 @section('meta')
 
-{{-- <title>{{ 'Conversando'.' - '.$post->post_name }} {{$post->maincategory_id}}/{{$post->postid}}</title> --}}
 
-{{-- <title>{{ $post->post_name }} {{$post->maincategory_id}}/{{$post->postid.' - '.'Conversando'}}</title> --}}
+@if(!empty($m_seos->is_active))
 
 <title>{{ $post->post_name }} {{$post->maincategory_id}}/{{$post->postid}}</title>
 
@@ -31,6 +30,8 @@
 <meta property="og:description" content="Conversando en {{$post->post_name}} {{$post->maincategory_id}}/{{$post->postid}} , tasa de café con foroworkers.com" />
 
 <meta property="og:url" content="{{env('APP_URL')}}{{$post->subcategory_url}}/{{$post->maincategory_url}}/tema/{{$post->url_name}}.{{ $urluserid }}{{ $urlpostid }}" /> 
+
+@endif
 
 @endsection 
 {{-- @section('title','SubCategory') --}}

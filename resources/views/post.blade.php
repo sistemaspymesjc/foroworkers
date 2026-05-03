@@ -2,9 +2,7 @@
 
 @section('meta')
 
-{{-- <title>{{ $post->type_name.' - '.$post->post_name }} {{ $urluserid }}/{{ $urlpostid }}</title> --}}
-
-{{-- <title>{{ $post->post_name }} {{ $urluserid }}/{{ $urlpostid.' - '.$post->type_name }}</title> --}}
+@if(!empty($m_seos->is_active))
 
 <title>{{ $post->post_name }} {{ $urluserid }}/{{ $urlpostid }}</title>    
 
@@ -19,6 +17,9 @@
 <meta property="og:description" content="Servicio de {{$post->type_name}} , encuentra un freelance en {{$post->post_name}} {{ $urluserid }}/{{ $urlpostid }} con foroworkers.com" />
 
 <meta property="og:url" content="{{env('APP_URL')}}temas/{{$post->url_name}}/{{ $urluserid }}/{{ $urlpostid }}" /> 
+
+@endif
+
 
 @endsection 
 {{-- @section('title','SubCategory') --}}
