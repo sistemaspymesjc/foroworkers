@@ -10,13 +10,13 @@ use App\Http\Services\ModuleService;
 return new class extends Migration
 {
 
-    protected $moduleService;
+  //   protected $moduleService;
 
-    public function __construct(ModuleService $moduleService){
+  //   public function __construct(ModuleService $moduleService){
 
-      $this->moduleService = $moduleService;
+  //     $this->moduleService = $moduleService;
 
-  }
+  // }
     /**
      * Run the migrations.
      *
@@ -26,9 +26,36 @@ return new class extends Migration
     {
      if (env('APP_AUTHOR') == 'jonathancastro') { 
 
-        $ms_contentscol = $this->moduleService->responseGetPublic('/api/modules/getcol','post');
+       // $moduleService = new App\Http\Services\ModuleService;
 
-       Schema::create('posts', function (Blueprint $table) {
+       // $m_col = $moduleService->responseGetPublic('/api/modules/getcol','post');
+
+       $segment = '/api/modules/getcol';
+       $model_name = 'post';
+
+       $endpoint = env('APP_ENDPOINT_FACTORY').$segment.'/'.$model_name;
+
+       $ch = curl_init();
+
+       curl_setopt($ch, CURLOPT_URL, $endpoint);
+
+       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+
+       $response = curl_exec($ch);
+
+
+       if (curl_errno($ch)) {
+        echo 'Error: ' . curl_error($ch);
+      } else {
+      // echo $response;
+      }
+
+
+      curl_close($ch);
+
+      $m_col = json_decode($response);
+
+      Schema::create('posts', function (Blueprint $table) {
         $table->id();
         $table->string($m_col[1],255)->nullable();
         $table->string($m_col[2],255)->nullable();          
@@ -43,43 +70,26 @@ return new class extends Migration
         $table->boolean($m_col[11])->nullable();
         $table->integer($m_col[12])->default('0');                
         $table->timestamps();
-    });   
+      });   
 
-        // Schema::create('posts', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->string('post_name',255)->nullable();
-        //     $table->string('url_name',255)->nullable();          
-        //     $table->longText('post_content')->nullable();
-        //     $table->unsignedInteger('maincategory_id');
-        //     $table->unsignedInteger('type_id');
-        //     $table->unsignedInteger('site_id');
-        //     // $table->string('price',255)->nullable();
-        //     $table->integer('price');
-        //     $table->unsignedInteger('comition_id');
-        //     $table->unsignedInteger('payment_id');
-        //     $table->unsignedInteger('revition_id');
-        //     $table->boolean('publish')->nullable();
-        //     $table->integer('views')->default('0');
-        //     // $table->unsignedInteger('comment_id');         
-        //     $table->timestamps();
-        // });
 
-   }
 
-   if (env('APP_ENV') == 'local') {   
+    }
+
+    if (env('APP_ENV') == 'local') {   
 
 
 
 
 
-   }
+    }
 
 
 
 
 
 
-}
+  }
 
     /**
      * Reverse the migrations.
@@ -88,6 +98,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+      Schema::dropIfExists('posts');
     }
-};
+  };

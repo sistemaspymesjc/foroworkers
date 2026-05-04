@@ -79,6 +79,8 @@ class HomeController extends Controller
     public function index()
     {
 
+     
+
 
       // print_r($_SERVER['HTTP_HOST']);
 
