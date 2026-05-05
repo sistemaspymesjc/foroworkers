@@ -10,13 +10,8 @@ use App\Http\Services\ModuleService;
 return new class extends Migration
 {
 
-//  protected $moduleService;
+ protected $m_col;
 
-//  public function __construct(ModuleService $moduleService){
-
-//   $this->moduleService = $moduleService;
-
-// }
 
     /**
      * Run the migrations.
@@ -26,84 +21,85 @@ return new class extends Migration
     public function up()
     {
 
-        // $moduleService = new App\Http\Services\ModuleService;
+       $segment = '/api/modules/getcol';
+       $model_name = 'maincategory';
 
-        // $m_col = $moduleService->responseGetPublic('/api/modules/getcol','maincategory');
+       $endpoint = env('APP_ENDPOINT_FACTORY').$segment.'/'.$model_name;
 
-     $segment = '/api/modules/getcol';
-     $model_name = 'maincategory';
+       $ch = curl_init();
 
-     $endpoint = env('APP_ENDPOINT_FACTORY').$segment.'/'.$model_name;
+       curl_setopt($ch, CURLOPT_URL, $endpoint);
 
-     $ch = curl_init();
+       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  
 
-     curl_setopt($ch, CURLOPT_URL, $endpoint);
+       $response = curl_exec($ch);
 
-     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+       if (curl_errno($ch)) {
+          echo 'Error: ' . curl_error($ch);
+      } else {
+        // echo $response;
+      }
 
-     $response = curl_exec($ch);
-
-
-     if (curl_errno($ch)) {
-      echo 'Error: ' . curl_error($ch);
-  } else {
-      // echo $response;
-  }
+      curl_close($ch);
 
 
-  curl_close($ch);
-
-  $m_col = json_decode($response);
+      $this->m_col = json_decode($response);
 
 
-  Schema::create('maincategorys', function (Blueprint $table) {
-    $table->id();
-    $table->string($m_col[1],255)->nullable();
-    $table->string($m_col[2],255)->nullable();
-    $table->string($m_col[3],255)->nullable();
-    $table->string($m_col[4],255)->nullable();
-    $table->string($m_col[5],255)->nullable();
-    $table->string($m_col[6],255)->nullable();                  
-    $table->unsignedInteger($m_col[7]);   
-    $table->timestamps();
-});
 
-           // curl_close($ch);
+      Schema::create('maincategorys', function (Blueprint $table) {
+
+      // $m_col = $data; 
+
+          $table->id();
+          $table->string($this->m_col[1],255)->nullable();
+          $table->string($this->m_col[2],255)->nullable();
+          $table->string($this->m_col[3],255)->nullable();
+          $table->string($this->m_col[4],255)->nullable();
+          $table->string($this->m_col[5],255)->nullable();
+          $table->string($this->m_col[6],255)->nullable();                  
+          $table->unsignedInteger($this->m_col[7]);   
+          $table->timestamps();
+      });
 
 
-  if (env('APP_ENV') == 'local') {        
 
-    MainCategory::insert([
-        [
-         'maincategory_icon' => 'fa-solid fa-house',
-         'maincategory_name' => 'Domains',
-         'maincategory_url' => 'domains',
-         'subcategory_id' => 1,             
-         'created_at' => now(),
-         'updated_at' => now()
-     ]
-     ,
-     [
-         'maincategory_icon' => 'fa-solid fa-palette',
-         'maincategory_name' => 'Developers',
-         'maincategory_url' => 'developers',
-         'subcategory_id' => 2,             
-         'created_at' => now(),
-         'updated_at' => now()
-     ]
-     ,
-     [
-         'maincategory_icon' => 'fa-solid fa-code',
-         'maincategory_name' => 'Laravel',
-         'maincategory_url' => 'laravel',
-         'subcategory_id' => 3,             
-         'created_at' => now(),
-         'updated_at' => now()
-     ]
-     ,
- ]); 
+     
 
-}    
+
+      if (env('APP_ENV') == 'local') {        
+
+        MainCategory::insert([
+            [
+             'maincategory_icon' => 'fa-solid fa-house',
+             'maincategory_name' => 'Domains',
+             'maincategory_url' => 'domains',
+             'subcategory_id' => 1,             
+             'created_at' => now(),
+             'updated_at' => now()
+         ]
+         ,
+         [
+             'maincategory_icon' => 'fa-solid fa-palette',
+             'maincategory_name' => 'Developers',
+             'maincategory_url' => 'developers',
+             'subcategory_id' => 2,             
+             'created_at' => now(),
+             'updated_at' => now()
+         ]
+         ,
+         [
+             'maincategory_icon' => 'fa-solid fa-code',
+             'maincategory_name' => 'Laravel',
+             'maincategory_url' => 'laravel',
+             'subcategory_id' => 3,             
+             'created_at' => now(),
+             'updated_at' => now()
+         ]
+         ,
+     ]); 
+
+    }    
 
 
 }
