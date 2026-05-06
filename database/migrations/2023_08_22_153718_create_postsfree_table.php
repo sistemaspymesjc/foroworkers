@@ -21,7 +21,7 @@ return new class extends Migration
      if (env('APP_AUTHOR') == 'jonathancastro') { 
 
        $segment = '/api/modules/getcol';
-       $model_name = 'post';
+       $model_name = 'postfree';
 
        $endpoint = env('APP_ENDPOINT_FACTORY').$segment.'/'.$model_name;
 
