@@ -55,10 +55,12 @@ class PostFree extends MainModel
 		->first();
 	}
 
-	public function getAllPosts($postid,$subcategoryid,$tema,$m_col_p)
+	public function getAllPosts($postid,$subcategoryid,$tema,$m_col_p,$a)
 	{
+
+		// 55
 		return PostFree::select('posts_free.'.$m_col_p[1],'posts_free.'.$m_col_p[2],'posts_free.id as postid','posts_free.'.$m_col_p[3],'u.id as userid', 'u.username','u.img','r.rank_name','u.is_banned','co.country_name','posts_free.'.$m_col_p[8],'mc.maincategory_name','mc.subcategory_id','mc.maincategory_url','posts_free.'.$m_col_p[10],'mc.promo_url','posts_free.'.$m_col_p[5],'co.country_flag','mc.promo_banner','u.url_patreon','mc.id as maincategoryid','posts_free.'.$m_col_p[6],'cont.content_name','cont.content_color','posts_free.'.$m_col_p[4],'sc.subcategory_url','mc.maincategory_url')  
-		->join('users_posts_free as up', 'up.post_id', '=', 'posts_free.'.$m_col_p[0])
+		->join($a.' as up', 'up.post_id', '=', 'posts_free.'.$m_col_p[0])
 		->join('users as u', 'u.id', '=', 'up.user_id')
 		->join('ranks as r', 'u.rank_id', '=', 'r.id')
 		->join('contents as cont', 'cont.id', '=', 'posts_free.'.$m_col_p[6])   

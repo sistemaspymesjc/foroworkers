@@ -43,6 +43,16 @@ class ModuleService implements ModuleInterface
 		return  $ms_contents = json_decode($response->getBody()->getContents());
 	}
 
+	public function responseGetAllPublic($segment)
+	{        
+
+		$endpoint = env('APP_ENDPOINT_FACTORY').$segment;        
+
+		$response = $this->clients->request('GET', $endpoint);      
+
+		return  $ms_contents = json_decode($response->getBody()->getContents());
+	}
+
 	public function responsePost($segment,$api_key_factory,$website,$user_id,$software_id)
 	{      
 
