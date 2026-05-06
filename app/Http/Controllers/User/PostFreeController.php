@@ -39,28 +39,28 @@ class PostFreeController extends Controller
 
        // use CheckTutorial;
 
- protected $moduleService;
+   protected $moduleService;
  // protected $seoService;
  // protected $homeService;
- protected $posts;
+   protected $posts;
    // protected $postsfree;
- protected $categorys;
+   protected $categorys;
 
   // protected $userService;
 
- public function __construct(ModuleService $moduleService, PostFree $posts,Category $categorys){
+   public function __construct(ModuleService $moduleService, PostFree $posts,Category $categorys){
 
-  $this->moduleService = $moduleService;
+      $this->moduleService = $moduleService;
   // $this->seoService = $seoService;
   // $this->homeService = $homeService;
       // $this->post = $post;
 
-  $this->posts = $posts;
+      $this->posts = $posts;
       // $this->postsfree = $postsfree;
-  $this->categorys = $categorys;
+      $this->categorys = $categorys;
 
 
-}
+  }
     /**
      * Display a listing of the resource.
      *
@@ -69,25 +69,25 @@ class PostFreeController extends Controller
     public function index($subcategory, $id)
     {
 
-       $forum = Forum::select('forums.forum_name','forums.forum_tittle','forums.forum_description','forums.forum_content','forums.is_digitalp','forums.is_services','forums.is_community','forums.user_id','forums.id')
-       ->where('id', 1)
-       ->first();
+     $forum = Forum::select('forums.forum_name','forums.forum_tittle','forums.forum_description','forums.forum_content','forums.is_digitalp','forums.is_services','forums.is_community','forums.user_id','forums.id')
+     ->where('id', 1)
+     ->first();
 
-       $website = $_SERVER['HTTP_HOST'];
+     $website = $_SERVER['HTTP_HOST'];
 
-       $user = user::select('users.id','users.api_key_factory')
-       ->where('id', $forum->user_id)
-       ->firstOrFail();
-
-
-
-       $subid = MainCategory::select('maincategorys.subcategory_id')
-       ->where('maincategorys.id', $id)        
-       ->first();
+     $user = user::select('users.id','users.api_key_factory')
+     ->where('id', $forum->user_id)
+     ->firstOrFail();
 
 
 
-       if (Auth::user()->role_id == 1) {
+     $subid = MainCategory::select('maincategorys.subcategory_id')
+     ->where('maincategorys.id', $id)        
+     ->first();
+
+
+
+     if (Auth::user()->role_id == 1) {
 
         $contents = Content::select('contents.content_name','contents.id')
         ->get();
@@ -117,22 +117,22 @@ class PostFreeController extends Controller
 public function checkout($id)
 {
 
-   $email = Auth::user()->email;
+ $email = Auth::user()->email;
 
-   $product_all = DB::table('products as p')
-   ->leftJoin('prices as pr', 'pr.id', '=', 'p.price_id')
-   ->where('p.id', $id)        
+ $product_all = DB::table('products as p')
+ ->leftJoin('prices as pr', 'pr.id', '=', 'p.price_id')
+ ->where('p.id', $id)        
      // ->get();
-   ->first();
+ ->first();
 
      // print_r($product_all);
 
      // exit;
 
-   return view('products.checkout', [
+ return view('products.checkout', [
         // 'products' => $users,
-      'products_sell' => $product_all
-  ]);
+  'products_sell' => $product_all
+]);
 
       // return view('products.checkout')->with(['products_sell'=>$product_all]);
 }
@@ -144,7 +144,7 @@ public function success()
 
 public function cancel()
 {
- return view('products.cancel');
+   return view('products.cancel');
 }
 
 public function notify()
@@ -364,14 +364,26 @@ public function notify()
 
         $m_seo = $ms_contents;
 
+        $ms_contents_ta = $this->moduleService->responseGetAllPublic('/api/modules/gettables');
+
+        $m_ta =  $ms_contents_ta;
+
+        // print_r($m_ta);
+
+        // print_r($m_ta[0]['Tables_in_factory']);
+
+        // print_r($m_ta[55]->Tables_in_factory);
+
+        // exit;
+
         $ms_contentscol_p = $this->moduleService->responseGetPublic('/api/modules/getcol','postfree');
 
         $m_col_p = $ms_contentscol_p;
 
-        $category = $this->posts->getAllPosts($postid,$subcategoryid,$tema,$m_col_p);
+        $category = $this->posts->getAllPosts($postid,$subcategoryid,$tema,$m_col_p,$m_ta[55]->Tables_in_factory);
 
         
-   
+
 
         $post_view_number = $category->views;
 
@@ -459,7 +471,7 @@ public function notify()
             // $user_id_comment  += $comment->userid;
 
              //aqui es para asignar valor 
-         $user_id_comment = $comment->userid;
+           $user_id_comment = $comment->userid;
 
            //exit no funciona adentro de foreach
         // exit;
@@ -475,7 +487,7 @@ public function notify()
      //   $sumpostcomment = count($totalpostcomment);
 
      //   dd($sumpostcomment);
-     }
+       }
 
       // dd($user_id_comment);
 
@@ -486,33 +498,33 @@ public function notify()
      // exit;
 
      // para el total post comentarios
-     $totalpostcomment = PostFree::select('up.user_id')   
-     ->join('users_posts_free as up', 'up.post_id', '=', 'posts_free.id')
-     ->join('users as u', 'u.id', '=', 'up.user_id')    
-     ->where('up.user_id', $user_id_comment)
+       $totalpostcomment = PostFree::select('up.user_id')   
+       ->join('users_posts_free as up', 'up.post_id', '=', 'posts_free.id')
+       ->join('users as u', 'u.id', '=', 'up.user_id')    
+       ->where('up.user_id', $user_id_comment)
      // ->count('up.user_id AS totalpost')
-     ->get();
+       ->get();
 
      // dd($totalpost);
 
-     $sumpostcomment = count($totalpostcomment);
+       $sumpostcomment = count($totalpostcomment);
 
      //   dd($sumpostcomment);
      // exit;
 
-     $alltotalpostcomment = CommentFree::select('comment')       
-     ->where('post_id', $postid)     
-     ->get();
+       $alltotalpostcomment = CommentFree::select('comment')       
+       ->where('post_id', $postid)     
+       ->get();
 
      // dd($totalpost);
 
-     $sumpostcommentall = count($alltotalpostcomment);
+       $sumpostcommentall = count($alltotalpostcomment);
 
 
 
 
 
-     return view('postfree', [
+       return view('postfree', [
         'forums' =>  $forum,
         'websites' =>  $website,
         'users' =>  $user,
@@ -532,50 +544,50 @@ public function notify()
 
 
 
- }
+   }
 
 
- public function unpublish($postid)
- {
+   public function unpublish($postid)
+   {
 
-   if (Auth::user()->role_id == 2) {
+     if (Auth::user()->role_id == 2) {
 
-     return redirect()->to('/');
- }
-
-
+       return redirect()->to('/');
+   }
 
 
- $data = DB::table('posts')
- ->where('id', $postid)
- ->update(['publish' => 1]);
+
+
+   $data = DB::table('posts')
+   ->where('id', $postid)
+   ->update(['publish' => 1]);
 
 
    // return redirect()->to('/');
 
- return response()->json($data);
+   return response()->json($data);
 
 }
 
 public function commentunpublish($postid)
 {
 
-   if (Auth::user()->role_id == 2) {
+ if (Auth::user()->role_id == 2) {
 
-     return redirect()->to('/');
- }
-
-
+   return redirect()->to('/');
+}
 
 
- $data = DB::table('comments')
- ->where('post_id', $postid)
- ->update(['publish' => 1]);
+
+
+$data = DB::table('comments')
+->where('post_id', $postid)
+->update(['publish' => 1]);
 
 
    // return redirect()->to('/');
 
- return response()->json($data);
+return response()->json($data);
 
 }
 
@@ -592,11 +604,11 @@ public function findCategory(Request $request)
 
       // $search->save();
 
-   $search = new StatisticsBanner;
+ $search = new StatisticsBanner;
 
-   $search->maincategory_id = $request->query('category_id');            
+ $search->maincategory_id = $request->query('category_id');            
 
-   $search->save();
+ $search->save();
 
 
     // $data2= $request->all();
@@ -607,7 +619,7 @@ public function findCategory(Request $request)
 
 
 
-   return response()->json("success");
+ return response()->json("success");
 
 }
 
