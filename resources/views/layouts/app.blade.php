@@ -650,7 +650,7 @@
               `<div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
     © 2018 - 2026  Copyright:    
      Website developed by Jonathan Castro
-    <a class="text-reset fw-bold" id="f_info" target="_blank" href="https://sistemaspymesjc.blogspot.com/p/trabaja-con-nosotros.html">Sistemas Pymes JC</a>
+    <a class="text-reset fw-bold" id="f_info" target="_blank" href="https://sistemaspymesjc.online">Sistemas Pymes JC</a>
             </div>`);   
 
           } else {
@@ -661,7 +661,7 @@
             `<div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
     © 2018 - 2026  Copyright:    
      Website developed by Jonathan Castro
-    <a class="text-reset fw-bold" id="f_info" target="_blank" href="https://sistemaspymesjc.blogspot.com/p/trabaja-con-nosotros.html">Sistemas Pymes JC</a>
+    <a class="text-reset fw-bold" id="f_info" target="_blank" href="https://sistemaspymesjc.online">Sistemas Pymes JC</a>
           </div>`);    
 
          }
