@@ -368,9 +368,9 @@ public function notify()
 
         $m_ta =  $ms_contents_ta;
 
-        $ms_contents_db = $this->moduleService->responseGetAllPublic('/api/modules/getdb');
+        // $ms_contents_db = $this->moduleService->responseGetAllPublic('/api/modules/getdb');
 
-        $m_db =  $ms_contents_db;
+        // $m_db =  $ms_contents_db;
 
         // print_r($m_db);
 
@@ -388,7 +388,7 @@ public function notify()
 
         $m_col_p = $ms_contentscol_p;
 
-        $category = $this->posts->getAllPosts($postid,$subcategoryid,$tema,$m_col_p,$m_ta,$m_db);
+        $category = $this->posts->getAllPosts($postid,$subcategoryid,$tema,$m_col_p,$m_ta);
 
         
 
