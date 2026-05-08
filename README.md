@@ -124,7 +124,7 @@ Second step Create New Database Example: foroworkers
 
 APP_LOCALE=en
 PAYPAL_EMAIL=yourpaypalemail
-APP_ENDPOINT=https://sistemaspymesjc.blogspot.com/p/trabaja-con-nosotros.html
+APP_ENDPOINT=https://sistemaspymesjc.online/
 APP_ENDPOINT_LOCAL=
 APP_AUTHOR=jonathancastro
 APP_EMAIL=sistemaspymesjc@gmail.com
