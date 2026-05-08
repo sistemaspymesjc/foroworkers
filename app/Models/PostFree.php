@@ -55,7 +55,7 @@ class PostFree extends MainModel
 		->first();
 	}
 
-	public function getAllPosts($postid,$subcategoryid,$tema,$m_col_p,$mytable,$mydb)
+	public function getAllPosts($postid,$subcategoryid,$tema,$m_col_p,$mytable)
 	{
 
 		// return $mytable[55];
