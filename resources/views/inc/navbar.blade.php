@@ -168,28 +168,28 @@
 
     <li class="nav-item">
       <a class="nav-link" href="/course/foroworkers/installatton-tutorial-step-by-step">
-        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Tutorial</span>             
+        <span class="mr-2 d-lg-inline text-gray-600 small">Tutorial</span>             
       </a>
 
     </li>
 
     <li class="nav-item">
       <a class="nav-link" href="/reglas">
-        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Reglas</span>             
+        <span class="mr-2 d-lg-inline text-gray-600 small">Reglas</span>             
       </a>
 
     </li>
 
     <li class="nav-item">
       <a class="nav-link" href="/guest-post">
-        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Guest Post</span>             
+        <span class="mr-2 d-lg-inline text-gray-600 small">Guest Post</span>             
       </a>
 
     </li>
 
     <li class="nav-item">
       <a class="nav-link" href="/login">
-        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Acceder</span>             
+        <span class="mr-2 d-lg-inline text-gray-600 small">Acceder</span>             
       </a>
 
     </li>
