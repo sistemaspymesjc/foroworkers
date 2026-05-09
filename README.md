@@ -124,7 +124,7 @@ Second step Create New Database Example: foroworkers
 
 APP_LOCALE=en
 PAYPAL_EMAIL=yourpaypalemail
-APP_ENDPOINT=https://sistemaspymesjc.online/
+APP_ENDPOINT=https://sistemaspymesjc.online
 APP_ENDPOINT_LOCAL=
 APP_AUTHOR=jonathancastro
 APP_EMAIL=sistemaspymesjc@gmail.com
@@ -179,7 +179,7 @@ _Pass: Test1234
 
 ## Technologies 🛠️
 
-* [Laravel 12](https://laravel.com/docs/12.x)
+* [Laravel 13](https://laravel.com/docs/13.x)
 * [Email Tool](https://mailtrap.io?ref=jonathan61)  
 * [Hosting Tool](https://namecheap.pxf.io/rnOVB5) 
 
@@ -195,7 +195,7 @@ _Pass: Test1234
 
 ## Support
 
-_sistemaspymesjc@gmail.com_
+_foroworkers@istemaspymesjc.online_
 
 * If you would like a business forum with many extra features, please contact us with your requirements and budget. Thank you.
 
