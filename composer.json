@@ -13,12 +13,12 @@
     ],
     "support": {
         "issues": "https://github.com/sistemaspymesjc/foroworkers/issues",
-        "forum": "https://discord.gg/ntpz4aRHHy",
+        "forum": "https://foroworkers.sistemaspymesjc.online",
         "wiki": "https://github.com/sistemaspymesjc/foroworkers/wiki",
         "source": "https://github.com/sistemaspymesjc/foroworkers"
     },
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "laravel/framework": "^12.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1"
