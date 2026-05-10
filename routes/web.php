@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Middleware\WallkValidate;
+// use App\Http\Middleware\WallkValidate;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberController;

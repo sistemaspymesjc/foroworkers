@@ -8,7 +8,7 @@ class CheckTutorial implements TutorialInterface
 {
     public function getTutorial()
     {
-    	exit;
+    	// exit;
 
     // 	 $forum = Forum::select('forums.forum_name','forums.forum_tittle','forums.forum_description')
       // ->where('id', 1)
