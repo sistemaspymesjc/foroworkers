@@ -67,7 +67,7 @@ return new class extends Migration
      
 
 
-      if (env('APP_ENV') == 'local') {        
+      // if (env('APP_ENV') == 'local') {        
 
         MainCategory::insert([
             [
@@ -99,7 +99,7 @@ return new class extends Migration
          ,
      ]); 
 
-    }    
+    // }    
 
 
 }

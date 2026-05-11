@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use Illuminate\Support\Facades\Hash;
+
 use App\Models\User;
 
 return new class extends Migration
@@ -66,68 +68,74 @@ return new class extends Migration
         }
 
 
-        if (env('APP_ENV') == 'local') {
+        // if (env('APP_ENV') == 'local') {
 
-         $password = password_hash('Test1234',PASSWORD_BCRYPT);
+        // $password = password_hash('Test1234',PASSWORD_BCRYPT);
 
-         User::insert([
+         // Hashing a password
+         $password = Hash::make('Test1234');
+
+// Alternatively, using the bcrypt() helper function
+         // $password = bcrypt('Test1234');
+
+        User::insert([
             [
-             'img' => 'user.png',
-             'banner' => 'userbanner.png',
-             'username' => 'admindemo',
-             'email' => 'admin@gmail.com',
-             'email_verified_at' => now(),
-             'password' => $password,
-             'token' => $password,
-             'role_id' => 1,
-             'country_id' => 2,
-             'statu_id' => 1,
-             'is_buyer' => 1,
-             'theme_color' => 'gray',
-             'rank_id' => 2,
-             'membership_start' => null,
-             'membership_end' => null,
-             'remember_token' => 'pqDjqmL6hQ',
-             'terms' => 1,
-             'is_verified' => 1,
-             'is_banned' => 0,
-             'reason_id' => 1,
-             'url_profile' => 'https://www.upwork.com/freelancers/~016c272f36ca6d79ee',
-             'url_patreon' => 'foroworkers',
-             'ip_adress' => '127.0.0.1',
-             'created_at' => now(),
-             'updated_at' => now()
-         ]
-         ,
-         [
+               'img' => 'user.png',
+               'banner' => 'userbanner.png',
+               'username' => 'admindemo',
+               'email' => 'admin@gmail.com',
+               'email_verified_at' => now(),
+               'password' => $password,
+               'token' => $password,
+               'role_id' => 1,
+               'country_id' => 2,
+               'statu_id' => 1,
+               'is_buyer' => 1,
+               'theme_color' => 'gray',
+               'rank_id' => 2,
+               'membership_start' => null,
+               'membership_end' => null,
+               'remember_token' => 'pqDjqmL6hQ',
+               'terms' => 1,
+               'is_verified' => 1,
+               'is_banned' => 0,
+               'reason_id' => 1,
+               'url_profile' => 'https://www.upwork.com/freelancers/~016c272f36ca6d79ee',
+               'url_patreon' => 'foroworkers',
+               'ip_adress' => '127.0.0.1',
+               'created_at' => now(),
+               'updated_at' => now()
+           ]
+           ,
+           [
             'img' => 'admin.png',
-             'banner' => 'userbanner.png',
-             'username' => 'userdemo',
-             'email' => 'user@gmail.com',
-             'email_verified_at' => now(),
-             'password' => $password,
-             'token' => $password,
-             'role_id' => 2,
-             'country_id' => 1,
-             'statu_id' => 1,
-             'is_buyer' => 1,
-             'theme_color' => 'black',
-             'rank_id' => 2,
-             'membership_start' => null,
-             'membership_end' => null,
-             'remember_token' => 'pqDjqmL6hQ',
-             'terms' => 1,
-             'is_verified' => 1,
-             'is_banned' => 0,
-             'reason_id' => 1,
-             'url_profile' => 'https://www.workana.com/freelancer/bc85b1df7df61ffb748ee88bf2a14905',
-             'url_patreon' => 'foroworkers',
-             'ip_adress' => '127.0.0.1',
-             'created_at' => now(),
-             'updated_at' => now()
-         ]
-         ,
-     ]);     
+            'banner' => 'userbanner.png',
+            'username' => 'userdemo',
+            'email' => 'user@gmail.com',
+            'email_verified_at' => now(),
+            'password' => $password,
+            'token' => $password,
+            'role_id' => 2,
+            'country_id' => 1,
+            'statu_id' => 1,
+            'is_buyer' => 1,
+            'theme_color' => 'black',
+            'rank_id' => 2,
+            'membership_start' => null,
+            'membership_end' => null,
+            'remember_token' => 'pqDjqmL6hQ',
+            'terms' => 1,
+            'is_verified' => 1,
+            'is_banned' => 0,
+            'reason_id' => 1,
+            'url_profile' => 'https://www.workana.com/freelancer/bc85b1df7df61ffb748ee88bf2a14905',
+            'url_patreon' => 'foroworkers',
+            'ip_adress' => '127.0.0.1',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]
+        ,
+    ]);     
 
 
 
@@ -136,10 +144,10 @@ return new class extends Migration
 
 
 
-     }
+     // }
 
 
- }
+    }
 
     /**
      * Reverse the migrations.

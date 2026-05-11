@@ -20,7 +20,12 @@ return Application::configure(basePath: dirname(__DIR__))
         // ]);
 
           $middleware->validateCsrfTokens(except: [           
-            'register' // Direct path exclusion
+            'register', // Direct path exclusion
+            'comment/post/store',
+            'commentfree/post',
+            'comunidad/post',
+            'forum/post',
+            'login'
         ]);
         
     //       $middleware->appendToGroup('wallk.validate', [
