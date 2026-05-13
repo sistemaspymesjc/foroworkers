@@ -34,7 +34,7 @@ return new class extends Migration
 
        }
 
-       if (env('APP_ENV') == 'local') {    
+       // if (env('APP_ENV') == 'local') {    
 
            $reply = new Forum;
            $reply->forum_name = 'Foroworkers';
@@ -58,7 +58,7 @@ return new class extends Migration
 
 
 
-       }
+       // }
 
    }
 
