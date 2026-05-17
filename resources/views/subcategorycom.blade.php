@@ -192,7 +192,11 @@
 
 		@if($categorys[0]->subcategory_id == 3)
 		{{-- <span><a href="">MyForum - Forums</a> >> <a href="">random subforum</a></span> --}}
-		<span><a href="">{{ 'Comunidad' }}</a> >> <a href="">{{ $categorys[0]->maincategory_name }}</a></span>
+		{{-- <span><a href="">{{ 'Comunidad' }}</a> >> <a href="">{{ $categorys[0]->maincategory_name }}</a></span> --}}
+
+		<span><a href=""> @lang('url.community')</a> >> <a href="">{{ $categorys[0]->maincategory_name }}</a></span>
+
+		
 		@endif
 
 		{{-- @if($categorys[0]->subcategory_id == 2)
@@ -223,7 +227,10 @@
 					<div class="subjects">
 						{{-- <span class="{{$category->type_color}} text-white custom-info">{{$category->type_name}}</span> --}}
 						<span class="{{$category->content_color}} text-white custom-info">{{$category->content_name}}</span>
-						<a href="/comunidad/{{$category->url_name}}/{{$category->id}}/{{$category->postid}}">{{ $category->post_name }}</a>
+						{{-- <a href="/comunidad/{{$category->url_name}}/{{$category->id}}/{{$category->postid}}">{{ $category->post_name }}</a> --}}
+						<a href="/@lang('url.community')/{{$category->url_name}}/{{$category->id}}/{{$category->postid}}">{{ $category->post_name }}</a>
+
+						
 						<br>
 						<span>Started by <b><a href="/members/{{ $category->username }}/{{ $category->userid }}">{{ $category->username }}</a></b> .</span>
 						{{-- <br> --}}
