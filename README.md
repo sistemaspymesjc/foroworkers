@@ -74,13 +74,13 @@ The following steps are meant to be used on a development server.
 - Option 1: Install with Composer
 
 ```bash
-$ composer create-project sistemaspymesjc/foroworkers
+$ composer create-project sistemaspymesjc/hudemyx
 ``` 
 
 - Option 2: Clone Project
 
 ```bash
-$ git clone https://github.com/sistemaspymesjc/foroworkers.git
+$ git clone https://github.com/sistemaspymesjc/hudemyx.git
 ``` 
 
 - Pull Project Dev Branch
@@ -91,7 +91,7 @@ $ git pull dev
 - Navigate to the root of the Laravel project
 
 ```bash
-$ cd foroworkers
+$ cd hudemyx
 ``` 
 - Setup vendor libraries 
 
@@ -151,13 +151,13 @@ MAIL_FROM_NAME="${APP_NAME}"
 ```
 
 ```bash
-$ php artisan migrate:fresh --seed
+$ php spark db:create 
 ```
 ```bash
-$ php artisan storage:link
+$ php spark migrate -all
 ```
 ```bash
-$ php artisan optimize:clear
+$ php spark db:seed LoadSeeder
 ```
 ```bash
 $ php artisan config:clear
