@@ -151,7 +151,7 @@
 					@if($post->subcategory_id == 3)
 					{{-- <span><a href="">MyForum - Forums</a> >> <a href="">random subforum</a></span> --}}
 					{{-- <span><a href="">{{ 'Comunidad' }}</a> >> <a href="">{{ $post->maincategory_name }}</a></span> --}}
-					<span><a href="/">{{ 'Comunidad' }}</a> >> <a href="/comunidad/{{ $post->maincategory_url }}">{{ $post->maincategory_name }}</a></span>
+					<span><a href="/">@lang('url.community')</a> >> <a href="/@lang('url.community')/{{ $post->maincategory_url }}">{{ $post->maincategory_name }}</a></span>
 					@endif
 
 					<br>
