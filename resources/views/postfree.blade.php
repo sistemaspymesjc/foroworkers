@@ -10,7 +10,13 @@
 
 {{-- <link rel="canonical" href="{{env('APP_URL')}}{{$post->subcategory_url}}/{{$post->maincategory_url}}/tema/{{$post->url_name}}.{{ $urluserid }}{{ $urlpostid }}" /> --}}
 
-<link rel="canonical" href="{{env('APP_URL')}}{{$post->subcategory_url}}/{{$post->maincategory_url}}/tema/{{$post->url_name}}.{{ $urluserid }}{{ $urlpostid }}" />
+{{-- <link rel="canonical" href="{{env('APP_URL')}}{{$post->subcategory_url}}/{{$post->maincategory_url}}/tema/{{$post->url_name}}.{{ $urluserid }}{{ $urlpostid }}" /> --}}
+
+<link rel="canonical" href="{{env('APP_URL')}}{{$post->subcategory_url}}/{{$post->maincategory_url}}/@lang('url.topics')/{{$post->url_name}}.{{ $urluserid }}{{ $urlpostid }}" />
+
+{{-- <link rel="canonical" href="{{env('APP_URL')}}/@lang('url.topics')/{{$post->url_name}}/{{ $urluserid }}/{{ $urlpostid }}" />
+
+<a href="/@lang('url.community')/{{$category->url_name}}/{{$category->id}}/{{$category->postid}}">{{ $category->post_name }}</a> --}}
 
 
 

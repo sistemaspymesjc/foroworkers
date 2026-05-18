@@ -7,7 +7,9 @@
 <title>{{ $post->post_name }} {{ $urluserid }}/{{ $urlpostid }}</title>    
 
 
-<link rel="canonical" href="{{env('APP_URL')}}temas/{{$post->url_name}}/{{ $urluserid }}/{{ $urlpostid }}" />
+{{-- <link rel="canonical" href="{{env('APP_URL')}}temas/{{$post->url_name}}/{{ $urluserid }}/{{ $urlpostid }}" /> --}}
+
+<link rel="canonical" href="{{env('APP_URL')}}/@lang('url.topics')/{{$post->url_name}}/{{ $urluserid }}/{{ $urlpostid }}" />
 
 
 <meta name="description" content="Servicio de {{$post->type_name}} , encuentra un freelance en {{$post->post_name}} {{ $urluserid }}/{{ $urlpostid }} con foroworkers.com">

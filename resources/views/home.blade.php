@@ -157,10 +157,10 @@ crossorigin=""/> --}}
 
 		<div class="col-10 offset-1">
 			{{-- <p>uno</p> --}}
-			<h2 class="h2">Punto de encuentro para Negocios Online</h2>
+			{{-- <h2 class="h2">Punto de encuentro para Negocios Online</h2>
 			<hr>
 			<p>Usuarios y <a href="https://agenciaseocastro.com/" target="_blank">Agencias SEO
-					</a>de todo el mundo estan comprando y vendiendo servicios con su talento digital, unete a la red de profesionales creando nuevas oportunidades de negocios</p>
+					</a>de todo el mundo estan comprando y vendiendo servicios con su talento digital, unete a la red de profesionales creando nuevas oportunidades de negocios</p> --}}
 			{{-- <hr> --}}
 			<div class="col-8 offset-2">  
 				<div id="mapid" style="width: 100%;height: 380px;box-shadow: 5px 5px 5px #888;"></div>
