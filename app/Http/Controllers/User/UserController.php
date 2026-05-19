@@ -157,7 +157,7 @@ class UserController extends Controller
 
        $update_info = DB::table('users')
        ->where('id', $user_id)
-       ->update(['img' => $user->img ,'theme_color' =>  $request->theme_color,'rank_id' => $request->rank_id,'url_patreon' => $request->url_patreon ]);
+       ->update(['img' => $user->img ,'theme_color' =>  $request->theme_color,'rank_id' => $request->rank_id,'url_patreon' => $request->url_patreon,'api_key_factory' => $request->api_key_factory ]);
      }
 
      if (!empty($file)) {
@@ -178,9 +178,13 @@ class UserController extends Controller
       // ->where('id', $user_id)
       // ->update(['img' => $random_number_img ,'country_id' => $request->country_id,'theme_color' =>  $request->theme_color,'rank_id' => $request->rank_id ]);
 
-       $update_info = DB::table('users')
+      //  $update_info = DB::table('users')
+      // ->where('id', $user_id)
+      // ->update(['img' => $random_number_img ,'theme_color' =>  $request->theme_color,'rank_id' => $request->rank_id,'url_patreon' => $request->url_patreon ]);
+
+        $update_info = DB::table('users')
       ->where('id', $user_id)
-      ->update(['img' => $random_number_img ,'theme_color' =>  $request->theme_color,'rank_id' => $request->rank_id,'url_patreon' => $request->url_patreon ]);
+      ->update(['img' => $random_number_img ,'theme_color' =>  $request->theme_color,'rank_id' => $request->rank_id,'url_patreon' => $request->url_patreon,'api_key_factory' => $request->api_key_factory ]);
     }
 
 

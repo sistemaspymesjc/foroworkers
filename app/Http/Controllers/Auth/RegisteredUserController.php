@@ -123,10 +123,10 @@ class RegisteredUserController extends Controller
       if ($total1 == $request->totalsum) {
 
         //mejorar esto
-        $adminuser = User::select('username')   
-        // ->where('role_id', 1)
-        ->where('role_id', 2)  
-        ->first();
+        // $adminuser = User::select('username')   
+        // // ->where('role_id', 1)
+        // ->where('role_id', 2)  
+        // ->first();
 
         // borrar esto despues
         // if ($adminuser->username == 'admindemo') {
@@ -135,14 +135,19 @@ class RegisteredUserController extends Controller
 
         // }
 
-        if (empty($adminuser)) {
+        $users = User::all();
+        
+
+        // if (empty($adminuser)) {
+        if ($users->isEmpty()) {
 
           $ms_users_total = $this->moduleService->responseGetAllPublic('/api/modules/getusers');
 
           $newuserid = $ms_users_total+1;
 
+          // se suma uno mas por el autoincrement de la pk
           $user = User::create([
-            'id' => $newuserid,
+            // 'id' => $newuserid-1,
             'img' => 'admin.png',
             'banner' => 'userbanner.png',        
             'username' => $usernameadmin_final,       
@@ -230,6 +235,16 @@ class RegisteredUserController extends Controller
          // $reply->software_id = 1;
          // $reply->forum_api_key = 'sdk_123$$';                        
           $reply->save();
+
+          $mailData = [
+            'title' => 'Verificar Email',
+            'body' => 'Necesitamos asegurarnos de que seas humano. Verifique su correo electrónico y comience a utilizar su cuenta del sitio web.',
+            'token' =>  $random_token
+          ];
+
+
+
+          Mail::to($request->email)->send(new WelcomeEmail($mailData));
 
 
 

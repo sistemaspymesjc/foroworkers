@@ -42,7 +42,8 @@ class User extends Authenticatable
         'url_profile',
         'url_patreon',
         'phone_whatsapp',
-        'ip_adress'
+        'ip_adress',
+        'api_key_factory'
     ];
 
     /**

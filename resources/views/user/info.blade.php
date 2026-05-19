@@ -86,6 +86,13 @@
 		<h1 class="display-4">Mi Información</h1>
 		<hr>
 		<br>
+		<a href="https://foroworkers.sistemaspymesjc.online/community/support" rel="nofollow" target="_blank" class="me-4 text-reset">
+        <i class="fab fa-instagram">Support</i>
+      </a>
+      <br>
+		<a href="https://sistemaspymesjc.online/software/open-source/foro/foroworkers-comunidad-en-linea.1.1" rel="nofollow" target="_blank" class="me-4 text-reset">
+        <i class="fab fa-instagram">Upgrade Plan</i>
+      </a>
 
 	{{-- 	<label>Imagen:</label> --}}
 
@@ -157,6 +164,14 @@
 				</label>
 
 				
+				@endif
+
+				@if(Auth::user()->role_id == 1)
+
+				<label>API KEY
+				<input type="text" class="form-control form-control-user" name="api_key_factory" id="api_key_factory"  placeholder="API KEY Foroworkers" >
+				</label>
+
 				@endif
 
 				<br>
